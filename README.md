@@ -1,4 +1,4 @@
-RA-demos
+ra-demos
 ========
 
-Source materials for RapidApp demos
+Source materials for various RapidApp demos...

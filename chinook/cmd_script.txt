@@ -1,0 +1,137 @@
+######### Misc #########
+
+http://chinookdatabase.codeplex.com/
+
+# fix multi-line cmds in history:
+sed -i 's/    / \\\n   /g' cmd_history.sh
+git add --all && git commit -m 'Fixed multi-line cmds in history'
+
+# push github:
+git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
+git push -f -u origin master
+
+
+#######################################
+#######################################
+
+### Clear any previous work
+cd && rm -rf RA-ChinookDemo/
+
+### setup shell and history
+PS1='\[\033[01;34m\] \W >\[\033[00m\] '
+unset HISTTIMEFORMAT
+shopt -s cmdhist lithist
+rm -f ~/cmd_history.sh
+export HISTFILE=~/cmd_history.sh
+history -c && clear
+
+
+ # -- RapidApp "Chinook" Demo --
+ #
+ #  Demo assumes familiarity with:
+ #    *  Perl
+ #    *  Catalyst
+ #    *  DBIx::Class (aka "DBIC")
+ #    *  Relational database concepts
+ #    *  Git
+ #    *  Linux/bash
+ #  ------
+ #
+ # Install the latest RapidApp (and its dependencies):
+cpanm RapidApp
+ #
+ #   cpan App::cpanminus #<-- if you don't have cpanminus
+ #   (or see http://metacpan.org/module/App::cpanminus)
+ #
+ # Create new Catalyst app "RA::ChinookDemo":
+catalyst.pl RA::ChinookDemo
+ #
+ # Enter the new app directory:
+cd RA-ChinookDemo/
+ #
+ # Setup as a git repo
+git init
+ #
+ # Setup 'Commit' alias/shortcut:
+alias Commit='\
+    history -w && \
+    cp $HISTFILE cmd_history.sh && \
+    git add --all && \
+    git commit -m'
+ #
+ # Commit progress (with command history)
+Commit 'init commit - newly created Catalyst app'
+ #
+ # Remove the auto-generated Root Controller:
+rm -f lib/RA/ChinookDemo/Controller/Root.pm 
+ #
+ # Download the Chinook sample database:
+ # (http://chinookdatabase.codeplex.com/)
+mkdir sql
+cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite.sql sql/
+ #
+ # Create new SQLite database (takes ~ 10 minutes)
+#time sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+cp ../chinook.db .
+ #
+ # Commit progress (with latest command history)
+Commit 'setup chinook SQLite database'
+ #
+ # -- Create DBIC model --
+ #  See POD for syntax details:
+ #  * http://metacpan.org/module/Catalyst::Model::DBIC::Schema
+ # --
+script/ra_chinookdemo_create.pl model Chinook \
+    DBIC::Schema RA::ChinookDemo::Chinook \
+    create=static generate_pod=0 \
+    dbi:SQLite:dbname=chinook.db \
+    quote_names=1 sqlite_unicode=1 #<-- important!
+ #
+ # Commit progress (with latest command history)
+Commit 'Created DBIC model for Chinhook'
+ #
+
+
+ # fix multi-line cmds in history:
+sed -i 's/     / \\\n    /g' cmd_history.sh
+git add --all && git commit -m 'Fixed multi-line cmds in history'
+ #
+ # push github:
+git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
+git push -f -u origin master
+ #
+
+
+#######################################
+#######################################
+
+ 
+ 
+ 
+ #
+ # -- Configure app --
+ #
+vim lib/RA/ChinookDemo.pm
+
+
+########################
+#### Edit Steps........
+1. use RapidApp
+2. Remove comments
+3. Add RapidDbic to plugins
+4. RapidDbic cnf:
+
+'Plugin::RapidApp::RapidDbic' => {
+  dbic_models => ['Chinook']
+}
+########################
+
+
+ #
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Enable editing:
+vim lib/RA/ChinookDemo.pm
+
+
