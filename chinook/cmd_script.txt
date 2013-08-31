@@ -1,13 +1,13 @@
  # -- RapidApp "Chinook" Demo --
  #
- #  Demo assumes familiarity with:
- #    *  Perl
- #    *  Catalyst
- #    *  DBIx::Class (aka "DBIC")
- #    *  Relational database concepts
- #    *  Git
- #    *  Linux/bash
- #  ------
+ # Demo assumes familiarity with:
+ #   *  Perl
+ #   *  Catalyst
+ #   *  DBIx::Class (aka "DBIC")
+ #   *  Relational database concepts
+ #   *  Git
+ #   *  Linux/bash
+ # ------
  #
  # Install the latest RapidApp (and its dependencies):
 cpanm RapidApp
@@ -15,6 +15,7 @@ cpanm RapidApp
  #   cpan App::cpanminus #<-- if you don't have cpanminus
  #   (or see http://metacpan.org/module/App::cpanminus)
  #
+ # --
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
  #
