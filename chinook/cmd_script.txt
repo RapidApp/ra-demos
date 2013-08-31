@@ -1,31 +1,3 @@
-######### Misc #########
-
-http://chinookdatabase.codeplex.com/
-
-# fix multi-line cmds in history:
-sed -i 's/    / \\\n   /g' cmd_history.sh
-git add --all && git commit -m 'Fixed multi-line cmds in history'
-
-# push github:
-git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
-git push -f -u origin master
-
-
-#######################################
-#######################################
-
-### Clear any previous work
-cd && rm -rf RA-ChinookDemo/
-
-### setup shell and history
-PS1='\[\033[01;34m\] \W >\[\033[00m\] '
-unset HISTTIMEFORMAT
-shopt -s cmdhist lithist
-rm -f ~/cmd_history.sh
-export HISTFILE=~/cmd_history.sh
-history -c && clear
-
-
  # -- RapidApp "Chinook" Demo --
  #
  #  Demo assumes familiarity with:
@@ -90,8 +62,8 @@ script/ra_chinookdemo_create.pl model Chinook \
  # Commit progress (with latest command history)
 Commit 'Created DBIC model for Chinhook'
  #
-
-
+ #
+ #
  # fix multi-line cmds in history:
 sed -i 's/     / \\\n    /g' cmd_history.sh
 git add --all && git commit -m 'Fixed multi-line cmds in history'
@@ -100,38 +72,3 @@ git add --all && git commit -m 'Fixed multi-line cmds in history'
 git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
 git push -f -u origin master
  #
-
-
-#######################################
-#######################################
-
- 
- 
- 
- #
- # -- Configure app --
- #
-vim lib/RA/ChinookDemo.pm
-
-
-########################
-#### Edit Steps........
-1. use RapidApp
-2. Remove comments
-3. Add RapidDbic to plugins
-4. RapidDbic cnf:
-
-'Plugin::RapidApp::RapidDbic' => {
-  dbic_models => ['Chinook']
-}
-########################
-
-
- #
- # Start the test server:
-script/ra_chinookdemo_server.pl
- #
- # Enable editing:
-vim lib/RA/ChinookDemo.pm
-
-

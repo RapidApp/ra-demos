@@ -1,0 +1,53 @@
+######### Misc #########
+
+http://chinookdatabase.codeplex.com/
+
+# fix multi-line cmds in history:
+sed -i 's/    / \\\n   /g' cmd_history.sh
+git add --all && git commit -m 'Fixed multi-line cmds in history'
+
+# push github:
+git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
+git push -f -u origin master
+
+
+#######################################
+#######################################
+
+
+
+
+
+#######################################
+#######################################
+
+ 
+ 
+ 
+ #
+ # -- Configure app --
+ #
+vim lib/RA/ChinookDemo.pm
+
+
+########################
+#### Edit Steps........
+1. use RapidApp
+2. Remove comments
+3. Add RapidDbic to plugins
+4. RapidDbic cnf:
+
+'Plugin::RapidApp::RapidDbic' => {
+  dbic_models => ['Chinook']
+}
+########################
+
+
+ #
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Enable editing:
+vim lib/RA/ChinookDemo.pm
+
+
