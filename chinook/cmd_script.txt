@@ -62,7 +62,8 @@ script/ra_chinookdemo_create.pl model Chinook \
  # Record progress:
 Commit 'Created DBIC model for Chinhook'
  #
- #
+ # (1) - Configure bare-bones RapidDbic:
+Commit '(1) - Configure bare-bones RapidDbic'
  #
  # fix multi-line cmds in history:
 sed -i 's/     / \\\n    /g' cmd_history.sh
