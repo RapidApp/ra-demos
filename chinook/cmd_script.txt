@@ -1,3 +1,4 @@
+ source env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
  # Demo assumes familiarity with:
@@ -16,9 +17,9 @@ cpanm RapidApp
  #   (or see http://metacpan.org/module/App::cpanminus)
  #
  # --
+ #
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
- #
  # Enter the new app directory:
 cd RA-ChinookDemo/
  #
@@ -31,10 +32,8 @@ alias Commit='\
     cp $HISTFILE cmd_history.sh && \
     git add --all && \
     git commit -m'
- #
- # Commit progress (with command history)
+ # Record progress using new 'Commit' alias:
 Commit 'init commit - newly created Catalyst app'
- #
  # Remove the auto-generated Root Controller:
 rm -f lib/RA/ChinookDemo/Controller/Root.pm 
  #
@@ -47,7 +46,7 @@ cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite.sql sql/
 #time sqlite3 chinook.db < sql/Chinook_Sqlite.sql
 cp ../chinook.db .
  #
- # Commit progress (with latest command history)
+ # Record progress:
 Commit 'setup chinook SQLite database'
  #
  # -- Create DBIC model --
@@ -58,16 +57,16 @@ script/ra_chinookdemo_create.pl model Chinook \
     DBIC::Schema RA::ChinookDemo::Chinook \
     create=static generate_pod=0 \
     dbi:SQLite:dbname=chinook.db \
-    quote_names=1 sqlite_unicode=1 #<-- important!
- #
- # Commit progress (with latest command history)
+    sqlite_unicode=1 \
+    quote_names=1  #<-- important!
+ # Record progress:
 Commit 'Created DBIC model for Chinhook'
  #
  #
  #
  # fix multi-line cmds in history:
 sed -i 's/     / \\\n    /g' cmd_history.sh
-git add --all && git commit -m 'Fixed multi-line cmds in history'
+Commit 'Fixed multi-line cmds in history'
  #
  # push github:
 git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git

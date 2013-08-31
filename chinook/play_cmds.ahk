@@ -1,14 +1,60 @@
-; Hotkey: ctrl + Space
-Hotkey, ^Space, NextLineLabel
-
+; -----------------------------------
+;   ---- Setup global vars ----
 ShellTitle = demohost - SecureCRT
 comment = #
 pause_str = # --
 next_lone_newline = 0
 no_newline_prefix = 1
-
+auto_next = 0
 indx = 1
-NextLineLabel:
+
+;   ---- Install Hotkeys ----
+; ctrl + spacebar:
+^Space::
+  AdvanceNext(0)
+return
+
+; ctrl + alt + a
+^!a::
+  StartStopAutoAdvance()
+return
+; -----------------------------------
+
+
+AdvanceNext(auto) {
+  global
+  if(auto_next && !auto) {
+    return StartStopAutoAdvance()
+  }
+  return AdvanceNextLine()
+}
+
+StartStopAutoAdvance() {
+  global
+  if(auto_next) {
+    auto_next = 0
+  }
+  else {
+    return AutoAdvanceNext(300)
+  }
+}
+
+AutoAdvanceNext(delay) {
+  global
+  auto_next = 1
+  Sleep %delay%
+  if(auto_next) {
+    AdvanceNext(1)
+  }
+  if(auto_next) {
+    return AutoAdvanceNext(delay)
+  }
+}
+
+
+
+AdvanceNextLine() {
+  global
   WinGetActiveTitle, WinTitle
   if(WinTitle = ShellTitle) {
   
@@ -28,6 +74,10 @@ NextLineLabel:
     }
   
     FileReadLine, line, cmd_script.txt, %indx%
+    if(ErrorLevel) {
+      exit
+    }
+    
     comment_pos := InStr(line,comment)
     pause_pos := InStr(line,pause_str)
     
@@ -40,8 +90,8 @@ NextLineLabel:
       ; a comment, too
       FileReadLine, nextline, cmd_script.txt, %indx%
       next_comment_pos := InStr(nextline,comment)
-      if(next_comment_pos = 2) {
-        Goto NextLineLabel
+      if(next_comment_pos = 2 && !ErrorLevel) {
+        return AdvanceNextLine()
       }
     }
     
@@ -52,7 +102,8 @@ NextLineLabel:
     }
   }
   else {
-    ;MsgBox Wanted %ShellTitle%, got %WinTitle%
+    MsgBox Wanted %ShellTitle%, got %WinTitle%
   }
-return
+  return
+}
 
