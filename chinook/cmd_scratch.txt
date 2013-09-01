@@ -51,3 +51,10 @@ script/ra_chinookdemo_server.pl
 vim lib/RA/ChinookDemo.pm
 
 
+
+ # (tmp/fixme) fix multi-line cmds in history:
+sed -i 's/     / \\\n    /g' cmd_history.sh
+sed -i 's/     / \\\n    /g' cmd_history.sh
+Commit 'Fixed multi-line cmds in history'
+
+

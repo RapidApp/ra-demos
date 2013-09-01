@@ -1,3 +1,7 @@
+;# This AutoHotKey macro script plays a series of commands
+;# and shell interactions for the "Chinook" RapidApp demo video
+;# (Note that this is built expecting a specfic environment)
+
 ; -----------------------------------
 ;   ---- Setup global vars ----
 ShellTitle = demohost - SecureCRT
@@ -11,13 +15,13 @@ active_macro = 0
 active_substep = 0
 
 ;   ---- Install Hotkeys ----
-; ctrl + spacebar:
+; Ctrl + Spacebar:
 ^Space::
   AdvanceNext(0)
 return
 
-; ctrl + alt + a
-^!a::
+; Ctrl + F1
+^F1::
   StartStopAutoAdvance()
 return
 ; -----------------------------------
@@ -139,6 +143,12 @@ AdvanceNextLine() {
     ; send a lone newline/Enter (to hold for its output)
     if(comment_pos = 0) {
       next_lone_newline = 1
+    }
+    
+    ; Special handling for multi-line command (ending in '\'):
+    ; We *don't* want to do a lone newline on next
+    if(RegExMatch(line,"\\\s*$")){
+      next_lone_newline = 0
     }
   }
   else {

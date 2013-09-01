@@ -12,7 +12,11 @@
 ### Clear any previous work
 rm -rf RA-ChinookDemo/
 
-### setup shell and history
+## tmp for dev:
+export PERLLIB=/root/github/RapidApp/lib
+export RAPIDAPP_SHARE_DIR=/root/github/RapidApp/share
+
+### setup prompt and history
 export PS1='\[\033[01;34m\] \W >\[\033[00m\] '
 unset HISTTIMEFORMAT
 shopt -s cmdhist lithist

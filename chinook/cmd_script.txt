@@ -63,11 +63,8 @@ script/ra_chinookdemo_create.pl model Chinook \
 Commit 'Created DBIC model for Chinhook'
  #
  # (1) - Configure bare-bones RapidDbic:
-Commit '(1) - Configure bare-bones RapidDbic'
+Commit '(1) - Configured bare-bones RapidDbic'
  #
- # fix multi-line cmds in history:
-sed -i 's/     / \\\n    /g' cmd_history.sh
-Commit 'Fixed multi-line cmds in history'
  #
  # push github:
 git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
