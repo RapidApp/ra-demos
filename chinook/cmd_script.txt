@@ -1,30 +1,28 @@
  source env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
- # Demo assumes familiarity with:
- #   *  Perl
- #   *  Catalyst
- #   *  DBIx::Class (aka "DBIC")
- #   *  Relational database concepts
- #   *  Git
- #   *  Linux/bash
- # ------
+ # * Demo assumes familiarity with:
+ #     *  Perl
+ #     *  Catalyst
+ #     *  DBIx::Class (aka "DBIC")
+ #     *  Relational database concepts
+ #     *  Git
+ #     *  Linux/bash
  #
- # Install the latest RapidApp (and its dependencies):
+ # Install RapidApp (and its dependencies):
 cpanm RapidApp
  #
- #   cpan App::cpanminus #<-- if you don't have cpanminus
- #   (or see http://metacpan.org/module/App::cpanminus)
+ # --> (Side note: if you don't have "cpanm")
+ #
+ #   cpan App::cpanminus # <-- install cpanminus
+ #   (see also http://metacpan.org/module/App::cpanminus)
  #
  # --
  #
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
- # Enter the new app directory:
-cd RA-ChinookDemo/
- #
- # Setup as a git repo
-git init
+cd RA-ChinookDemo/  # <-- Enter the new app directory
+git init  # <-- Initialize git repo
  #
  # Setup 'Commit' alias/shortcut:
 alias Commit='\
@@ -32,9 +30,10 @@ alias Commit='\
     cp $HISTFILE cmd_history.sh && \
     git add --all && \
     git commit -m'
- # Record progress using new 'Commit' alias:
-Commit 'init commit - newly created Catalyst app'
+ # Now we can record progress/checkpoints with one command:
+Commit 'first commit - freshly created Catalyst app'
  # Remove the auto-generated Root Controller:
+ #  (Needed because local app controllers always take precidence)
 rm -f lib/RA/ChinookDemo/Controller/Root.pm 
  #
  # Download the Chinook sample database:
@@ -46,12 +45,11 @@ cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite.sql sql/
 #time sqlite3 chinook.db < sql/Chinook_Sqlite.sql
 cp ../chinook.db .
  #
- # Record progress:
 Commit 'setup chinook SQLite database'
  #
  # -- Create DBIC model --
  #  See POD for syntax details:
- #  * http://metacpan.org/module/Catalyst::Model::DBIC::Schema
+ #  (http://metacpan.org/module/Catalyst::Model::DBIC::Schema)
  # --
 script/ra_chinookdemo_create.pl model Chinook \
     DBIC::Schema RA::ChinookDemo::Chinook \
@@ -59,7 +57,6 @@ script/ra_chinookdemo_create.pl model Chinook \
     dbi:SQLite:dbname=chinook.db \
     sqlite_unicode=1 \
     quote_names=1  #<-- important!
- # Record progress:
 Commit 'Created DBIC model for Chinhook'
  #
  # (1) - Configure bare-bones RapidDbic:
@@ -67,6 +64,7 @@ Commit '(1) - Configured bare-bones RapidDbic'
  #
  #
  # push github:
-git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
+git remote add origin \
+    git@github.com:IntelliTree/RA-ChinookDemo.git
 git push -f -u origin master
  #

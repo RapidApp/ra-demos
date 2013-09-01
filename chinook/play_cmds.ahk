@@ -7,12 +7,15 @@
 ShellTitle = demohost - SecureCRT
 comment = #
 pause_str = # --
+speed_up_str = -->
 next_lone_newline = 0
 no_newline_prefix = 1
 auto_next = 0
 indx = 1
 active_macro = 0
 active_substep = 0
+
+SetKeyDelay, 10
 
 ;   ---- Install Hotkeys ----
 ; Ctrl + Spacebar:
@@ -23,6 +26,11 @@ return
 ; Ctrl + F1
 ^F1::
   StartStopAutoAdvance()
+return
+
+; Ctrl + c
+Escape::
+  ExitApp
 return
 ; -----------------------------------
 
@@ -69,6 +77,8 @@ AutoAdvanceNext(delay) {
 
 EditMacro(number,substep) {
   global
+  SetKeyDelay, 10
+  
   if(number = 1) {
     return EditMacroOne(substep)
   }
@@ -115,16 +125,24 @@ AdvanceNextLine() {
     }
     
     comment_pos := InStr(line,comment)
-    pause_pos := InStr(line,pause_str)
+    is_pause := IsPauseLine(line)
+    
+    ; Check for speed-up flag
+    if(is_pause && InStr(line,speed_up_str)) {
+      is_pause = 0
+      SetKeyDelay, 0
+    }
     
     SendRaw %line%
     indx++
     
     ; If we're a comment line (that is not a pause):
-    if(comment_pos = 2 && pause_pos <> 2) {
+    if(comment_pos = 2 && is_pause = 0) {
     
       macro_num := GetMacroNumber(line)
       if(macro_num) {
+        ; restore normal key delay (ends the speedup)
+        SetKeyDelay, 10
         active_macro := macro_num
         Send {Enter}
         return
@@ -138,6 +156,10 @@ AdvanceNextLine() {
         return AdvanceNextLine()
       }
     }
+
+    ; restore normal key delay (ends the speedup)
+    SetKeyDelay, 10
+
     
     ; If we're an actual command, make the next call
     ; send a lone newline/Enter (to hold for its output)
@@ -181,6 +203,29 @@ GetMacroNumber(str) {
   return 0
 }
 
+
+IsPauseLine(line) {
+  global
+
+  comment_pos := InStr(line,comment)
+  if(comment_pos = 2) {
+    pause_pos := InStr(line,pause_str)
+    if(pause_pos = 2) {
+      return 1
+    }
+    
+    ; New: also pause on * bullets
+    if(RegExMatch(line,"^\s\#\s+\*")) {
+      return 1
+    }
+
+  }
+  
+  return 0
+}
+
+
+; ---- Interactice Edit Macros ----
 
 EditMacroOne(substep) {
   global
