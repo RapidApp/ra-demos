@@ -1,13 +1,13 @@
- source env_setup.sh
+source ../env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
  # * Demo assumes familiarity with:
- #     *  Perl
- #     *  Catalyst
- #     *  DBIx::Class (aka "DBIC")
- #     *  Relational database concepts
- #     *  Git
- #     *  Linux/bash
+ #    *  Perl
+ #    *  Catalyst
+ #    *  DBIx::Class (aka "DBIC")
+ #    *  Relational database concepts
+ #    *  Git
+ #    *  Linux/bash
  #
  # Install RapidApp (and its dependencies):
 cpanm RapidApp
@@ -68,3 +68,5 @@ git remote add origin \
     git@github.com:IntelliTree/RA-ChinookDemo.git
 git push -f -u origin master
  #
+ #   END
+ 

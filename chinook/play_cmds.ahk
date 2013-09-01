@@ -28,8 +28,8 @@ return
   StartStopAutoAdvance()
 return
 
-; Ctrl + c
-Escape::
+; Ctrl + Escape
+^Escape::
   ExitApp
 return
 ; -----------------------------------
@@ -247,10 +247,10 @@ EditMacroOne(substep) {
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
-    Send use RapidApp;{Enter}
+    Send {Enter}{Up}use RapidApp;
   }
   else if(substep = 4) {
-    Send {Down 2}
+    Send {Down 3}
     Send {End}
     Send {Enter}
     Sleep 300
@@ -283,30 +283,30 @@ EditMacroOne(substep) {
     Sleep 300
     Send {Enter 2}
     SendRaw 'Plugin::RapidApp::RapidDbic' => {
-    Send {Enter}{Space 2}
-    Send {#} Only required option:{Enter}{Backspace 2}
-    Sleep 200
-    SendRaw dbic_models => ['Chinook']
-    Send {Enter}
-    Sleep 100
-    Send {Backspace 2}
+    Send {Enter 2}
     SendRaw }
-    Send {Enter}
-    Send {Escape} ; leave INSERT mode
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 2}
   }
   else if(substep = 8) {
-    Send {Z 2} ; Save and exit
+    Send {#} Only required option:{Enter}{Backspace 2}
+    Sleep 200
+    SendRaw dbic_models => ['Chinook'] 
+    Send {Space}{Escape} ; leave INSERT mode
   }
   else if(substep = 9) {
+    Send {Z 2} ; Save and exit
+  }
+  else if(substep = 10) {
     Send {Space}{#} Start the test server:{Enter}
     Sleep 200
     Send script/ra_chinookdemo_server.pl
   }
-  else if(substep = 10) {
+  else if(substep = 11) {
     Send {Enter}
     Sleep 10000 ; min sleep time
   }
-  else if(substep = 11) {
+  else if(substep = 12) {
     ; stop the test server
     Send ^c
     Sleep 500
