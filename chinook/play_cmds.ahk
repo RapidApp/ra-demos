@@ -5,8 +5,6 @@
 ; -----------------------------------
 ;   ---- Setup global vars ----
 ShellTitle = demohost - SecureCRT
-comment = #
-pause_str = # --
 speed_up_str = -->
 next_lone_newline = 0
 no_newline_prefix = 1
@@ -124,7 +122,7 @@ AdvanceNextLine() {
       ExitApp
     }
     
-    comment_pos := InStr(line,comment)
+    is_comment := IsCommentLine(line)
     is_pause := IsPauseLine(line)
     
     ; Check for speed-up flag
@@ -137,7 +135,7 @@ AdvanceNextLine() {
     indx++
     
     ; If we're a comment line (that is not a pause):
-    if(comment_pos = 2 && is_pause = 0) {
+    if(is_comment = 1 && is_pause = 0) {
     
       macro_num := GetMacroNumber(line)
       if(macro_num) {
@@ -148,11 +146,9 @@ AdvanceNextLine() {
         return
       }
     
-      ; Look ahead and advance to the next line if its 
-      ; a comment, too
+      ; Look ahead and advance to the next line if its a comment, too
       FileReadLine, nextline, cmd_script.txt, %indx%
-      next_comment_pos := InStr(nextline,comment)
-      if(next_comment_pos = 2 && !ErrorLevel) {
+      if(IsCommentLine(nextline) && !ErrorLevel) {
         return AdvanceNextLine()
       }
     }
@@ -163,7 +159,7 @@ AdvanceNextLine() {
     
     ; If we're an actual command, make the next call
     ; send a lone newline/Enter (to hold for its output)
-    if(comment_pos = 0) {
+    if(is_comment = 0) {
       next_lone_newline = 1
     }
     
@@ -204,23 +200,34 @@ GetMacroNumber(str) {
 }
 
 
+IsCommentLine(line) {
+  global
+  
+  if(RegExMatch(line,"^\s*\#")) {
+    return 1
+  }
+  return 0
+}
+
 IsPauseLine(line) {
   global
-
-  comment_pos := InStr(line,comment)
-  if(comment_pos = 2) {
-    pause_pos := InStr(line,pause_str)
-    if(pause_pos = 2) {
+  
+  if(IsCommentLine(line)) {
+    if(RegExMatch(line,"^\s*\#\s*--")) {
       return 1
     }
-    
+
     ; New: also pause on * bullets
     if(RegExMatch(line,"^\s\#\s+\*")) {
       return 1
     }
-
+    
+    ; New: also pause on any comment with 4 leading spaces (after the #)
+    if(RegExMatch(line,"^\s\#\s{4}")) {
+      return 1
+    }
   }
-  
+
   return 0
 }
 

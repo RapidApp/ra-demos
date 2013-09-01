@@ -1,13 +1,36 @@
 source ../env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
- # * Demo assumes familiarity with:
+ # * Agenda
+ #    * Build a database-driven app from scratch using RapidApp
+ #    * With the "RapidDbic" plugin
+ #    * Using the "Chinook" sample database
+ #      (http://chinookdatabase.codeplex.com/)
+ #    * All steps performed live/real-world within this shell
+ #      (SSH session on a Linux box)
+ #    * Test as we go in Firefox
+ #    * Record all commands & changes real-time in Git repo
+ #      (https://github.com/IntelliTree/RA-ChinookDemo)
+ #
+# -->
+###################################################################
+#   Command histroy (this shell) to follow along:
+#
+# github.com/IntelliTree/RA-ChinookDemo/blob/master/cmd_history.sh
+#
+###################################################################
+# --
+ #
+ #
+ # * You should already know:
  #    *  Perl
+ #    *  CPAN
  #    *  Catalyst
  #    *  DBIx::Class (aka "DBIC")
  #    *  Relational database concepts
  #    *  Git
  #    *  Linux/bash
+ #
  #
  # Install RapidApp (and its dependencies):
 cpanm RapidApp
