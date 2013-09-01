@@ -2,25 +2,24 @@ source ../env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
  # * Agenda
- #    * Build a database-driven app from scratch using RapidApp
+ #    * Build a db-driven app (from scratch) using RapidApp
  #    * With the "RapidDbic" plugin
  #    * Using the "Chinook" sample database
  #      (http://chinookdatabase.codeplex.com/)
  #    * All steps performed live/real-world within this shell
- #      (SSH session on a Linux box)
+ #      (SSH session on an ordinary Linux box)
  #    * Test as we go in Firefox
  #    * Record all commands & changes real-time in Git repo
  #      (https://github.com/IntelliTree/RA-ChinookDemo)
  #
-# -->
+ # -->
 ###################################################################
 #   Command histroy (this shell) to follow along:
 #
 # github.com/IntelliTree/RA-ChinookDemo/blob/master/cmd_history.sh
 #
 ###################################################################
-# --
- #
+ # --
  #
  # * You should already know:
  #    *  Perl
@@ -56,7 +55,7 @@ alias Commit='\
  # Now we can record progress/checkpoints with one command:
 Commit 'first commit - freshly created Catalyst app'
  # Remove the auto-generated Root Controller:
- #  (Needed because local app controllers always take precidence)
+ # - Needed because local app controllers always take precidence
 rm -f lib/RA/ChinookDemo/Controller/Root.pm 
  #
  # Download the Chinook sample database:
@@ -70,17 +69,18 @@ cp ../chinook.db .
  #
 Commit 'setup chinook SQLite database'
  #
- # -- Create DBIC model --
- #  See POD for syntax details:
- #  (http://metacpan.org/module/Catalyst::Model::DBIC::Schema)
- # --
-script/ra_chinookdemo_create.pl model Chinook \
-    DBIC::Schema RA::ChinookDemo::Chinook \
+ # Create DBIC schema/model (using the Catalyst Helper)
+ # - See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
+script/ra_chinookdemo_create.pl \
+    model Chinook \
+    DBIC::Schema \
+    RA::ChinookDemo::Chinook \
     create=static generate_pod=0 \
     dbi:SQLite:dbname=chinook.db \
     sqlite_unicode=1 \
     quote_names=1  #<-- important!
-Commit 'Created DBIC model for Chinhook'
+git status  # <-- see the newly created files
+Commit 'Created DBIC schema/model for Chinhook'
  #
  # (1) - Configure bare-bones RapidDbic:
 Commit '(1) - Configured bare-bones RapidDbic'
