@@ -15,7 +15,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroTwo
+skip_to = EditMacroTwo
 exit_at = END_SCRIPT
 
 SetKeyDelay, 10
@@ -392,7 +392,19 @@ EditMacroTwo(seq) {
     Send {,}'artistid.name'
     Send {Right 2}
   }
-  else if(seq= 9) {
+  else if(seq = 9) {
+    Send {Down}{,}{Enter}
+    SendRaw Track => {
+    Send {Enter 2}
+    SendRaw }
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 3}
+  }
+  else if(seq = 10) {
+    SendRaw include_colspec => ['*','albumid.artistid.*']
+    Send {Space}
+  }
+  else if(seq = 11) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit
