@@ -1,3 +1,5 @@
+set ts=3
 set number
 set nohlsearch
 set scrolloff=10
+let loaded_matchparen = 1

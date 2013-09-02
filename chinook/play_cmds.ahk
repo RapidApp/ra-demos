@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroTwo
+skip_to = EditMacroOne
 exit_at = END_SCRIPT
 
 SetKeyDelay, 10
@@ -312,11 +312,7 @@ EditMacroOne(seq) {
     Send {End}
     Sleep 300
     Send {Enter 2}
-    SendRaw 'Plugin::RapidApp::RapidDbic' => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("'Plugin::RapidApp::RapidDbic'",1)
   }
   else if(seq = 8) {
     Send {#} Only required option:{Enter}{Backspace 2}
@@ -355,32 +351,16 @@ EditMacroTwo(seq) {
     Send {End}{Backspace}
     Sleep 500
     Send {,}{Enter}
-    SendRaw configs => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("configs","Model Configs")
   }
   else if(seq = 4) {
-    SendRaw DB => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("DB","Configs for the model 'DB'")
   }
   else if(seq = 5) {
-    SendRaw grid_params => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("grid_params",1)
   }
   else if(seq = 6) {
-    SendRaw Album => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("Album",0)
   }
   else if(seq = 7) {
     SendRaw include_colspec => ['*']
@@ -394,11 +374,7 @@ EditMacroTwo(seq) {
   }
   else if(seq = 9) {
     Send {Down}{,}{Enter}
-    SendRaw Track => {
-    Send {Enter 2}
-    SendRaw }
-    Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 3}
+    vimNewHashCnf("Track",0)
   }
   else if(seq = 10) {
     SendRaw include_colspec => ['*','albumid.artistid.*']
