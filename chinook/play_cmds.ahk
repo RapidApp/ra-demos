@@ -11,7 +11,7 @@ no_newline_prefix = 1
 auto_next = 0
 indx = 1
 active_macro = 0
-active_substep = 0
+active_macro_seq = 0
 
 SetKeyDelay, 10
 
@@ -40,8 +40,8 @@ AdvanceNext(auto) {
   }
   
   if(active_macro) {
-    active_substep++
-    finished := EditMacro(active_macro,active_substep)
+    active_macro_seq++
+    finished := CallMacro(active_macro,active_macro_seq)
     if(finished = 1) {
       return FinishMacro()
     }
@@ -73,29 +73,28 @@ AutoAdvanceNext(delay) {
   }
 }
 
-EditMacro(number,substep) {
+; If AHK had simple eval support, we wouldn't need this
+CallMacro(name,seq) {
   global
   SetKeyDelay, 10
   
-  if(number = 1) {
-    return EditMacroOne(substep)
+  if(name = "EditMacroOne") {
+    return EditMacroOne(seq)
   }
-  else if(number = 2) {
-    return EditMacroTwo(substep)
+  else if(name = "EditMacroTwo") {
+    return EditMacroTwo(seq)
   }
-  else {
-    MsgBox Unknown EditMacro '%number%' - exiting!
-    ExitApp
-  }
+  
+  
+  MsgBox Unknown Macro Name '%name%' - exiting!
+  ExitApp
 }
 
 FinishMacro() {
   global
-  
   active_macro = 0
-  active_substep = 0
+  active_macro_seq = 0
 }
-
 
 AdvanceNextLine() {
   global
@@ -121,9 +120,19 @@ AdvanceNextLine() {
     if(ErrorLevel) {
       ExitApp
     }
+    indx++
     
     is_comment := IsCommentLine(line)
     is_pause := IsPauseLine(line)
+    
+    ; Jump into named Macro:
+    MacName := GetMacroName(line)
+    if(is_comment && MacName <> 0) {
+      ; restore normal key delay (ends any speedup)
+      SetKeyDelay, 10
+      active_macro := MacName
+      return
+    }
     
     ; Check for speed-up flag
     if(is_pause && InStr(line,speed_up_str)) {
@@ -132,20 +141,9 @@ AdvanceNextLine() {
     }
     
     SendRaw %line%
-    indx++
     
     ; If we're a comment line (that is not a pause):
     if(is_comment = 1 && is_pause = 0) {
-    
-      macro_num := GetMacroNumber(line)
-      if(macro_num) {
-        ; restore normal key delay (ends the speedup)
-        SetKeyDelay, 10
-        active_macro := macro_num
-        Send {Enter}
-        return
-      }
-    
       ; Look ahead and advance to the next line if its a comment, too
       FileReadLine, nextline, cmd_script.txt, %indx%
       if(IsCommentLine(nextline) && !ErrorLevel) {
@@ -153,9 +151,8 @@ AdvanceNextLine() {
       }
     }
 
-    ; restore normal key delay (ends the speedup)
+    ; restore normal key delay (ends any speedup)
     SetKeyDelay, 10
-
     
     ; If we're an actual command, make the next call
     ; send a lone newline/Enter (to hold for its output)
@@ -178,22 +175,48 @@ AdvanceNextLine() {
 
 ; Checks the supplied string for a macro number def
 ; i.e. comment like:  # (123) - bla bla
-GetMacroNumber(str) {
+;GetMacroNumber(str) {
+;  global
+;
+;  op = (
+;  cl = )
+;  OpenPos := InStr(str,op)
+;  ClosePos := InStr(str,cl)
+;  
+;  if(OpenPos) {
+;    OpenPos++
+;    Len := ClosePos - OpenPos
+;    MacroNum := SubStr(str,OpenPos,Len)
+;    
+;    ; Consider only numeric macros:
+;    if(RegExMatch(MacroNum,"^\d+$")) {
+;      return MacroNum
+;    }
+;  }
+;  
+;  return 0
+;}
 
-  op = (
-  cl = )
-  OpenPos := InStr(str,op)
-  ClosePos := InStr(str,cl)
+
+; Gets a macro name from a special comment line:
+; # <[SomeLabel]>
+GetMacroName(line) {
+  global
   
-  if(OpenPos) {
-    OpenPos++
-    Len := ClosePos - OpenPos
-    MacroNum := SubStr(str,OpenPos,Len)
+  if(RegExMatch(line,"^\s*\#\s{1}\<\[")) {
+  
+    op = [
+    cl = ]
+    OpenPos := InStr(line,op)
+    ClosePos := InStr(line,cl)
     
-    ; Consider only numeric macros:
-    if(RegExMatch(MacroNum,"^\d+$")) {
-      return MacroNum
+    if(OpenPos) {
+      OpenPos++
+      Len := ClosePos - OpenPos
+      MacName := SubStr(line,OpenPos,Len)
+      return MacName
     }
+  
   }
   
   return 0
@@ -232,18 +255,19 @@ IsPauseLine(line) {
 }
 
 
-; ---- Interactice Edit Macros ----
+; ---- Interactive Edit Macros ----
 
-EditMacroOne(substep) {
+EditMacroOne(seq) {
   global
   Sleep 500
-  if(substep = 1) {
+  if(seq = 1) {
+    Send {Space}{#} Configure bare-bones RapidDbic:{Enter}
     Send vim lib/RA/ChinookDemo.pm
   }
-  else if(substep = 2) {
+  else if(seq = 2) {
     Send {Enter}
   }
-  else if(substep = 3) {
+  else if(seq = 3) {
     Send {g 2} ; move to the first line
     Send {Down 6} ; Go to the start of the comments
     Sleep 500
@@ -256,14 +280,14 @@ EditMacroOne(substep) {
     Sleep 500
     Send {Enter}{Up}use RapidApp;
   }
-  else if(substep = 4) {
+  else if(seq = 4) {
     Send {Down 3}
     Send {End}
     Send {Enter}
     Sleep 300
     Send RapidApp::RapidDbic
   }
-  else if(substep = 5) {
+  else if(seq = 5) {
     Send {Escape} ; leave INSERT mode
     Sleep 300
     Send {Down}
@@ -272,7 +296,7 @@ EditMacroOne(substep) {
       Sleep 300
     }
   }
-  else if(substep = 6) {
+  else if(seq= 6) {
     Send {Down 6}
     Sleep 500
     Loop, 8 { ; Delete the comments
@@ -281,7 +305,7 @@ EditMacroOne(substep) {
     }
     Sleep 500
   }
-  else if(substep = 7) {
+  else if(seq = 7) {
     Send {Down 4}
     Sleep 500
     Send i ; go into INSERT mode
@@ -295,25 +319,25 @@ EditMacroOne(substep) {
     Send {Up 2}{End}
     Send {Enter}{Delete}{Space 2}
   }
-  else if(substep = 8) {
+  else if(seq = 8) {
     Send {#} Only required option:{Enter}{Backspace 2}
     Sleep 200
     SendRaw dbic_models => ['Chinook'] 
     Send {Space}{Escape} ; leave INSERT mode
   }
-  else if(substep = 9) {
+  else if(seq= 9) {
     Send {Z 2} ; Save and exit
   }
-  else if(substep = 10) {
+  else if(seq = 10) {
     Send {Space}{#} Start the test server:{Enter}
     Sleep 200
     Send script/ra_chinookdemo_server.pl
   }
-  else if(substep = 11) {
+  else if(seq = 11) {
     Send {Enter}
     Sleep 10000 ; min sleep time
   }
-  else if(substep = 12) {
+  else if(seq = 12) {
     ; stop the test server
     Send ^c
     Sleep 500
@@ -325,13 +349,13 @@ EditMacroOne(substep) {
 }
 
 
-EditMacroTwo(substep) {
+EditMacroTwo(seq) {
   global
-  if(substep = 1) {
-  
+  if(seq = 1) {
+
   
   }
-  else if(substep = 2) {
+  else if(seq = 2) {
   
   
   }
@@ -340,5 +364,4 @@ EditMacroTwo(substep) {
   }
   return 0 ; not finished
 }
-
 
