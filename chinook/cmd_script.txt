@@ -43,7 +43,6 @@ cpanm RapidApp
  #
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
- #
 cd RA-ChinookDemo/  # <-- Enter the new app directory
 git init  # <-- Initialize git repo
  #
@@ -71,7 +70,7 @@ cp ../chinook.db .
 Commit 'setup chinook SQLite database'
  #
  # Create DBIC schema/model (using the Catalyst Helper)
- # - See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
+ # -See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
 script/ra_chinookdemo_create.pl \
     model Chinook \
     DBIC::Schema \
@@ -84,6 +83,7 @@ git status  # <-- see the newly created files
 Commit 'Created DBIC schema/model for Chinhook'
  #
  # <[EditMacroOne]> - Configure bare-bones RapidDbic
+ # <[RunTestServer]>
 Commit '(1) - Configured bare-bones RapidDbic'
  #
  #

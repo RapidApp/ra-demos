@@ -15,8 +15,8 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = Configure bare-bones
-;exit_at = Configured bare-bones
+;skip_to = EditMacroOne
+;exit_at = RunTestServer
 
 SetKeyDelay, 10
 
@@ -89,6 +89,9 @@ CallMacro(name,seq) {
   else if(name = "EditMacroTwo") {
     return EditMacroTwo(seq)
   }
+  else if(name = "RunTestServer") {
+    return RunTestServer(seq)
+  }
   
   
   MsgBox Unknown Macro Name '%name%' - exiting!
@@ -106,13 +109,20 @@ AdvanceNextLine() {
   WinGetActiveTitle, WinTitle
   if(WinTitle = ShellTitle) {
   
+    if(next_lone_newline) {
+      SendPlay {Enter}
+      next_lone_newline = 0
+      no_newline_prefix = 1
+      return
+    }
+  
     FileReadLine, line, cmd_script.txt, %indx%
     if(ErrorLevel) {
       ExitApp
     }
     indx++
     
-    if(exit_at <> 0) {
+    if(skip_to = 0 && exit_at <> 0) {
       if(InStr(line,exit_at)) {
         ExitApp
       }
@@ -127,13 +137,6 @@ AdvanceNextLine() {
       }
     }
 
-    if(next_lone_newline) {
-      SendPlay {Enter}
-      next_lone_newline = 0
-      no_newline_prefix = 1
-      return
-    }
-    
     if(no_newline_prefix) {
       ; Turn off for next call:
       no_newline_prefix = 0
@@ -337,7 +340,7 @@ EditMacroOne(seq) {
     Send {Enter 2}
     SendRaw }
     Send {Up 2}{End}
-    Send {Enter}{Delete}{Space 2}
+    Send {Enter}{Delete}{Space 3}
   }
   else if(seq = 8) {
     Send {#} Only required option:{Enter}{Backspace 2}
@@ -347,20 +350,6 @@ EditMacroOne(seq) {
   }
   else if(seq= 9) {
     Send {Z 2} ; Save and exit
-  }
-  else if(seq = 10) {
-    Send {Space}{#} Start the test server:{Enter}
-    Sleep 200
-    Send script/ra_chinookdemo_server.pl
-  }
-  else if(seq = 11) {
-    Send {Enter}
-    Sleep 10000 ; min sleep time
-  }
-  else if(seq = 12) {
-    ; stop the test server
-    Send ^c
-    Sleep 500
   }
   else {
     return 1 ; finished
@@ -384,4 +373,27 @@ EditMacroTwo(seq) {
   }
   return 0 ; not finished
 }
+
+
+RunTestServer(seq) {
+  if(seq = 1) {
+    Send {Space}{#} Start the test server:{Enter}
+    Sleep 200
+    Send script/ra_chinookdemo_server.pl
+  }
+  else if(seq = 2) {
+    Send {Enter}
+    Sleep 10000 ; min sleep time
+  }
+  else if(seq = 3) {
+    ; stop the test server
+    Send ^c
+    Sleep 500
+  }
+  else {
+    return 1 ; finished
+  }
+  return 0 ; not finished
+}
+
 
