@@ -90,6 +90,11 @@ rm -f lib/RA/ChinookDemo/Controller/Root.pm
  # <[RunTestServer]>
 Commit '(1) - Bare-bones working app (RapidDbic)'
  #
+ # <[EditMacroTwo]>
+script/ra_chinookdemo_server.pl
+ # END_SCRIPT
+
+
  #
  # push github:
 #git remote add origin \

@@ -15,8 +15,8 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = Install RapidApp
-;exit_at = Created DBIC
+;skip_to = EditMacroTwo
+exit_at = END_SCRIPT
 
 SetKeyDelay, 10
 
@@ -325,9 +325,10 @@ EditMacroOne(seq) {
   }
   else if(seq= 9) {
     Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
   }
   else {
-    no_newline_prefix = 1
     return 1 ; finished
   }
   return 0 ; not finished
@@ -336,20 +337,77 @@ EditMacroOne(seq) {
 
 EditMacroTwo(seq) {
   global
+  Sleep 500
   if(seq = 1) {
-
-  
+    Send {Space}{#} Configure joined columns{Enter}
+    Send vim lib/RA/ChinookDemo.pm
   }
   else if(seq = 2) {
-  
-  
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    Send :40{Enter} ; goto line 40 (to scroll down)
+    Sleep 300
+    Send :26{Enter} ; goto line 26
+    Sleep 500
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Backspace}
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw configs => {
+    Send {Enter 2}
+    SendRaw }
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 3}
+  }
+  else if(seq = 4) {
+    SendRaw DB => {
+    Send {Enter 2}
+    SendRaw }
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 3}
+  }
+  else if(seq = 5) {
+    SendRaw grid_params => {
+    Send {Enter 2}
+    SendRaw }
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 3}
+  }
+  else if(seq = 6) {
+    SendRaw Album => {
+    Send {Enter 2}
+    SendRaw }
+    Send {Up 2}{End}
+    Send {Enter}{Delete}{Space 3}
+  }
+  else if(seq = 7) {
+    SendRaw include_colspec => ['*']
+    Send {Space}
+  }
+  else if(seq = 8) {
+    Send {Left 2}
+    Sleep 400
+    Send {,}'artistid.name'
+    Send {Right 2}
+  }
+  else if(seq= 9) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
   }
   else {
     return 1 ; finished
   }
+
   return 0 ; not finished
 }
 
+
+; --------------------
 
 RunTestServer(seq) {
   if(seq = 1) {
