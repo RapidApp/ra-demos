@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+#  NOTE: EXPECTS TO BE RAN FROM:
+#    ra-demos/chinook/RapidApp_Demo
+#
 # Usage:
 #
 #   source env_setup.sh
@@ -9,12 +12,17 @@
 # custom/dedicated history file in basic (no timestamp)
 # mode.
 
-### Clear any previous work
-rm -rf RA-ChinookDemo/
-
 ## tmp for dev:
 export PERLLIB=/root/github/RapidApp/lib
 export RAPIDAPP_SHARE_DIR=/root/github/RapidApp/share
+
+### Clear any previous work
+rm -rf RA-ChinookDemo/
+
+# for .vimrc
+cd ..
+export VIMINIT="source $PWD/vimrc"
+cd -
 
 ### setup prompt and history
 export PS1='\[\033[01;34m\] \W >\[\033[00m\] '

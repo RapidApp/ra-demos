@@ -2,6 +2,8 @@
 ;# and shell interactions for the "Chinook" RapidApp demo video
 ;# (Note that this is built expecting a specfic environment)
 
+#Include funcs.ahk
+
 ; -----------------------------------
 ;   ---- Setup global vars ----
 ShellTitle = demohost - SecureCRT
@@ -15,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-skip_to = EditMacroTwo
+;skip_to = EditMacroTwo
 exit_at = END_SCRIPT
 
 SetKeyDelay, 10
@@ -252,7 +254,6 @@ IsPauseLine(line) {
   return 0
 }
 
-
 ; ---- Interactive Edit Macros ----
 
 EditMacroOne(seq) {
@@ -346,10 +347,9 @@ EditMacroTwo(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    Send :40{Enter} ; goto line 40 (to scroll down)
-    Sleep 300
-    Send :26{Enter} ; goto line 26
-    Sleep 500
+    vimJumpStringTop("__PACKAGE__",0)
+    Sleep 200
+    vimJumpString("dbic_models",0)
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{Backspace}
