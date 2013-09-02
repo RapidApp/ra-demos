@@ -91,9 +91,17 @@ rm -f lib/RA/ChinookDemo/Controller/Root.pm
 Commit '(1) - Bare-bones working app (RapidDbic)'
  #
  # <[EditMacroTwo]>
+ # <[RunTestServer]>
+Commit '(2) - example joined columns (grid configs)'
+ #
+ # <[EditMacroThree]>
+ # <[RunTestServer]>
+Commit '(3) - configured display_columns (TableSpecs)'
+ #
+ # <[EditMacroFour]>
 script/ra_chinookdemo_server.pl
  # END_SCRIPT
-
+ 
 
  #
  # push github:

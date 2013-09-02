@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-skip_to = EditMacroOne
+;skip_to = EditMacroThree
 exit_at = END_SCRIPT
 
 SetKeyDelay, 10
@@ -90,6 +90,12 @@ CallMacro(name,seq) {
   }
   else if(name = "EditMacroTwo") {
     return EditMacroTwo(seq)
+  }
+  else if(name = "EditMacroThree") {
+    return EditMacroThree(seq)
+  }
+  else if(name = "EditMacroFour") {
+    return EditMacroFour(seq)
   }
   else if(name = "RunTestServer") {
     return RunTestServer(seq)
@@ -373,7 +379,7 @@ EditMacroTwo(seq) {
     Send {Right 2}
   }
   else if(seq = 9) {
-    Send {Down}{,}{Enter}
+    Send {Down}{Enter}
     vimNewHashCnf("Track",0)
   }
   else if(seq = 10) {
@@ -393,6 +399,89 @@ EditMacroTwo(seq) {
 
   return 0 ; not finished
 }
+
+EditMacroThree(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Set 'display_column' for Sources{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("DB",0)
+    Sleep 200
+    vimJumpString("(grid_params",0)
+    Sleep 2000
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    vimNewHashCnf("TableSpecs",1)
+  }
+  else if(seq = 4) {
+    vimNewHashCnf("Album",0)
+    SendRaw display_column => 'title'
+  }
+  else if(seq = 5) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("Artist",0)
+    SendRaw display_column => 'name'
+  }
+  else if(seq = 6) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+
+EditMacroFour(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Enable grid editing{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("__PACKAGE__",0)
+    Sleep 200
+    vimJumpString("grid_params",0)
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}{Tab}
+    vimNewHashCnf("'*defaults'","Defaults for all Sources")
+    SendRaw updatable_colspec => ['*'],
+    Send {Enter}
+    SendRaw creatable_colspec => ['*'],
+    Send {Enter}
+    SendRaw destroyable_relspec => ['*']
+  }
+  else if(seq = 4) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
 
 
 ; --------------------

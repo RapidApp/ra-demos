@@ -27,7 +27,7 @@ vimNewHashCnf(name,comment) {
     }
   }
   Send {Enter 2}
-  SendRaw } 
+  SendRaw },
   if(comment) {
     Send {Space}
     SendRaw # (%name%)
