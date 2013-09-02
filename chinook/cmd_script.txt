@@ -2,26 +2,27 @@ source ../env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
  # * Agenda
- #    * Build a new web app from scratch, using RapidApp
+ #    * Build a new webapp from scratch, using RapidApp
  #    * Database-driven, with the "RapidDbic" plugin
+ #       (CRUD, query builder, custom views, etc)
  #    * Using the "Chinook" sample database
- #      (http://chinookdatabase.codeplex.com/)
+ #       (http://chinookdatabase.codeplex.com/)
  #    * All steps performed live/real-world within this shell
- #      (SSH session on an ordinary Linux box)
+ #       (SSH session on an ordinary Linux box)
  #    * Test as we go in Firefox
- #    * Record all commands & changes real-time in Git repo
- #      (https://github.com/IntelliTree/RA-ChinookDemo)
+ #    * Record all commands & changes real-time in Git
+ #       (https://github.com/IntelliTree/RA-ChinookDemo)
  #
  # -->
 ###################################################################
-#   Command histroy (this shell) to follow along:
+#   +++ COMMAND LOG/HISTORY FOR THIS SHELL (to follow along) +++
 #
 # github.com/IntelliTree/RA-ChinookDemo/blob/master/cmd_history.sh
 #
 ###################################################################
  # --
  #
- # * You should already know:
+ # * You should already know about:
  #    *  Perl
  #    *  CPAN
  #    *  Catalyst
@@ -29,6 +30,8 @@ source ../env_setup.sh
  #    *  Relational database concepts
  #    *  Git
  #    *  Linux/bash
+ #
+ # ----
  #
  #
  # Install RapidApp (and its dependencies):
@@ -54,9 +57,6 @@ alias Commit='\
     git commit -m'
  # Now we can record progress/checkpoints with one command:
 Commit 'first commit - freshly created Catalyst app'
- # Remove the auto-generated Root Controller:
- # - Needed because local app controllers always take precidence
-rm -f lib/RA/ChinookDemo/Controller/Root.pm 
  #
  # Download the Chinook sample database:
  # (http://chinookdatabase.codeplex.com/)
@@ -72,19 +72,23 @@ Commit 'setup chinook SQLite database'
  # Create DBIC schema/model (using the Catalyst Helper)
  # -See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
 script/ra_chinookdemo_create.pl \
-    model Chinook \
+    model DB \
     DBIC::Schema \
-    RA::ChinookDemo::Chinook \
+    RA::ChinookDemo::DB \
     create=static generate_pod=0 \
     dbi:SQLite:dbname=chinook.db \
     sqlite_unicode=1 \
     quote_names=1  #<-- important!
-git status  # <-- see the newly created files
-Commit 'Created DBIC schema/model for Chinhook'
+Commit 'Created DBIC schema/model "DB"'
  #
  # <[EditMacroOne]> - Configure bare-bones RapidDbic
+ #
+ # Remove the auto-generated Root Controller:
+ # - Needed because local app controllers always take precidence
+rm -f lib/RA/ChinookDemo/Controller/Root.pm
+ #
  # <[RunTestServer]>
-Commit '(1) - Configured bare-bones RapidDbic'
+Commit '(1) - Bare-bones working app (RapidDbic)'
  #
  #
  # push github:

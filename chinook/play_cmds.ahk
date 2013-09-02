@@ -15,8 +15,8 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroOne
-;exit_at = RunTestServer
+;skip_to = Install RapidApp
+;exit_at = Created DBIC
 
 SetKeyDelay, 10
 
@@ -136,7 +136,7 @@ AdvanceNextLine() {
         return AdvanceNextLine()
       }
     }
-
+    
     if(no_newline_prefix) {
       ; Turn off for next call:
       no_newline_prefix = 0
@@ -144,7 +144,7 @@ AdvanceNextLine() {
     else {
       SendPlay {Enter}
     }
-
+    
     is_comment := IsCommentLine(line)
     is_pause := IsPauseLine(line)
     
@@ -156,7 +156,7 @@ AdvanceNextLine() {
       active_macro := MacName
       return
     }
-    
+
     ; Check for speed-up flag
     if(is_pause && InStr(line,speed_up_str)) {
       is_pause = 0
@@ -195,31 +195,6 @@ AdvanceNextLine() {
   }
   return
 }
-
-; Checks the supplied string for a macro number def
-; i.e. comment like:  # (123) - bla bla
-;GetMacroNumber(str) {
-;  global
-;
-;  op = (
-;  cl = )
-;  OpenPos := InStr(str,op)
-;  ClosePos := InStr(str,cl)
-;  
-;  if(OpenPos) {
-;    OpenPos++
-;    Len := ClosePos - OpenPos
-;    MacroNum := SubStr(str,OpenPos,Len)
-;    
-;    ; Consider only numeric macros:
-;    if(RegExMatch(MacroNum,"^\d+$")) {
-;      return MacroNum
-;    }
-;  }
-;  
-;  return 0
-;}
-
 
 ; Gets a macro name from a special comment line:
 ; # <[SomeLabel]>
@@ -345,13 +320,14 @@ EditMacroOne(seq) {
   else if(seq = 8) {
     Send {#} Only required option:{Enter}{Backspace 2}
     Sleep 200
-    SendRaw dbic_models => ['Chinook'] 
+    SendRaw dbic_models => ['DB'] 
     Send {Space}{Escape} ; leave INSERT mode
   }
   else if(seq= 9) {
     Send {Z 2} ; Save and exit
   }
   else {
+    no_newline_prefix = 1
     return 1 ; finished
   }
   return 0 ; not finished
@@ -391,6 +367,7 @@ RunTestServer(seq) {
     Sleep 500
   }
   else {
+    no_newline_prefix = 1
     return 1 ; finished
   }
   return 0 ; not finished
