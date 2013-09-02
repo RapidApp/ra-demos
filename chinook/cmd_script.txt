@@ -2,8 +2,8 @@ source ../env_setup.sh
  # -- RapidApp "Chinook" Demo --
  #
  # * Agenda
- #    * Build a db-driven app (from scratch) using RapidApp
- #    * With the "RapidDbic" plugin
+ #    * Build a new web app from scratch, using RapidApp
+ #    * Database-driven, with the "RapidDbic" plugin
  #    * Using the "Chinook" sample database
  #      (http://chinookdatabase.codeplex.com/)
  #    * All steps performed live/real-world within this shell
@@ -43,6 +43,7 @@ cpanm RapidApp
  #
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
+ #
 cd RA-ChinookDemo/  # <-- Enter the new app directory
 git init  # <-- Initialize git repo
  #

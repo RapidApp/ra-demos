@@ -12,6 +12,11 @@ auto_next = 0
 indx = 1
 active_macro = 0
 active_macro_seq = 0
+skip_to = 0
+exit_at = 0
+
+;skip_to = Configure bare-bones
+;exit_at = Configured bare-bones
 
 SetKeyDelay, 10
 
@@ -101,6 +106,27 @@ AdvanceNextLine() {
   WinGetActiveTitle, WinTitle
   if(WinTitle = ShellTitle) {
   
+    FileReadLine, line, cmd_script.txt, %indx%
+    if(ErrorLevel) {
+      ExitApp
+    }
+    indx++
+    
+    if(exit_at <> 0) {
+      if(InStr(line,exit_at)) {
+        ExitApp
+      }
+    }
+    
+    if(skip_to <> 0) {
+      if(InStr(line,skip_to)) {
+        skip_to = 0 ; turn off for rest of script
+      }
+      else {
+        return AdvanceNextLine()
+      }
+    }
+
     if(next_lone_newline) {
       SendPlay {Enter}
       next_lone_newline = 0
@@ -115,13 +141,7 @@ AdvanceNextLine() {
     else {
       SendPlay {Enter}
     }
-  
-    FileReadLine, line, cmd_script.txt, %indx%
-    if(ErrorLevel) {
-      ExitApp
-    }
-    indx++
-    
+
     is_comment := IsCommentLine(line)
     is_pause := IsPauseLine(line)
     
