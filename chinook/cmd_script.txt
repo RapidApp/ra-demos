@@ -99,6 +99,18 @@ Commit '(2) - example joined columns (grid configs)'
 Commit '(3) - configured display_columns (TableSpecs)'
  #
  # <[EditMacroFour]>
+ # <[RunTestServer]>
+Commit '(4) - turned on grid editing for all Sources'
+ #
+ # <[EditMacroFive]>
+ # <[RunTestServer]>
+Commit '(5) - enabled AuthCore to password protect site'
+ #
+ # <[EditMacroSix]>
+ # <[RunTestServer]>
+Commit '(6) - enabled basic user management interface'
+ #
+ # <[EditMacroSeven]>
 script/ra_chinookdemo_server.pl
  # END_SCRIPT
  

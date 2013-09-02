@@ -97,6 +97,15 @@ CallMacro(name,seq) {
   else if(name = "EditMacroFour") {
     return EditMacroFour(seq)
   }
+  else if(name = "EditMacroFive") {
+    return EditMacroFive(seq)
+  }
+  else if(name = "EditMacroSix") {
+    return EditMacroSix(seq)
+  }
+  else if(name = "EditMacroSeven") {
+    return EditMacroSeven(seq)
+  }
   else if(name = "RunTestServer") {
     return RunTestServer(seq)
   }
@@ -414,7 +423,7 @@ EditMacroThree(seq) {
     vimJumpStringTop("DB",0)
     Sleep 200
     vimJumpString("(grid_params",0)
-    Sleep 2000
+    Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{Enter}
@@ -467,6 +476,102 @@ EditMacroFour(seq) {
     SendRaw creatable_colspec => ['*'],
     Send {Enter}
     SendRaw destroyable_relspec => ['*']
+  }
+  else if(seq = 4) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+EditMacroFive(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Enable AuthCore to password protect site{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("RapidApp::RapidDbic",0)
+    Sleep 200
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    SendRaw RapidApp::AuthCore
+  }
+  else if(seq = 4) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+EditMacroSix(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Enable basic access to user management{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("RapidApp::AuthCore",0)
+    Sleep 200
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    SendRaw RapidApp::CoreSchemaAdmin
+  }
+  else if(seq = 4) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+EditMacroSeven(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Enable NavCore for saved views{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("RapidApp::CoreSchemaAdmin",0)
+    Sleep 200
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    SendRaw RapidApp::NavCore
   }
   else if(seq = 4) {
     Send {Escape}
