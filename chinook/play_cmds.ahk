@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroThree
+;skip_to = EditMacroEleven
 exit_at = END_SCRIPT
 
 SetKeyDelay, 10
@@ -113,6 +113,15 @@ CallMacro(name,seq) {
   }
   else if(name = "EditMacroEight") {
     return EditMacroEight(seq)
+  }
+  else if(name = "EditMacroNine") {
+    return EditMacroNine(seq)
+  }
+  else if(name = "EditMacroTen") {
+    return EditMacroTen(seq)
+  }
+  else if(name = "EditMacroEleven") {
+    return EditMacroEleven(seq)
   }
   
   
@@ -640,6 +649,132 @@ EditMacroEight(seq) {
   return 0 ; not finished
 }
 
+
+EditMacroNine(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Setup a virtual column{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("DB",0)
+    Sleep 200
+    vimJumpString("(grid_params",0)
+    Sleep 500
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    vimNewHashCnf("virtual_columns",1)
+  }
+  else if(seq = 4) {
+    vimNewHashCnf("Employee",0)
+  }
+  else if(seq = 5) {
+    vimNewHashCnf("full_name",0)
+    SendRaw data_type => "varchar",
+    Send {Enter}
+    SendRaw is_nullable => 0,
+    Send {Enter}
+    SendRaw size => 255,
+  }
+  else if(seq = 6) {
+    Send {Enter}
+    SendRaw sql => 'SELECT self.firstname || " " || self.lastname'
+  }
+  else if(seq = 7) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+EditMacroTen(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Make virtual column writable{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{,}{Enter}
+    vimNewHashSub("set_function",0)
+  }
+  else if(seq = 4) {
+    SendRaw my ($row, $value) = @_;
+    Send {Enter}
+  }
+  else if(seq = 5) {
+    SendRaw my ($fn, $ln) = split(/\s+/,$value,2);
+    Send {Enter}
+  }
+  else if(seq = 6) {
+    SendRaw $row->update({ firstname=>$fn, lastname=>$ln });
+  }
+  else if(seq = 7) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+
+EditMacroEleven(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Use virtual column as display_column{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpString("Genre",0)
+    Sleep 200
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {Enter}{Up}
+    vimNewHashCnf("Employee",0)
+  }
+  else if(seq = 4) {
+    SendRaw display_column => 'full_name'
+  }
+  else if(seq = 5) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
 
 ; --------------------
 

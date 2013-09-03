@@ -36,3 +36,22 @@ vimNewHashCnf(name,comment) {
   Sleep 200
   Send {Delete}{Tab}
 }
+
+
+vimNewHashSub(name,comment) {
+  SendRaw %name% => sub {
+  if(comment) {
+    if(comment <> 1) {
+      Send {Space}{#}{Space}%comment%
+    }
+  }
+  Send {Enter 2}
+  SendRaw },
+  if(comment) {
+    Send {Space}
+    SendRaw # (%name%)
+  }
+  Send {Up 2}{End}{Enter}
+  Sleep 200
+  Send {Delete}{Tab}
+}

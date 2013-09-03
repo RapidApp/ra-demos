@@ -118,6 +118,17 @@ Commit '(7) - enabled Navcore for saved views'
  # <[RunTestServer]>
 Commit '(8) - set auto_editor_type for certain Sources'
  #
+ # <[EditMacroNine]>
+ # <[RunTestServer]>
+Commit '(9) - created "full_name" virtual column'
+ #
+ # <[EditMacroTen]>
+ # <[RunTestServer]>
+Commit '(10) - full_name virtual column now writable'
+ #
+ # <[EditMacroEleven]>
+ # <[RunTestServer]>
+Commit '(11) - set full_name virtual column as display_column'
  # END_SCRIPT
  
 script/ra_chinookdemo_server.pl
