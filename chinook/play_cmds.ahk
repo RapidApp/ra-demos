@@ -85,7 +85,12 @@ CallMacro(name,seq) {
   global
   SetKeyDelay, 10
   
-  if(name = "EditMacroOne") {
+  if(name = "RunTestServer") {
+    return 1
+    ; return RunTestServer(seq)
+  }
+  
+  else if(name = "EditMacroOne") {
     return EditMacroOne(seq)
   }
   else if(name = "EditMacroTwo") {
@@ -106,9 +111,10 @@ CallMacro(name,seq) {
   else if(name = "EditMacroSeven") {
     return EditMacroSeven(seq)
   }
-  else if(name = "RunTestServer") {
-    return RunTestServer(seq)
+  else if(name = "EditMacroEight") {
+    return EditMacroEight(seq)
   }
+  
   
   
   MsgBox Unknown Macro Name '%name%' - exiting!
@@ -439,6 +445,16 @@ EditMacroThree(seq) {
     SendRaw display_column => 'name'
   }
   else if(seq = 6) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("Genre",0)
+    SendRaw display_column => 'name'
+  }
+  else if(seq = 7) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("MediaType",0)
+    SendRaw display_column => 'name'
+  }
+  else if(seq = 8) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit
@@ -587,6 +603,42 @@ EditMacroSeven(seq) {
   return 0 ; not finished
 }
 
+
+EditMacroEight(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Set certain Sources to be dropdowns {Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("Genre",0)
+    Sleep 100
+    Send {Down}
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{,}{Enter}
+    SendRaw auto_editor_type => 'grid'
+  }
+  else if(seq = 4) {
+    Send {Left}{Backspace 4}combo
+  }
+  else if(seq = 5) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
 
 
 ; --------------------

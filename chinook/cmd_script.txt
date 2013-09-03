@@ -111,10 +111,16 @@ Commit '(5) - enabled AuthCore to password protect site'
 Commit '(6) - enabled basic user management interface'
  #
  # <[EditMacroSeven]>
-script/ra_chinookdemo_server.pl
+ # <[RunTestServer]>
+Commit '(7) - enabled Navcore for saved views'
+ #
+ # <[EditMacroEight]>
+ # <[RunTestServer]>
+Commit '(8) - set auto_editor_type for certain Sources'
+ #
  # END_SCRIPT
  
-
+script/ra_chinookdemo_server.pl
  #
  # push github:
 #git remote add origin \
