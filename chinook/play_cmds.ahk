@@ -20,7 +20,7 @@ exit_at = 0
 ;skip_to = EditMacroEleven
 exit_at = END_SCRIPT
 
-SetKeyDelay, 10
+ResetDefaultKeyDelay()
 
 ;   ---- Install Hotkeys ----
 ; Ctrl + Spacebar:
@@ -38,6 +38,10 @@ return
   ExitApp
 return
 ; -----------------------------------
+
+ResetDefaultKeyDelay() {
+  SetKeyDelay, 10
+}
 
 
 AdvanceNext(auto) {
@@ -83,7 +87,7 @@ AutoAdvanceNext(delay) {
 ; If AHK had simple eval support, we wouldn't need this
 CallMacro(name,seq) {
   global
-  SetKeyDelay, 10
+  ResetDefaultKeyDelay()
   
   if(name = "RunTestServer") {
     return 1
@@ -184,14 +188,25 @@ AdvanceNextLine() {
     MacName := GetMacroName(line)
     if(is_comment && MacName <> 0) {
       ; restore normal key delay (ends any speedup)
-      SetKeyDelay, 10
+      ResetDefaultKeyDelay()
       active_macro := MacName
       return
     }
+    
+    is_speedup = 0
 
     ; Check for speed-up flag
     if(is_pause && InStr(line,speed_up_str)) {
       is_pause = 0
+      is_speedup = 1
+    }
+    
+    ; New/Override: make all comments speedups:
+    if(is_comment) {
+      is_speedup = 1
+    }
+    
+    if(is_speedup) {
       SetKeyDelay, 0
     }
     
@@ -207,7 +222,7 @@ AdvanceNextLine() {
     }
 
     ; restore normal key delay (ends any speedup)
-    SetKeyDelay, 10
+    ResetDefaultKeyDelay()
     
     ; If we're an actual command, make the next call
     ; send a lone newline/Enter (to hold for its output)
