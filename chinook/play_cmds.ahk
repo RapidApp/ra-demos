@@ -94,6 +94,10 @@ CallMacro(name,seq) {
     ; return RunTestServer(seq)
   }
   
+  else if(name = "CreateSQLiteDB") {
+    return CreateSQLiteDB(seq)
+  }
+  
   else if(name = "EditMacroOne") {
     return EditMacroOne(seq)
   }
@@ -792,6 +796,31 @@ EditMacroEleven(seq) {
 }
 
 ; --------------------
+
+
+CreateSQLiteDB(seq) {
+  if(seq = 1) {
+    SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+  }
+  else if(seq = 2) {
+    Send {Home}
+  }
+  else if(seq = 3) {
+    Send time{Space}
+  }
+  else if(seq = 4) {
+    Send {End}
+  }
+  else if(seq = 5) {
+    Send {Enter}
+  }
+  else {
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  return 0 ; not finished
+}
+
 
 RunTestServer(seq) {
   if(seq = 1) {

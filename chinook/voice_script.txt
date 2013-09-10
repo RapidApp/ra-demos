@@ -38,7 +38,71 @@ If you're not up to speed on all these topics, don't worry, you can still follow
 
 Part 2 - APP/GIT SETUP
 
-So, first things first, we need to download and install RapidApp from CPAN. This can be done with a single command with cpan minus. As you can see, I already have RapidApp on my system, but if I didn't, it would have been automatically installed, along with all its dependencies, including Catalyst.
+So, first things first, we need to download and install the latest RapidApp from CPAN. 
+
+As you can see, I already have RapidApp on my system, but if I didn't, it would have been automatically installed, along with all its dependencies, including Catalyst.
+
+If you don't have cpanm, you need to install cpanminus. Cpanminus is a handy tool for installing CPAN packages with dependencies without all the fuss and setup required for the traditional cpan client.
+
+
+Next, we need to create the new Catalyst application using the helper script provided by Catalyst. The app could be named anything, but I'm going to call it RA::ChinookDemo.
+
+The catalyst.pl helper script has now created a skeleton of base files and directories which will be working in moving forward.
+
+The first thing we're going to do is setup the git repository to track our changes.
+
+I'm also going to setup a simple bash alias to automate committing changes going forward.
+
+So when we type Commit with a capital C, it will automatically:
+* Write outstanding commands to the history file
+* And copy it to cmd_history.sh
+* Add all changes to the git index
+* And commit those changes with the supplied commit message
+
+Now, we'll use this new command to record our first commit.
+
+again, this is the repository that is available on github. I'll push it at the end of the video. 
+
+
+
+Now we need to download the actual Chinook database
+
+Chinook is available in multiple database formats, and DBIC supports multiple formats, but we'll be using SQLite for this demo.
+
+I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead I've just already downloaded and extracted this zip file into the parent directory of our app.
+
+We're going to use the basic sql file which includes both the DDL, or schema, and the sample data.
+
+As you can see, this file is about 1.8 megs.
+
+Now I'm going to use it to create a new SQLite database file, chinook.db. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes
+
+Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
+
+Now let's fast-forward to the future. I ran the command through time to see how long it actually took, which ended up being just under 8 minutes on this box.
+
+Let's go ahead and commit our progress
+
+
+
+Now we're going to create a Catalyst DBIC Schema Model for our new database using the helper script. Under the hood this uses DBIC's Schema::Loader to automatically generate schema and result classes based on the database we just created.
+
+* We're creating a new model called 'DB', which is just the name I picked, it could be anything
+* based on DBIC::Schema, which tells Catalyst which helper to use
+* using this for the DBIC schema namespace
+* Now we'll set some Schema::Loader options, creating the result classes one time, statically, and also turning off POD generation in the created files
+* Now comes the DBI DSN string, which we're pointing at our SQLite database file
+* And finally we'll set some connect_info options, such as enabling Unicode
+*  and setting quote_names, which is required for RapidApp
+
+For more info on this command and the available options, see the DBIC::Schema helper docs on CPAN
+
+Now we'll commit the changes, and see the files that were created: including the DBIC Schema, and 11 result classes, for each of the tables in the Chinook database, and the Catalyst Model which links to them
+
+
+I'm running it through time so we can see how long it actually takes.
+
+
 
 
 Part 3 - ?  - FEATURE DEMOS...

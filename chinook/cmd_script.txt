@@ -62,10 +62,10 @@ Commit 'first commit - freshly created Catalyst app'
  # (http://chinookdatabase.codeplex.com/)
 mkdir sql
 cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite.sql sql/
+ls -lh sql/Chinook_Sqlite.sql
  #
  # Create new SQLite database (takes ~ 10 minutes)
-#time sqlite3 chinook.db < sql/Chinook_Sqlite.sql
-cp ../chinook.db .
+ # <[CreateSQLiteDB]>
  #
 Commit 'setup chinook SQLite database'
  #
@@ -76,7 +76,7 @@ script/ra_chinookdemo_create.pl \
     DBIC::Schema \
     RA::ChinookDemo::DB \
     create=static generate_pod=0 \
-    dbi:SQLite:dbname=chinook.db \
+    dbi:SQLite:chinook.db \
     sqlite_unicode=1 \
     quote_names=1  #<-- important!
 Commit 'Created DBIC schema/model "DB"'
