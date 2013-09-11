@@ -75,7 +75,7 @@ We're going to use the basic sql file which includes both the DDL, or schema, an
 
 As you can see, this file is about 1.8 megs.
 
-Now I'm going to use it to create a new SQLite database file, chinook.db. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes
+Now, I'm going to use it to create a new SQLite database, chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes
 
 Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
 
