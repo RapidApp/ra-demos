@@ -110,4 +110,44 @@ These include the DBIC Schema and 11 result classes for each of the tables in th
 Part 1 - RapidDbic
 
 
+RECAP
 
+To recap what's been done so far:
+
+* We've created a standard skeleton Catalyst app,
+*  setup SQLite with the Chinook sample database
+*  and created an associated DBIC Schema and model
+* We've been tracking our changes with git,
+*  and the repo is on Github,
+*  and we've also been using a custom shell alias, Commit with a capital C, to record notes and command history as we go, which is in the file cmd_history.sh
+
+As you can see we've made 3 commits so far. I'm making another now, with a tag, so it is easy to jump back to this spot.
+
+Up until now this has been out-of-the-box Catalyst. Now we're going to enable RapidApp and load the RapidDbic plugin for web access to our SQLite database. This is done in the main application class, ChinookDemo.pm
+
+This is the boiler-plate application class content. I'm removing these comments to make the file more concise. 
+
+To enable RapidApp, simply use it.
+
+RapidApp doesn't do anything by itself, but makes other modules and plugins available. For this demo we're going to be using RapidDbic, so we just need to load it, like any Cayalyst plugin.
+
+I'm removing these other plugins just because we're not going to be using them. However, it wouldn't break anything if I left them. And we'll go ahead and leave -Debug on for now.
+
+Now we need to configure RapidDbic, which is done in the standard manner in the Catalyst config. 
+
+There are many available options, but the only one that is required is the list of DBIC::Schema models to use. 
+
+And we'll specify the model we already setup with the Chinook sample database, which we named 'DB'.
+
+That's all that's needed for the base setup, so we'll save and exit.
+
+We need to do one last thing before we can start using the app, which is to remove the auto-created Root controller that displays the catalyst welcome screen. We need to do this because locally defined controllers always get precedence. The default Root controller is just a placeholder, anyway.
+
+Now let's start the app using the test server:
+
+Since we left -Debug mode on, various console messages are shown. The cyan lines show RapidApp modules being loaded. RapidDbic is actually just a config wrapper; under the hood it sets up and configures the real RapidApp modules that do the heavy lifting.
+
+Now that the app has started, let's fire up a browser and have a look
+
+
+* 
