@@ -94,6 +94,7 @@ CallMacro(name,seq) {
   ResetDefaultKeyDelay()
   
   if(name = "RunTestServer") {
+    return 1 ; <-- bypass
     return RunTestServer(seq)
   }
   

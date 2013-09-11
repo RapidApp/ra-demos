@@ -1,0 +1,96 @@
+# INTRO/TagGui basics
+
+* expand tree
+* click to open 5 grids
+* click back and forth between tabs
+* click back and forward buttons
+* close 2 tabs
+* close other tabs (leaving Customer Rows open)
+
+
+# GRIDS
+
+## column basics
+
+* sort a column
+* resize columns
+* reorder columns
+* hide columns
+
+### Rows
+
+* double-click open page
+* enable Open-Item column
+* click to open
+
+## paging basics
+
+* advance pages
+* go back a page
+* first page and last page
+(notice sort is across entire set)
+* change page size to 50 and scroll
+(point out row counts - range for current page + total)
+
+
+## MultiFilter basics
+
+(interactive query builder)
+
+1. country  is equal to  USA
+(show)
+2. or France
+(show)
+* nested:
+1. clear all filters
+2. fax  null/empty status  is not null or empty
+3. Add set (OR):
+4. USA or France
+(show)
+5. Change set to AND
+(show)
+6. Create multiple blank/nested
+7. Partially fill one
+8. change the order
+9. remove all
+
+
+## Quick Search basics
+
+1. Search 'US'
+2. Change mode to Exact
+3. Search again (empty)
+4. Change to 'USA'
+5. Select 3 columns to search (city/state/country)
+6. Select to search on 'city' only
+7. Search again - still 'USA' (empty)
+8. Search 'London'
+
+
+## Column-specific searches (numbers & dates)
+
+1. Open 'Invoice Rows'
+2. toggle-off all columns
+3. select (invoicedate,billingaddress,country,total)
+4. click AutoSize Columns
+5. Sort on total
+6. Filter: total greater than 10
+(show)
+7. Filter: AND - invoicedate after Jul 9, 2013
+(show)
+8. Filter: relative date box (enter several): -5 months
+(show)
+9. Change to: -1 year 8 months
+(show)
+10. Type in bad date to show invalid
+11. Open dialog again:
+     * this month
+     * this year
+     * this year +1 month 6 days
+     * today +2 weeks
+     * +2 weeks
+12. after: this quarter -1q
+    before: this quarter
+     
+
+
