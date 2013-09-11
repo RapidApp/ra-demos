@@ -81,6 +81,25 @@ script/ra_chinookdemo_create.pl \
     quote_names=1  #<-- important!
 Commit 'Created DBIC schema/model "DB"'
  #
+clear
+ # -- RapidApp "Chinook" Demo (continued) --
+ #
+ # * Progress so far:
+ #   * Created 'RA::ChinookDemo' with catalyst.pl
+ #   * Setup SQLite database 'chinook.db'
+ #      (http://chinookdatabase.codeplex.com/)
+ #   * Created Catalyst model 'DB' (DBIC::Schema)
+ #   * Setup git (https://github.com/IntelliTree/RA-ChinookDemo)
+ #   * 'Commit' shell alias - records cmd history with changes
+ #      (cmd_history.sh)
+ #
+ # ----
+ #
+git log
+q
+Commit '01_prepared_app'
+git tag 01_prepared_app
+ #
  # <[EditMacroOne]> - Configure bare-bones RapidDbic
  #
  # Remove the auto-generated Root Controller:

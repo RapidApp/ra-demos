@@ -1,4 +1,7 @@
-Part 1 - INTRO
+Part 0 – Intro and setup
+
+
+(A) - INTRO
 
 Welcome to the RapidApp "Chinook" demo.
 
@@ -36,7 +39,7 @@ If you're not up to speed on all these topics, don't worry, you can still follow
 
 
 
-Part 2 - APP/GIT SETUP
+(B) - APP/GIT SETUP
 
 So, first things first, we need to download and install the latest RapidApp from CPAN. 
 
@@ -79,7 +82,9 @@ Now, I'm going to use it to create a new SQLite database, chinook.db in the curr
 
 Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
 
-Now let's fast-forward to the future. I ran the command through time to see how long it actually took, which ended up being just under 8 minutes on this box.
+Now let's fast-forward to the future. 
+
+The command finished and ended up taking just over 8 minutes. 
 
 Let's go ahead and commit our progress
 
@@ -90,19 +95,19 @@ Now we're going to create a Catalyst DBIC Schema Model for our new database usin
 * We're creating a new model called 'DB', which is just the name I picked, it could be anything
 * based on DBIC::Schema, which tells Catalyst which helper to use
 * using this for the DBIC schema namespace
-* Now we'll set some Schema::Loader options, creating the result classes one time, statically, and also turning off POD generation in the created files
-* Now comes the DBI DSN string, which we're pointing at our SQLite database file
-* And finally we'll set some connect_info options, such as enabling Unicode
+* And now we'll set some Schema::Loader options, creating the result classes one time, statically, and also turning off POD generation in the created files
+* Now comes the DSN string, which we're pointing at our SQLite database file
+* And finally, we'll set some connect_info options, such as enabling Unicode
 *  and setting quote_names, which is required for RapidApp
 
 For more info on this command and the available options, see the DBIC::Schema helper docs on CPAN
 
-Now we'll commit the changes, and see the files that were created: including the DBIC Schema, and 11 result classes, for each of the tables in the Chinook database, and the Catalyst Model which links to them
+Now we'll commit the changes, which shows the files that were just created. 
+
+These include the DBIC Schema and 11 result classes for each of the tables in the Chinook database, and the Catalyst Model, which links to them
 
 
-I'm running it through time so we can see how long it actually takes.
+Part 1 - RapidDbic
 
 
 
-
-Part 3 - ?  - FEATURE DEMOS...

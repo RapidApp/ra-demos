@@ -20,6 +20,10 @@ exit_at = 0
 ;skip_to = EditMacroEleven
 exit_at = END_SCRIPT
 
+
+fake_db_setup = 1
+
+
 ResetDefaultKeyDelay()
 
 ;   ---- Install Hotkeys ----
@@ -90,8 +94,7 @@ CallMacro(name,seq) {
   ResetDefaultKeyDelay()
   
   if(name = "RunTestServer") {
-    return 1
-    ; return RunTestServer(seq)
+    return RunTestServer(seq)
   }
   
   else if(name = "CreateSQLiteDB") {
@@ -799,8 +802,15 @@ EditMacroEleven(seq) {
 
 
 CreateSQLiteDB(seq) {
+  global
   if(seq = 1) {
-    SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+    if(fake_db_setup) {
+      SendRaw cp ../chinook.db .
+      return 1 ; finished
+    }
+    else {
+      SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+    }
   }
   else if(seq = 2) {
     Send {Home}
@@ -823,6 +833,7 @@ CreateSQLiteDB(seq) {
 
 
 RunTestServer(seq) {
+  global
   if(seq = 1) {
     Send {Space}{#} Start the test server:{Enter}
     Sleep 200
