@@ -6,6 +6,8 @@
 * click back and forward buttons
 * close 2 tabs
 * close other tabs (leaving Customer Rows open)
+* resize navtree
+* collapse/expand navtree
 
 
 # GRIDS
@@ -71,7 +73,7 @@
 
 1. Open 'Invoice Rows'
 2. toggle-off all columns
-3. select (invoicedate,billingaddress,country,total)
+3. re-select all but billingaddress/state/postalcode
 4. click AutoSize Columns
 5. Sort on total
 6. Filter: total greater than 10
@@ -91,6 +93,20 @@
      * +2 weeks
 12. after: this quarter -1q
     before: this quarter
-     
+(show)
 
 
+## Column Summaries
+
+1. Set 'Count Unique' on billingcountry
+2. Set 'Total' on 'total'
+3. Set 'Average' on 'total'
+
+
+## Relationship Columns
+
+1. Click to follow customerid (Row, belongs_to)
+2. Click to follow invoice_lines (Set, has_many)
+
+
+########### NEXT: joined columns...
