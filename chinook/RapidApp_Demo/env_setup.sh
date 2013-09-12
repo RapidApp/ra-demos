@@ -20,8 +20,11 @@
 export PERLLIB=/root/github/RapidApp/lib
 export RAPIDAPP_SHARE_DIR=/root/github/RapidApp/share
 
-# quick/dirty find vimrc file in either parent or grandparent dir
-vimrc_file="$PWD/../vimrc"
+# quick/dirty find vimrc file in either local, parent or grandparent dir
+vimrc_file="$PWD/vimrc"
+if [ ! -f $vimrc_file ]; then
+  vimrc_file="$PWD/../vimrc"
+fi
 if [ ! -f $vimrc_file ]; then
   vimrc_file="$PWD/../../vimrc"
 fi

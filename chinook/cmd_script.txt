@@ -1,6 +1,6 @@
 ### Clear any previous work
 rm -rf RA-ChinookDemo/
-source ../env_setup.sh
+source env_setup.sh
  # -- RapidApp "Chinook" Video Demo Series --
  # 
  #     (www.rapidapp.info/demos/chinook)
@@ -152,7 +152,7 @@ Commit 'Created DBIC schema/model "DB"'
 Commit '01_prepared_app'
 git tag 01_prepared_app
 # Push to Github (First push, with tags):
-git push -u --tags origin master !5000
+#git push -u --tags origin master !5000
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  # 
@@ -171,8 +171,7 @@ clear
  #
  # ----
  #
-git --no-pager log --oneline --graph
-q
+git --no-pager log --oneline --reverse
 git tag
  #
  # To jump straight to this point from scratch:
@@ -225,7 +224,7 @@ clear
 Commit '02_rapiddbic_basics'
 git tag 02_rapiddbic_basics
  # Push to Github:
-git push --tags origin master !5000
+#git push --tags origin master !5000
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  # 
@@ -243,8 +242,7 @@ clear
  #
  # ----
  #
-git --no-pager log --oneline --graph
-q
+git --no-pager log --oneline --reverse
 git tag
  #
  # To jump straight to this point from scratch:
@@ -255,19 +253,19 @@ git tag
  #
  #
  # <[EditMacroAuthCore]>
-Commit '(9) - enabled AuthCore to password protect site'
+Commit '(10) - enabled AuthCore to password protect site'
  # <[RunTestServer]>
  #
  # <[EditMacroCoreAdmin]>
-Commit '(10) - enabled basic user management interface'
+Commit '(11) - enabled basic user management interface'
  # <[RunTestServer]>
  #
  # <[EditMacroNavCore]>
-Commit '(11) - enabled Navcore for saved views'
+Commit '(12) - enabled Navcore for saved views'
  # <[RunTestServer]>
 clear
 Commit '03_auth_and_saved_views'
 git tag 03_auth_and_saved_views
  # Push to Github:
-git push --tags origin master !5000
+#git push --tags origin master !5000
 clear

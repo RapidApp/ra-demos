@@ -36,8 +36,8 @@ exit_at = 0
 ;skip_to = EditMacroCrudOpts
 ;exit_at = END_SCRIPT
 
-bypass_test_server = 0
-fake_db_setup = 0
+bypass_test_server = 1
+fake_db_setup = 1
 
 
 ResetDefaultKeyDelay()
