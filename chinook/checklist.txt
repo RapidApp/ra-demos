@@ -175,7 +175,7 @@
 
 # GRID EDITING
 
-1. Refresh browser
+1. Refresh browser (still on Track tab)
  - Click open Album tab
  - Click Track tab
  - Click Album tab
@@ -194,8 +194,8 @@
  - click 'Balls to the Wall'  (click in right-end of cell...)
  - click 'C.O.D.'
 6. Enable cell editing again
-7. Edits:
-    'Balls to the Wall' : append 'FOO'
+7. Edits:                                               *********************
+    'Balls to the Wall' : append ' FOO'
     'C.O.D.' : change to COD
     'Breaking The Rules' :  prepend 'Blah!! -- '
   
@@ -204,7 +204,7 @@
   - SHIFT+ENTER X5 to move cells up
   - SHIFT+TAB to move cell left
   
-  - Click edit 'Breaking The Rules' row:
+  - Click edit 'Breaking The Rules' row cells:
     - name column (no change)
     - composer (no change)
     - mediatypeid:
@@ -216,13 +216,13 @@
 10. hit escape
 11. close the tab
 12. click to select 'Breaking The Rules'
-13. click the Edit button. Edits:
+13. click the Edit button. Edits:                       *********************
      name: change 'Blah!!' to 'BLAH!!!'
      genre: change to NONE (select none)
      composer: MOZART
      unitprice: 3.99
 14. Save
-15. Click Add:
+15. Click Add:                                        *********************
      name: 'The Happy Happy Joy Joy Song'
      mediatype: 'MPEG Audio'
      milliseconds: 104325
@@ -231,7 +231,7 @@
 17. Enter unitprice: 3.14
 18. Click Save
 19. Close row page
-20. Click Add:
+20. Click Add:               (NOTE: when clicking in fields, keep cursor to the right)
      name: 'Come Sail Away'
      mediatype: 
       - Add New
@@ -300,7 +300,7 @@
 13. Click 'Oslo FOOOO' and change:
       - billingcity to 'Pawnee'
       - hit TAB and change billingstate to 'Indiana'
-      - click blank area in top-toolbar to end edit
+      - click blank area in top-toolbar (not tabstrip) to end edit
 14. Click back to InvoiceLine grid
 15. Click Reload button
 16. Hold shift to highlight the 4 InvoiceLIne rows
@@ -310,7 +310,7 @@
 20. Click yes (confirm delete 1 item)
 21. Click back to InvoiceLine grid
 22. Click Reload button
-23. Click in blank part of grid to hide column menu
+23.  ---- ??  Click in blank part of grid to hide column menu
 24. Click in invoicelineid to highlight the middle 'Brussels' row
 25. Click-edit 'invoiceid'
 26. Click-select the 'Boston' Invoice
@@ -344,18 +344,20 @@
 7.  Hit Escape
 8.  Scroll back to the left
 9.  Enable cell editing
-10. 4th row change:
-     - Media Type, Genre
-     - Change Genre of the next 3 rows
-11. Change the still selected row Genre to (None)
+10. 4th row (Restless and Wild) change:                 *********************
+     - Media Type, Genre   (Mp3/Blues)
+     - Change Genre of the next 3 rows (Easy Listening/Alternative/Jazz)
+11. Change the still selected row Genre to (None)   ("Let's Get It Up")
 12. Change the next row Genre to (None) also
 13. Click-expand Media Type dropdown of current row (but don't change)
-14. Click Album cell of the current row
+14. Click Album cell of the current row ("Inject The Venom")
 15. Select None
-16. Do the same for Album 2 rows down.
-17. Change Media Type for 2 more random rows
+16. Do the same for Album 2 rows down. ("COD")
+17. Change Media Type for 2 more rows
+     - "Fast As a Shark": "Mp3"
+     - "Evil Walks": "Purchased AAC audio file"
 18. Click-edit name on 'Snowballed' and append 'abc'
-19. Click-Change its Media Type
+19. Click-Change its Media Type to "AAC audio file"
 
 # Custom CRUD configs (browser demo)
 
@@ -365,7 +367,7 @@
 2a. hide navtree
 3. Auto-Size columns
 4. Enable cell editing
-5. Starting with row 2:
+5. Starting with row 2:  (screen cap)
     - append random chars to 3 rows in 'name'
     - hit ENTER between each then ESC
 6. Do the same for 2 more rows further down
@@ -384,7 +386,7 @@
 13. Click Save
 14. Close the row page
 15. Click-quick-show navtree
-16. Click MediaType
+16. Click-open MediaType grid
 17. Click in empty space in grid to re-hide navtree
 18. Click Add
 19. Edit phantom row name: 'sdgsdfg'
@@ -433,7 +435,7 @@
     - full_name
 3. Enable grid editing
 4. Change 'Steve Johnson' to 'Mike Johnson'
-5. Change 'Michael Mitchell' to 'Ricky Bobby'
+5. Change 'Mike Mitchell' to 'Ricky Bobby'
 6. Change 'Andrew Adamson' to 'Peter Griffin'
 7. Drag full_name before lastname
 8. Column changes:
