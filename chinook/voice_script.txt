@@ -150,4 +150,18 @@ Since we left -Debug mode on, various console messages are shown. The cyan lines
 Now that the app has started, let's fire up a browser and have a look
 
 
-* 
+*** BROWSER DEMO ***
+
+Out of the box, RapidDbic sets up a TabGui interface, which is a general-purpose UI provided by RapidApp, and is used by other modules as well. It consists of an ExtJS viewport with a navigation tree and tabbed content panel. RapidDbic sets up menu points for each database table, which open in grid views.
+
+The interface is all AJAX so there are no page reloads, but the tabs are still tied to real URLs, which are restful and absolute, so they can be linked to, or typed directly. And this also means things like browser history work as expected, so the forward and back buttons work.
+
+You can close tabs individually, or all but one from the context, menu by right-clicking on a tab.
+
+You can resize the navtree by clicking and dragging, or hide it, toggle it, unhide it again, and so on.
+
+This is very much like a desktop database admin client, but keep in mind this is just a base and is designed to be extended and customized, but we'll get into those details later on. 
+
+First let's explore some of the features and interfaces that are automatically available in these grid views
+
+
