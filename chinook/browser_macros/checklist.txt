@@ -14,10 +14,13 @@
 
 ## column basics
 
-* sort a column
+* sort a column (lastname)
 * resize columns
 * reorder columns
 * hide columns
+
+* toggle-off all columns
+* enable: last, first, address, city, country, fax
 
 ### Rows
 
@@ -27,8 +30,8 @@
 
 ## paging basics
 
-* advance pages
-* go back a page
+* advance pages (2)
+* go back a page (1)
 * first page and last page
 (notice sort is across entire set)
 * change page size to 50 and scroll
@@ -110,3 +113,16 @@
 
 
 ########### NEXT: joined columns...
+
+
+
+
+
+
+
+##########
+
+# URL Navigation
+
+* #!/ hashpaths
+* show opening from the outside (i.e. removing the #! prefix)
