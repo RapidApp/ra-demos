@@ -186,11 +186,11 @@ FILTERS
 
 We're currently working with a very small data set, so the queries are only taking a few milliseconds. But with larger tables this feedback can be very helpful, especially when dealing with  custom queries, which you can setup interactively by clicking the Filters button in the lower-right corner.
 
-You can add conditions by selecting a column, a condition, and a value.
+Here you can add conditions consisting of a column, a type, and a value.
 
-Multiple conditions can be setup using ANDs or ORs. You can also type to filter the list of columns.
+Multiple conditions can be setup using ANDs and ORs. You can also type to filter the list when selecting a column.
 
-And now only USA or France customers are shown.
+And now only rows with country equal to USA or France are shown.
 
 Active filters are visually shown by the green pencil in the filter button along with the number of conditions.
 
@@ -198,18 +198,23 @@ Multiple types of conditions are supported, including special kinds, like matchi
 
 Conditions can also be grouped and nested.
 
-You can build as many conditions and layers as you want, and you can also move the order of each item up and down using the arrow buttons, and you can remove items with the X.
-
- which allows us to 
+You can build as many conditions and levels as you want. You can also move the order of each item up and down using the arrow buttons, and clicking the X removes the item altogether.
 
 
+QUICK SEARCH
 
-and don't even register
+There is also a simple text box in the top toolbar for quick searching. By default it simply returns rows containing the string in any column, but it also can be configured.
 
-The second number shows the query time for the total count
+With the alternate "Exact" mode, whole columns are matched instead of substrings, which is faster for obvious reasons.
+
+A specific set of columns to search can also be selected.
+
+The active mode and columns is visually displayed in the heading. Here we see that there are no rows with 'city' equal to USA. 
+
+But there are some rows with the city London.
+
+The search is launched by hitting enter or clicking the magnify button, and cleared by clicking the X button.
 
 
-
-
-
+SEARCHING NUMBERS AND DATES
 
