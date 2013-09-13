@@ -164,4 +164,52 @@ This is very much like a desktop database admin utility, but keep in mind this i
 
 But before we get ahead of ourselves, let's explore some of the out-of-the-box features already provided by these grid views
 
+COLUMNS
+
+Columns can be sorted, resized, and reordered with drag and drop, as well as enabled or disabled from the column menu, either individually, or toggled all at once. 
+
+Rows can also be opened in their own view by double-clicking. The default row page is also a generic property grid, but custom layouts and interfaces are supported.
+
+For clients that can't double-click, like tablets, you can also single click on the special Open Item Column to open the row.
+
+The grid is paginated with standard paging controls in the toolbar, including page forward, page backward, … first page, last page,  …. And setting the items per page.
+
+Also notice that the sort applies to the entire set rather than the current page.
+
+The total row count is shown as well as the range of the current page.
+
+There is also a refresh button to reload the current page, and the most recent query time is also shown. This displays 1 or 2 numbers. The first number is the query time for the current page, and the second number, if present, is the query time of the total count, which isn't fetched every time for speed.
+
+
+FILTERS
+
+
+We're currently working with a very small data set, so the queries are only taking a few milliseconds. But with larger tables this feedback can be very helpful, especially when dealing with  custom queries, which you can setup interactively by clicking the Filters button in the lower-right corner.
+
+You can add conditions by selecting a column, a condition, and a value.
+
+Multiple conditions can be setup using ANDs or ORs. You can also type to filter the list of columns.
+
+And now only USA or France customers are shown.
+
+Active filters are visually shown by the green pencil in the filter button along with the number of conditions.
+
+Multiple types of conditions are supported, including special kinds, like matching on nulls and empty strings.
+
+Conditions can also be grouped and nested.
+
+You can build as many conditions and layers as you want, and you can also move the order of each item up and down using the arrow buttons, and you can remove items with the X.
+
+ which allows us to 
+
+
+
+and don't even register
+
+The second number shows the query time for the total count
+
+
+
+
+
 
