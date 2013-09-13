@@ -164,6 +164,8 @@ This is very much like a desktop database admin utility, but keep in mind this i
 
 But before we get ahead of ourselves, let's explore some of the out-of-the-box features already provided by these grid views
 
+
+
 COLUMNS
 
 Columns can be sorted, resized, and reordered with drag and drop, as well as enabled or disabled from the column menu, either individually, or toggled all at once. 
@@ -190,15 +192,17 @@ Here you can add conditions consisting of a column, a type, and a value.
 
 Multiple conditions can be setup using ANDs and ORs. You can also type to filter the list when selecting a column.
 
-And now only rows with country equal to USA or France are shown.
+Now the only rows shown are those with country equal to USA or France.
 
-Active filters are visually shown by the green pencil in the filter button along with the number of conditions.
+Whenever filters are active, a green pencil in shown within the button, as well as the number of conditions.
 
 Multiple types of conditions are supported, including special kinds, like matching on nulls and empty strings.
 
 Conditions can also be grouped and nested.
 
-You can build as many conditions and levels as you want. You can also move the order of each item up and down using the arrow buttons, and clicking the X removes the item altogether.
+You can build as many conditions and levels as you want. 
+
+You can also move the order of items up and down with the arrow buttons, and items are removed with the X button.
 
 
 QUICK SEARCH
