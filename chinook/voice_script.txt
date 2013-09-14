@@ -213,6 +213,10 @@ There is also a simple text box in the top toolbar for quick searching. By defau
 
 With the alternate "Exact" mode, whole columns are matched instead of substrings, which is faster for obvious reasons.
 
+Now no rows are returned since no columns are exactly equal to US. 
+
+But, there are some exact matches for USA 
+
 You can also choose which columns to search
 
 The text in the heading is determined by the selected mode and search columns. Here we're searching for an exact match on city only, and since there are no cities named 'USA' there are no rows found.   
@@ -223,4 +227,55 @@ The search is launched by hitting enter or clicking the magnify button, and clea
 
 
 SEARCHING NUMBERS AND DATES
+
+So far our examples have only involved text columns, but the since system understand the database schema, it is able to provide different interfaces for different column types, automatically. 
+
+For instance, the Invoice table has some other types of columns,    including a datetime column, and a numeric decimal column.
+
+So when we setup a filter on total, for example, since the system knows it's numeric, only appropriate number-based conditions are shown.
+
+The value box also restricts and validates for a numeric entry.
+
+There is also very robust support for dates and times. The conditions are date-specific and the value input provides a date selector.
+
+You can select or supply a specific date, like we just did, or you can enter a relative date, which is a text duration string with a flexible, human-readable format.
+
+The input dialog provides a quick reference with examples.
+
+For instance, we can enter minus 5 months, which translates into April 12th, because I am recording this on September 12th.
+
+So, this filter will show all invoices with a total greater than 10 over the past 5 months.
+
+The format is very flexible and supports combinations.
+
+You can type whole words or use abbreviations, and whitespace is ignored. 
+
+The effective date and time is shown in real time as you type, and you know right away if what you've entered is invalid. This instant feedback makes it very easy to use and understand.
+
+The dialog box is just a helper. Once you get the hang of the format you can just type it directly. You won't see the real-time effective date, but invalid entries are still shown in red.
+
+The input is relative to the current date by default, but you can supply a different reference date such as this month, this year, this quarter, and so on.
+
+And then the duration offset is be based on that, instead of now.
+
+So, this quarter, minus 1 quarter, is last quarter. Then, if we add a 'before' condition, we can restrict to a range of dates, in this case, the 3 month span between the start and the end of last quarter, which is the beginning of april through the end of june.
+
+So, we can see there were 3 invoices last quarter greater than 10. If we remove that condition we can see there were 18 total. 
+
+One of the benefits of relative dates over manually selecting dates, besides being faster and needed less thinking, is that they move forward with you in time. If we save this view, it would always be "last quarter", instead of april through june 2013. If we were to reload it in February 2015, which would be the first quarter of that year, then it would still show invoices for the previous quarter, which by then will be 4th quarter of the previous year, or October through December 2014.
+
+I'll be covering saved views a little later in the video.
+
+COLUMN SUMMARIES
+
+
+Another handy out-of-the-box feature are 'column summaries', which provide aggregate functions for calculations on the current set of rows. 
+
+Here we can see the invoice total for last quarter, or the total of totals, was 104.94.
+
+Like the filter interfaces, the column summaries are based on the underlying schema and column types, so text columns like billingcountry list different functions than number columns like total.
+
+Now we can see that the average invoice last quarter was 5  83, and there were 11 unique countries.
+
+
 
