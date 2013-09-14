@@ -200,6 +200,8 @@ Multiple types of conditions are supported, including special kinds, like matchi
 
 Conditions can also be grouped and nested.
 
+These sets of conditions are equivalent to parenthesis which let you define the precedence of ands and ors.
+
 You can build as many conditions and levels as you want. 
 
 You can also move the order of items up and down with the arrow buttons, and items are removed with the X button.
@@ -207,15 +209,15 @@ You can also move the order of items up and down with the arrow buttons, and ite
 
 QUICK SEARCH
 
-There is also a simple text box in the top toolbar for quick searching. By default it simply returns rows containing the string in any column, but it also can be configured.
+There is also a simple text box in the top toolbar for quick searching. By default, it simply returns rows with any column containing the search string.  
 
 With the alternate "Exact" mode, whole columns are matched instead of substrings, which is faster for obvious reasons.
 
-A specific set of columns to search can also be selected.
+You can also choose which columns to search
 
-The active mode and columns is visually displayed in the heading. Here we see that there are no rows with 'city' equal to USA. 
+The text in the heading is determined by the selected mode and search columns. Here we're searching for an exact match on city only, and since there are no cities named 'USA' there are no rows found.   
 
-But there are some rows with the city London.
+But, if we type in London, those two matching rows are displayed. 
 
 The search is launched by hitting enter or clicking the magnify button, and cleared by clicking the X button.
 
