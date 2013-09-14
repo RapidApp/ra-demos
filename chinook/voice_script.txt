@@ -228,54 +228,78 @@ The search is launched by hitting enter or clicking the magnify button, and clea
 
 SEARCHING NUMBERS AND DATES
 
-So far our examples have only involved text columns, but the since system understand the database schema, it is able to provide different interfaces for different column types, automatically. 
+So far our examples have only involved text columns, but the since system understands the database schema, it is able to provide different interfaces for different column types, automatically. 
 
 For instance, the Invoice table has some other types of columns,    including a datetime column, and a numeric decimal column.
 
-So when we setup a filter on total, for example, since the system knows it's numeric, only appropriate number-based conditions are shown.
+So when we setup a filter on total, for example, since the system knows it's numeric, only appropriate, number-based conditions are shown.
 
-The value box also restricts and validates for a numeric entry.
+The value box also restricts and validates for numeric input, so for example it won't let you type in letters, only valid numbers.
 
-There is also very robust support for dates and times. The conditions are date-specific and the value input provides a date selector.
+There is also very robust support for dates and times. 
 
-You can select or supply a specific date, like we just did, or you can enter a relative date, which is a text duration string with a flexible, human-readable format.
+The condition choices are date-specific, and the value input automatically provides a date selector.
+
+
+You can select or supply a specific date, like we just did, or you can enter a relative date, which is a text-based duration string with a flexible, human-readable format.
 
 The input dialog provides a quick reference with examples.
 
-For instance, we can enter minus 5 months, which translates into April 12th, because I am recording this on September 12th.
+For instance, we can enter minus 5 months, which translates into April 12th, which is "relative" to the current date and time, which as I am recording is September 12th at 3:36PM. 
 
 So, this filter will show all invoices with a total greater than 10 over the past 5 months.
 
 The format is very flexible and supports combinations.
 
-You can type whole words or use abbreviations, and whitespace is ignored. 
+You can type in whole words or use abbreviations. Whitespace is ignored. 
 
-The effective date and time is shown in real time as you type, and you know right away if what you've entered is invalid. This instant feedback makes it very easy to use and understand.
+The effective date and time is shown in real time as you type, and you also know right away if what you've entered is invalid. This instant feedback makes it easy to use and understand, despite its flexibility and dynamic syntax
 
-The dialog box is just a helper. Once you get the hang of the format you can just type it directly. You won't see the real-time effective date, but invalid entries are still shown in red.
+The dialog box is just a helper. Once you get the hang of the format you can just type in values directly. You won't see the real-time effective date, but invalid entries are still shown in red.
 
-The input is relative to the current date by default, but you can supply a different reference date such as this month, this year, this quarter, and so on.
+The offset string is relative to the current date and time by default, but you can supply different relative starting points like this month, this year, this quarter, and so on.
 
-And then the duration offset is be based on that, instead of now.
+So, this quarter, minus 1 quarter, would be the first day of last quarter, or midnight on april 1st. A relative date just translates into a normal date, which is a single point in time. But if we add a 'before' condition to go with our 'after' condition, we can define a range, … in this case, the 3 month span between the start and the end of last quarter, which is currently the beginning of april through the end of june.
 
-So, this quarter, minus 1 quarter, is last quarter. Then, if we add a 'before' condition, we can restrict to a range of dates, in this case, the 3 month span between the start and the end of last quarter, which is the beginning of april through the end of june.
+If we save this filter we can now see that there were 3 invoices last quarter that were greater than 10. And if we remove the total condition we can see there were 18 in all. 
 
-So, we can see there were 3 invoices last quarter greater than 10. If we remove that condition we can see there were 18 total. 
-
-One of the benefits of relative dates over manually selecting dates, besides being faster and needed less thinking, is that they move forward with you in time. If we save this view, it would always be "last quarter", instead of april through june 2013. If we were to reload it in February 2015, which would be the first quarter of that year, then it would still show invoices for the previous quarter, which by then will be 4th quarter of the previous year, or October through December 2014.
+One of the benefits of relative dates over manually dates, besides being faster and needing less thinking, is that they move forward with time. So, if we saved this view and came back to it later, the results would change according to the current date, it would always be "last quarter", instead of april through june 2013. In February 2015, for example, it would show invoices from October through December 2014
 
 I'll be covering saved views a little later in the video.
 
-COLUMN SUMMARIES
 
+COLUMN SUMMARIES
 
 Another handy out-of-the-box feature are 'column summaries', which provide aggregate functions for calculations on the current set of rows. 
 
-Here we can see the invoice total for last quarter, or the total of totals, was 104.94.
+Sticking with the same relative date range filter, with this column summary we can see that the invoice total from last quarter, or the total of totals, was 104.94.
 
-Like the filter interfaces, the column summaries are based on the underlying schema and column types, so text columns like billingcountry list different functions than number columns like total.
+Like the filter interfaces, column summaries are based on the underlying schema and column types, so text columns, like billingcountry, list different functions than number columns, like total.
 
 Now we can see that the average invoice last quarter was 5  83, and there were 11 unique countries.
 
 
+RELATIONSHIP COLUMNS
+
+Besides understanding the column types of the schema, which is relatively simple, the system also understands the underlying inter-table relationships, and foreign key constraints.
+
+You may have noticed the little magnifying glass icons next to the values in certain columns. These are displayed within "relationship" columns and are clickable links to the related data.
+
+In this case, customerid is a foreign key which links each invoice row to a specific customer row which the link will open in a tab.
+
+Customer id is a single relationship, or a "belongs_to", because you can imagine that each invoice 'belongs to' a given customer.
+
+The other side of this single relationship – that is, from the perspective of the customer table – is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
+
+The invoice table has a multi relationship of its own, invoice_lines, because and invoice "has_many" lines.
+
+Multi-relationship columns display a count of the related rows, and the link opens to a list of those rows, rather than a specific row as with a single relationship, like customerid
+
+These are column representations of the relationships defined in the associated DBIC result class, or source. 
+
+The customerid column is both a relationship name and also a physical column in the table, however the multi relationship column 'invoice_lines' is virtual.
+
+Relationship columns are still considered "local" to the given source in which they are defined. Related, or joined columns, on the other hand, are columns from other tables that have been joined into the local view.
+
+Joined columns aren't configured automatically out-of-the-box because there are lots of possible configurations. You just need to tell the system which columns you want, in what sources, in the RapidDbic config.
 
