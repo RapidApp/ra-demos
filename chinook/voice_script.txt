@@ -249,7 +249,7 @@ For instance, we can enter minus 5 months, which translates into April 12th, whi
 
 So, this filter will show all invoices with a total greater than 10 over the past 5 months.
 
-The format is very flexible and supports combinations.
+The format is very flexible. It understands all the major English time units from weeks months and years down to hours minutes and seconds. It also supports combinations.
 
 You can type in whole words or use abbreviations. Whitespace is ignored. 
 
@@ -291,7 +291,7 @@ Customer id is a single relationship, or a "belongs_to", because you can imagine
 
 The other side of this single relationship – that is, from the perspective of the customer table – is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
 
-The invoice table has a multi relationship of its own, invoice_lines, because and invoice "has_many" lines.
+The invoice table has a multi relationship of its own, invoice_lines, because an invoice "has_many" lines.
 
 Multi-relationship columns display a count of the related rows, and the link opens to a list of those rows, rather than a specific row as with a single relationship, like customerid
 
