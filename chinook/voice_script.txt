@@ -303,3 +303,29 @@ Relationship columns are still considered "local" to the given source in which t
 
 Joined columns aren't configured automatically out-of-the-box because there are lots of possible configurations. You just need to tell the system which columns you want, in what sources, in the RapidDbic config.
 
+
+
+JOINED COLUMNS
+
+First let's commit our changes so far, and edit the main application class come more.
+
+The settings for each DBIC Schema are defined in the hashkey of the model name, under the configs key. In our example we have only one schema model, DB, but others could also be defined and independently configured as well.
+
+The model config is divided into sections which are further divided into the individual sources. We're going to start with the grid_params section which is where the list of columns to include for each source grid can be defined.
+
+The special "include_colspec" setting defines the columns to include. A "colspec" is a list of wildcard strings, or globs, which match column names.
+
+'Star' is the default, implied config, which matches all local columns, including relationship columns, as we just discussed.
+
+Columns of remote tables, or joined columns, can also be defined using a dot-separated relationship path prefix.
+
+For example, 'artistid.name' will include the Artist 'name' column in the Album grid, as joined through the 'artistid' relationship, which, again, is the name of the DBIC relationship that was automatically configured when we created the 'DB' model with the helper script, based on the foreign-key constraint in the underlying database schema.
+
+Columns can also be joined across multiple levels. For example, albumid.artistid.*  will include all Artist columns in the Track grid, joined through the intermediate Album table. 
+
+Now let's save our changes and restart the app
+
+
+
+
+
