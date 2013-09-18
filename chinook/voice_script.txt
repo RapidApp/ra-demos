@@ -307,7 +307,7 @@ Joined columns aren't configured automatically out-of-the-box because there are 
 
 JOINED COLUMNS
 
-First let's commit our changes so far, and edit the main application class come more.
+First let's commit our changes so far, and then edit the main application class some more.
 
 The settings for each DBIC Schema are defined in the hashkey of the model name, under the configs key. In our example we have only one schema model, DB, but others could also be defined and independently configured as well.
 
@@ -324,6 +324,10 @@ For example, 'artistid.name' will include the Artist 'name' column in the Album 
 Columns can also be joined across multiple levels. For example, albumid.artistid.*  will include all Artist columns in the Track grid, joined through the intermediate Album table. 
 
 Now let's save our changes and restart the app
+
+# Browser Demo
+
+
 
 
 
