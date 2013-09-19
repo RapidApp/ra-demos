@@ -112,6 +112,7 @@
 2. Click to follow invoice_lines (Set, has_many)
 
 
+
 # JOINED COLUMNS
 
 1. Open Track grid
@@ -180,3 +181,11 @@
 
 * #!/ hashpaths
 * show opening from the outside (i.e. removing the #! prefix)
+
+
+============================
+#### DEFAULT ZOOM (camtasia):
+Scale : 114%
+X     : -60
+Y     : 45
+============================

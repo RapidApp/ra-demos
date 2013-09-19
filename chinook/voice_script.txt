@@ -382,8 +382,15 @@ With this filter, only Tracks with the Media Type "AAC audio file" will be shown
 ## TODO: demo searching count values on multi-rels 
 ##   -- RapidApp bug is blocking us!!
 
-So far we've been working read-only….
+EDIT GRIDS
 
+So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But, as with most things, this is fully configurable.
+
+Let's commit our progress and go back into the RapidDbic config in the main class file.
+
+Create, update and delete functionality can be enabled in the grid_params. To applying settings across all sources at once, the special pseudo-source name "star-default" can be used. Any options supplied in this section can still be overridden in the individual source configs.
+
+settings are control
 
 
 
