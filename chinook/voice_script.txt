@@ -327,6 +327,31 @@ Now let's save our changes and restart the app
 
 # Browser Demo
 
+Let's look at the Track grid to see the joined columns we just enabled. 
+
+These are the default, local columns, which are visible by default, but if we look at the available columns list, we can see that 3 more are also available. 
+
+These are the columns from the Artist table. If we open the Artist grid we can compare. Because we specified a star in the colspec, it joined all 3 columns, and the relationship path is shown in the column header.
+
+Notice, relationship columns can be joined like any other column. In this case, the multi-relationship "albums" is associated with the artist, not really the track. Dog Eat Dog has the Artist AC/DC, and AC/DC has 2 albums.
+
+We also joined artistid.name in the album grid, so that column is also available, and, no surprise, the artist for these albums is AC/DC.
+
+We know that the Track 'Dog Eat Dog' is in one of these albums. But, since we didn't join any of the Album columns, we can't see which one directly from the Track row. 
+
+Well, we sort of can. We do have albumid, so we can see it belongs to albumid 4, which we can follow and see is "Let There Be Rock", or, just match artistid 4 back on the Album grid.
+
+But, "album id 4" isn't very friendly or descriptive, and we don't want our users to have to memorize IDs. If we wanted to see the album title in the Track grid, we could always add it as another joined column. 
+
+But, another way is to change which column from the related row is shown in the local relationship column, which we can also do. The default … display_column … is the primary key, albumid, but if we change it to 'title', "Let There Be Rock" will be displayed here instead of "4"
+
+For this, we need to go back into to the RapidDbic config.
+
+Again, we'll commit our changes so far, first.
+
+
+
+
 
 
 

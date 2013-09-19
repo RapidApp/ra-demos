@@ -112,7 +112,27 @@
 2. Click to follow invoice_lines (Set, has_many)
 
 
-########### NEXT: joined columns...
+# JOINED COLUMNS
+
+1. Open Track grid
+2. Scroll left-right
+3. open column list
+4. toggle off all columns
+5. enable 'name' plus the 3 artist columns
+6. Auto-Size columns
+7. Open Artist grid
+8. Close Artist grid
+9. Click/highlight Dog Eat Dog
+10. Click Albums^2 open link
+11. Auto-size columns
+12. Enable 'name' column
+13. Toggle back to Track grid
+14. Enable albumid
+15. Click open on albumid(4) from Dog Eat Dog
+16. Close
+17. Toggle back to Album Rows (mouse-over Let There Be Rock, then point at id 4)
+18. Close Album Rows grid (Track should now be active)
+
 
 
 
