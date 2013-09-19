@@ -345,16 +345,46 @@ But, "album id 4" isn't very friendly or descriptive, and we don't want our user
 
 But, another way is to change which column from the related row is shown in the local relationship column, which we can also do. The default … display_column … is the primary key, albumid, but if we change it to 'title', "Let There Be Rock" will be displayed here instead of "4"
 
-For this, we need to go back into to the RapidDbic config.
+To do this we need to edit the RapidDbic config.
 
-Again, we'll commit our changes so far, first.
+# Set display_columns
+
+Again, we'll commit our changes, first, and then go back into the main class file.
+
+We need to add another config section, TableSpecs, which, like grid_params, is sub-divided by result source.
+
+'TableSpec' is a RapidApp-specific name for extra metadata associated with a result source, or table. Unlike the grid_params, which apply only to the grid interfaces, TableSpecs apply globally, to all locations and interfaces interacting with the source.
+
+The 'display_column' defines which column should be used, by default, to represent a given row. It should be the name of a physical column in the table, and should be relatively short. The default is the first primary key column, or just the first column if there are no primary keys.
+
+This setting affects relationship columns, and also other contexts, like dropdown lists and selections, as we'll see in just a bit.
+
+As discussed, we're setting the display_column for Album to "title". While we're at it, let's set the display_column for a few other sources, too.
+
+Now let's save our changes and start the app back up.
+
+# Browser demo
+
+To see the new config, we can refresh the browser, or, simply right-click and reload this tab.
+
+As you can see, the albumid relationship column now shows the album title instead of the numeric id. We can also see the media and genre instead of ids because we set the display_column for those sources also.
+
+One benefit of relationship columns over joined columns is the included link to the row. It is also simpler to configure and applies to multiple interfaces. 
+
+The system understands the relationships for searching as well.
+
+The Quick search applies to the displayed values, as you would expect, but you can also perform exact searches on relationships.
+
+One of the condition types I haven't covered yet is the special 'is' condition, which allows selecting a specific related item among only the possible values.
+
+With this filter, only Tracks with the Media Type "AAC audio file" will be shown, and this display string, once again, is set according to the display_column we configured for the MediaType source.
+
+## TODO: demo searching count values on multi-rels 
+##   -- RapidApp bug is blocking us!!
+
+So far we've been working read-only….
 
 
 
 
-
-
-
-
-
-
+For example, 

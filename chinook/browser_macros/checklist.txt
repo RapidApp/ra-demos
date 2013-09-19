@@ -133,8 +133,42 @@
 17. Toggle back to Album Rows (mouse-over Let There Be Rock, then point at id 4)
 18. Close Album Rows grid (Track should now be active)
 
+## DISPLAY COLUMNS
 
+1. Right-click reload Track grid
+2. Click to open a related media
+3. Close it again
+4. Quick Search "Let There"
+5. Clear Quick Search
+6. Multifilter:
+    * mediatypeid IS 'AAC audio file'
 
+    
+## --- TODO: fix RapidApp bug!!
+1. Open Artist Rows
+2. Auto-Size
+3. Multifilter:
+    * albums   greater than   3
+##
+##   Does not work, at least not in SQLite. Returns 0 rows.
+##   
+##   Did some investigating, this query is generated:
+##   
+##     SELECT ( "me"."artistid" ) AS "artistid", ( "me"."name" ) AS "name", ( 
+##         SELECT COUNT( * ) 
+##           FROM "Album" "inner" 
+##         WHERE "inner"."artistid" = me.artistid
+##        ) AS "albums" 
+##       FROM "Artist" "me" 
+##     GROUP BY "me"."artistid" 
+##     HAVING "albums" > '3' 
+##     ORDER BY "albums" DESC 
+##       LIMIT '25'
+##   
+##   If the quotes are taken off of the '3' 
+##   (i.e. HAVING "albums" > 3) it works
+##
+## ---
 
 
 
