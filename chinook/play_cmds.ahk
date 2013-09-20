@@ -843,7 +843,9 @@ CreateSQLiteDB(seq) {
       return 1 ; finished
     }
     else {
-      SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+      ;SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite.sql
+      SendRaw sqlite3 chinook.db < sql/Chinook_Sqlite_AutoIncrementPKs.sql
+      
     }
   }
   else if(seq = 2) {

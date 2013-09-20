@@ -61,8 +61,8 @@ Commit 'first commit - freshly created Catalyst app'
  # Download the Chinook sample database:
  # (http://chinookdatabase.codeplex.com/)
 mkdir sql
-cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite.sql sql/
-ls -lh sql/Chinook_Sqlite.sql
+cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite_AutoIncrementPKs.sql sql/
+ls -lh sql/Chinook_Sqlite_AutoIncrementPKs.sql
  #
  # Create new SQLite database (takes ~ 10 minutes)
  # <[CreateSQLiteDB]>
