@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-skip_to = EditMacroFour
+;skip_to = EditMacroFour
 exit_at = END_SCRIPT
 
 

@@ -121,33 +121,33 @@ Commit '(3) - configured display_columns (TableSpecs)'
  # <[RunTestServer]>
 Commit '(4) - turned on grid editing for all Sources'
  #
- # <[EditMacroAuthCore]>
- # <[RunTestServer]>
-Commit '(5) - enabled AuthCore to password protect site'
- #
- # <[EditMacroCoreAdmin]>
- # <[RunTestServer]>
-Commit '(6) - enabled basic user management interface'
- #
- # <[EditMacroNavCore]>
- # <[RunTestServer]>
-Commit '(7) - enabled Navcore for saved views'
- #
  # <[EditMacroEight]>
  # <[RunTestServer]>
-Commit '(8) - set auto_editor_type for certain Sources'
+Commit '(5) - set auto_editor_type for certain Sources'
  #
  # <[EditMacroNine]>
  # <[RunTestServer]>
-Commit '(9) - created "full_name" virtual column'
+Commit '(6) - created "full_name" virtual column'
  #
  # <[EditMacroTen]>
  # <[RunTestServer]>
-Commit '(10) - full_name virtual column now writable'
+Commit '(7) - full_name virtual column now writable'
  #
  # <[EditMacroEleven]>
  # <[RunTestServer]>
-Commit '(11) - set full_name virtual column as display_column'
+Commit '(8) - set full_name virtual column as display_column'
+ #
+ # <[EditMacroAuthCore]>
+ # <[RunTestServer]>
+Commit '(9) - enabled AuthCore to password protect site'
+ #
+ # <[EditMacroCoreAdmin]>
+ # <[RunTestServer]>
+Commit '(10) - enabled basic user management interface'
+ #
+ # <[EditMacroNavCore]>
+ # <[RunTestServer]>
+Commit '(11) - enabled Navcore for saved views'
  # END_SCRIPT
  
 script/ra_chinookdemo_server.pl
