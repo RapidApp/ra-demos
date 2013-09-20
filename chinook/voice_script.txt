@@ -388,14 +388,22 @@ With this filter, only Tracks with the Media Type "AAC audio file" will be shown
 
 EDIT GRIDS
 
-So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But, as with most things, this is fully configurable.
+So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But this is also fully configurable.
 
-Let's commit our progress and go back into the RapidDbic config in the main class file.
+Let's commit our progress and go back into the RapidDbic config in the main class file to enable editing.
 
-Create, update and delete functionality can be enabled in the grid_params. To applying settings across all sources at once, the special pseudo-source name "star-default" can be used. Any options supplied in this section can still be overridden in the individual source configs.
+Create, update and delete functionality can be configured in the grid_params, which we're going to enable them across the board. 
 
-settings are control
+The special pseudo name "star-default" can be used to apply settings to all sources at once to save us from having to retype the same settings over and over. But any options supplied in this section can still be overridden in the individual source configs.
 
+Access to update rows can be enabled on a per-column basis with the 'updatable_colspec' setting. It uses the same format as 'include_colspec' which we already saw which enables **read** access … on a per-column basis. Also, since colspecs can specify joined columns, yes, this setting can also allow editing of joined rows, but we're just enabling editing of local columns for now.
 
+Create access is enabled with the 'creatable_colspec' setting, which is also in the same colspec format. This determines which column values can be set when creating a row, including related rows which will be automatically created if specified.
 
-For example, 
+Delete is enabled with the 'destroyable_relspec' setting, which is a variant of the colspec format in that it applies only to relationship names, simply because delete affects whole rows, not individual columns. 'star' simply enables deleting local rows. You can supply additional relationship paths to also be deleted. This is mainly provided for the sake of completeness, as there are better ways to setup cascade deletes.
+
+With this config we've now turned on straightforward creating, updating and deleting in all grids.
+
+Let's save, restart and check it out.
+
+# Browser demo
