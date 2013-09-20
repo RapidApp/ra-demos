@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroEleven
+skip_to = EditMacroFour
 exit_at = END_SCRIPT
 
 
@@ -114,14 +114,14 @@ CallMacro(name,seq) {
   else if(name = "EditMacroFour") {
     return EditMacroFour(seq)
   }
-  else if(name = "EditMacroFive") {
-    return EditMacroFive(seq)
+  else if(name = "EditMacroAuthCore") {
+    return EditMacroAuthCore(seq)
   }
-  else if(name = "EditMacroSix") {
-    return EditMacroSix(seq)
+  else if(name = "EditMacroCoreAdmin") {
+    return EditMacroCoreAdmin(seq)
   }
-  else if(name = "EditMacroSeven") {
-    return EditMacroSeven(seq)
+  else if(name = "EditMacroNavCore") {
+    return EditMacroNavCore(seq)
   }
   else if(name = "EditMacroEight") {
     return EditMacroEight(seq)
@@ -528,6 +528,39 @@ EditMacroFour(seq) {
   else if(seq = 4) {
     Send {Escape}
     Sleep 200
+    ;vimJumpStringTop("__PACKAGE__",0)
+    ;Sleep 200
+    vimJumpString("Album",0)
+    Sleep 500
+    vimJumpString("{}}",0)
+    ;Send {Down 2}
+    Sleep 500
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{Enter}
+    vimNewHashCnf("InvoiceLine",0)
+  }
+  else if(seq = 5) {
+    SendRaw include_colspec => ['*','*.*'],
+  }
+  else if(seq = 6) {
+    Send {Up}{End}{Enter}{Tab}
+    SendRaw # join all columns of all relationships (first-level):
+    Send {Down}{End}{Enter}
+  }
+  else if(seq = 7) {
+    vimNewArrCnf("updatable_colspec",0)
+  }
+  else if(seq = 8) {
+    SendRaw 'unitprice','quantity',
+    Send {Enter}
+  }
+  else if(seq = 9) {
+    SendRaw 'invoiceid.billing*'
+  }
+  else if(seq = 10) {
+    Send {Escape}
+    Sleep 200
     Send {Z 2} ; Save and exit
     no_newline_prefix = 1
     return 1 ; finished
@@ -539,7 +572,7 @@ EditMacroFour(seq) {
   return 0 ; not finished
 }
 
-EditMacroFive(seq) {
+EditMacroAuthCore(seq) {
   global
   Sleep 500
   if(seq = 1) {
@@ -571,7 +604,7 @@ EditMacroFive(seq) {
   return 0 ; not finished
 }
 
-EditMacroSix(seq) {
+EditMacroCoreAdmin(seq) {
   global
   Sleep 500
   if(seq = 1) {
@@ -603,7 +636,7 @@ EditMacroSix(seq) {
   return 0 ; not finished
 }
 
-EditMacroSeven(seq) {
+EditMacroNavCore(seq) {
   global
   Sleep 500
   if(seq = 1) {

@@ -121,15 +121,15 @@ Commit '(3) - configured display_columns (TableSpecs)'
  # <[RunTestServer]>
 Commit '(4) - turned on grid editing for all Sources'
  #
- # <[EditMacroFive]>
+ # <[EditMacroAuthCore]>
  # <[RunTestServer]>
 Commit '(5) - enabled AuthCore to password protect site'
  #
- # <[EditMacroSix]>
+ # <[EditMacroCoreAdmin]>
  # <[RunTestServer]>
 Commit '(6) - enabled basic user management interface'
  #
- # <[EditMacroSeven]>
+ # <[EditMacroNavCore]>
  # <[RunTestServer]>
 Commit '(7) - enabled Navcore for saved views'
  #

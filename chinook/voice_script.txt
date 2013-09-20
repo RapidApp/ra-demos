@@ -392,18 +392,28 @@ So far we've only been viewing data, and out-of-the-box, RapidDbic grids are rea
 
 Let's commit our progress and go back into the RapidDbic config in the main class file to enable editing.
 
-Create, update and delete functionality can be configured in the grid_params, which we're going to enable them across the board. 
+Create, update and delete functionality can be configured in the grid_params section, which we're going to enable across the board. 
 
-The special pseudo name "star-default" can be used to apply settings to all sources at once to save us from having to retype the same settings over and over. But any options supplied in this section can still be overridden in the individual source configs.
+The special pseudo name "star-default" can be used to apply settings to all sources at once to save us from having to retype the same options over and over. But anything supplied in this section can still be overridden in the individual source configs.
 
-Access to update rows can be enabled on a per-column basis with the 'updatable_colspec' setting. It uses the same format as 'include_colspec' which we already saw which enables **read** access … on a per-column basis. Also, since colspecs can specify joined columns, yes, this setting can also allow editing of joined rows, but we're just enabling editing of local columns for now.
+Access to update rows can be enabled with the 'updatable_colspec' setting which uses the same format as 'include_colspec' which we already saw. Colspecs are wildcards which match column names, so 'star' allows editing of all local columns. Like the include_colspec setting, joined columns can also be specified to allow editing of joined rows, but we're just enabling local editing for now.
 
-Create access is enabled with the 'creatable_colspec' setting, which is also in the same colspec format. This determines which column values can be set when creating a row, including related rows which will be automatically created if specified.
+Create access is enabled with the 'creatable_colspec' setting, which also uses the same colspec format. This determines which column values can be set when creating a row, including joined columns which, if specified, will automatically create the related rows. Any true value in this setting turns on the create feature, even if it matches no columns. In that case, blank, default rows can still be inserted.
 
-Delete is enabled with the 'destroyable_relspec' setting, which is a variant of the colspec format in that it applies only to relationship names, simply because delete affects whole rows, not individual columns. 'star' simply enables deleting local rows. You can supply additional relationship paths to also be deleted. This is mainly provided for the sake of completeness, as there are better ways to setup cascade deletes.
+Delete is enabled with the 'destroyable_relspec' setting, which is a variant of the colspec format in that it applies only to relationship names, simply because delete affects whole rows, not individual columns. 'star' simply enables deleting local rows. You can supply additional relationship paths to also be deleted. Note that this is mainly provided for the sake of completeness, as there are better ways to setup cascade deletes.
 
 With this config we've now turned on straightforward creating, updating and deleting in all grids.
 
-Let's save, restart and check it out.
+But, just to demonstrate how editing works across relationships, let's also add a more complex config to one of the sources. Let's use InvoiceLine.
+
+The system requires access to read columns to modify them, so any update_colspec must fall within the include_colspec. 
+
+The wildcard format applies to both column and relationship names, so you can enter things like 'star-dot-star' to join all columns in all relationships in one swoop. You can actually take it further, with star-dot-star-dot-star and so on, but keep in mind each level multiplies the number of columns by the number of relationships.
+
+Now let's configure editing for specific local and joined columns.
+
+For example, we can allow editing only on the local columns 'unitprice' and 'quantity', as well as all the columns that start with 'billing' in the parent Invoice. This config is just for illustration to show how you can configure any combination you like. The colspec format is very flexible as well as compact.
+
+Now let's save, restart and check it out.
 
 # Browser demo
