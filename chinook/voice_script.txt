@@ -329,17 +329,17 @@ Now let's save our changes and restart the app
 
 Let's look at the Track grid to see the joined columns we just enabled. 
 
-These are the default, local columns, which are visible by default, but if we look at the available columns list, we can see that 3 more are also available. 
+These are the local columns which are visible by default, but if we look at the columns list, we can see that 3 more are also available. 
 
-These are the columns from the Artist table. If we open the Artist grid we can compare. Because we specified a star in the colspec, it joined all 3 columns, and the relationship path is shown in the column header.
+These are the columns we joined from the Artist table, and relationship paths are shown in the column headers. Because we specified a star in the colspec, it joined all 3 columns which we can see in the Artist grid. 
 
-Notice, relationship columns can be joined like any other column. In this case, the multi-relationship "albums" is associated with the artist, not really the track. Dog Eat Dog has the Artist AC/DC, and AC/DC has 2 albums.
+Notice, relationship columns can be joined like any other column. In this case, the multi-relationship "albums" is associated with the artist, not really the track. 'Dog Eat Dog' has the Artist 'AC/DC', and then 'AC/DC' has 2 albums.
 
 We also joined artistid.name in the album grid, so that column is also available, and, no surprise, the artist for these albums is AC/DC.
 
 We know that the Track 'Dog Eat Dog' is in one of these albums. But, since we didn't join any of the Album columns, we can't see which one directly from the Track row. 
 
-Well, we sort of can. We do have albumid, so we can see it belongs to albumid 4, which we can follow and see is "Let There Be Rock", or, just match artistid 4 back on the Album grid.
+Well, we sort of can. We do have albumid, so we can see it belongs to albumid 4, which we can follow and see is "Let There Be Rock", or, just visually match artistid 4 back in the Album grid.
 
 But, "album id 4" isn't very friendly or descriptive, and we don't want our users to have to memorize IDs. If we wanted to see the album title in the Track grid, we could always add it as another joined column. 
 
@@ -349,7 +349,7 @@ To do this we need to edit the RapidDbic config.
 
 # Set display_columns
 
-Again, we'll commit our changes, first, and then go back into the main class file.
+Again, we'll commit our changes first, and then go back into the main class file.
 
 We need to add another config section, TableSpecs, which, like grid_params, is sub-divided by result source.
 
@@ -359,25 +359,29 @@ The 'display_column' defines which column should be used, by default, to represe
 
 This setting affects relationship columns, and also other contexts, like dropdown lists and selections, as we'll see in just a bit.
 
-As discussed, we're setting the display_column for Album to "title". While we're at it, let's set the display_column for a few other sources, too.
+As discussed, we're setting the display_column for Album to "title". 
+
+While we're at it, let's set the display_column for a few other sources, too.
 
 Now let's save our changes and start the app back up.
 
 # Browser demo
 
-To see the new config, we can refresh the browser, or, simply right-click and reload this tab.
+To see the new config, we can refresh the browser, or, simply right-click and reload the tab.
 
-As you can see, the albumid relationship column now shows the album title instead of the numeric id. We can also see the media and genre instead of ids because we set the display_column for those sources also.
+As you can see, the albumid relationship column now shows the album title instead of the numeric id. We can also see the media and genre names instead of ids because we set the display_column for those sources also.
 
-One benefit of relationship columns over joined columns is the included link to the row. It is also simpler to configure and applies to multiple interfaces. 
+One benefit of relationship columns over joined columns is the included link to the related row. It is also simpler to configure and applies to multiple interfaces. 
 
-The system understands the relationships for searching as well.
+The system understands relationships for searching as well.
 
-The Quick search applies to the displayed values, as you would expect, but you can also perform exact searches on relationships.
+The Quick search applies to the displayed values, as you would expect, but you can also perform specific searches on relationships using the filters.
 
 One of the condition types I haven't covered yet is the special 'is' condition, which allows selecting a specific related item among only the possible values.
 
-With this filter, only Tracks with the Media Type "AAC audio file" will be shown, and this display string, once again, is set according to the display_column we configured for the MediaType source.
+This opens a full grid view in a window as a selection dialog.
+
+With this filter, only Tracks with the Media Type "AAC audio file" will be shown, and this display string also comes from the display_column setting which we configured for MediaType.
 
 ## TODO: demo searching count values on multi-rels 
 ##   -- RapidApp bug is blocking us!!
