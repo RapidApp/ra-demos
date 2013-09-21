@@ -32,8 +32,7 @@ source ../env_setup.sh
  #    *  Linux/bash
  #
  # ----
- #
- #
+clear
  # Install RapidApp (and its dependencies):
 cpanm RapidApp
  #
@@ -44,6 +43,7 @@ cpanm RapidApp
  #
  # --
  #
+clear
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
 cd RA-ChinookDemo/  # <-- Enter the new app directory
@@ -61,7 +61,7 @@ Commit 'first commit - freshly created Catalyst app'
  # Download the Chinook sample database:
  # (http://chinookdatabase.codeplex.com/)
 mkdir sql
-cp ../ChinookDatabase1.4_Sqlite/Chinook_Sqlite_AutoIncrementPKs.sql sql/
+cp ../Chinook1.4_Sqlite/Chinook_Sqlite_AutoIncrementPKs.sql sql/
 ls -lh sql/Chinook_Sqlite_AutoIncrementPKs.sql
  #
  # Create new SQLite database (takes ~ 10 minutes)
@@ -105,49 +105,48 @@ git tag 01_prepared_app
  # Remove the auto-generated Root Controller:
  # - Needed because local app controllers always take precidence
 rm -f lib/RA/ChinookDemo/Controller/Root.pm
- #
- # <[RunTestServer]>
 Commit '(1) - Bare-bones working app (RapidDbic)'
+ # <[RunTestServer]>
  #
  # <[EditMacroTwo]>
- # <[RunTestServer]>
 Commit '(2) - example joined columns (grid configs)'
+ # <[RunTestServer]>
  #
  # <[EditMacroThree]>
- # <[RunTestServer]>
 Commit '(3) - configured display_columns (TableSpecs)'
+ # <[RunTestServer]>
  #
  # <[EditMacroFour]>
- # <[RunTestServer]>
 Commit '(4) - turned on grid editing for all Sources'
+ # <[RunTestServer]>
  #
  # <[EditMacroEight]>
- # <[RunTestServer]>
 Commit '(5) - set auto_editor_type for certain Sources'
+ # <[RunTestServer]>
  #
  # <[EditMacroNine]>
- # <[RunTestServer]>
 Commit '(6) - created "full_name" virtual column'
+ # <[RunTestServer]>
  #
  # <[EditMacroTen]>
- # <[RunTestServer]>
 Commit '(7) - full_name virtual column now writable'
+ # <[RunTestServer]>
  #
  # <[EditMacroEleven]>
- # <[RunTestServer]>
 Commit '(8) - set full_name virtual column as display_column'
+ # <[RunTestServer]>
  #
  # <[EditMacroAuthCore]>
- # <[RunTestServer]>
 Commit '(9) - enabled AuthCore to password protect site'
+ # <[RunTestServer]>
  #
  # <[EditMacroCoreAdmin]>
- # <[RunTestServer]>
 Commit '(10) - enabled basic user management interface'
+ # <[RunTestServer]>
  #
  # <[EditMacroNavCore]>
- # <[RunTestServer]>
 Commit '(11) - enabled Navcore for saved views'
+ # <[RunTestServer]>
  # END_SCRIPT
  
 script/ra_chinookdemo_server.pl

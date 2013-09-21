@@ -173,6 +173,10 @@
 
 
 
+# GRID EDITING
+
+1. Refresh browser
+2. 
 
 
 ##########
