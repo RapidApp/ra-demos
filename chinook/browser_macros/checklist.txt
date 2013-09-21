@@ -179,6 +179,17 @@
 2. 
 
 
+
+
+## Custom edit options to cover: ##
+1. persist_immediately (create/update/destroy)
+2. persist_all_immediately
+3. use_add_form
+4. autoload_added_record
+5. confirm_on_destroy
+6. allow_batch_update
+###################################
+
 ##########
 
 # URL Navigation

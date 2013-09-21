@@ -1,3 +1,11 @@
+#### Misc Ideas ####
+
+"RapidDbic is a jump-starter for a database driven application"
+
+##################
+
+
+
 Part 0 – Intro and setup
 
 
