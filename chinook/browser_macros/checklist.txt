@@ -190,6 +190,16 @@
 6. allow_batch_update
 ###################################
 
+
+## Additional items to demo ##
+1. Custom renders
+##############################
+
+
+
+
+
+
 ##########
 
 # URL Navigation
