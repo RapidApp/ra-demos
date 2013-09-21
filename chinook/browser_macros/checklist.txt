@@ -145,7 +145,7 @@
     * mediatypeid IS 'AAC audio file'
 
     
-## --- TODO: fix RapidApp bug!!
+## --- TODO: fix RapidApp bug!! (Github Issue #10)
 1. Open Artist Rows
 2. Auto-Size
 3. Multifilter:
