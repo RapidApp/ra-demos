@@ -78,6 +78,7 @@ script/ra_chinookdemo_create.pl \
     create=static generate_pod=0 \
     dbi:SQLite:chinook.db \
     sqlite_unicode=1 \
+    on_connect_call='use_foreign_keys' \
     quote_names=1  #<-- important!
 Commit 'Created DBIC schema/model "DB"'
  #

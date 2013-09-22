@@ -42,6 +42,10 @@ __PACKAGE__->config(
                Album => {
                   include_colspec => ['*','artistid.name'] 
                },
+               Invoice => {
+                  # Delete all invoice_lines with invoice:
+                  destroyable_relspec => ['*','invoice_lines']
+               },
                InvoiceLine => {
                   # join all columns of all relationships (first-level):
                   include_colspec => ['*','*.*'],
