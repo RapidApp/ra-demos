@@ -398,6 +398,8 @@ EDIT GRIDS
 
 So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But this is also fully configurable.
 
+NEW: "This system also supports editing, but not out of the box for safety …"
+
 Let's commit our progress and go back into the RapidDbic config in the main class file to enable editing.
 
 Create, update and delete functionality can be configured in the grid_params section, which we're going to enable across the board. 
@@ -425,3 +427,40 @@ For example, we can allow editing only on the local columns 'unitprice' and 'qua
 Now let's save, restart and check it out.
 
 # Browser demo
+
+Let's refresh the browser to see the updated config and go back into the Track grid. And I'm just going to decrease the page size so we don't have to scroll up and down
+
+Now that editing is enabled you'll notice a number of new buttons and controls which allow for making changes in various ways. 
+
+Updatable columns are shown by a small pencil icon in the header, and you can modify them in the grid itself if you toggle on cell editing via the new toolbar button.
+
+This is a simple on off switch that lets you click and edit cells.
+
+Another way to edit is from the individual row page by double-clicking. Updatable columns are again shown with a pencil icon.
+
+You may have noticed trackid is not editable even though we set updatable_colspec to all columns. This is because editing is turned off by default for auto-increment primary keys because you typically don't want to edit that type of column. But this is a column-level config default that can still be changed.
+
+Still another way to edit rows is with the edit button in the bottom toolbar. This opens the selected row in a form window where you can edit all columns at once.
+
+Also in the bottom toolbar is a button to add new rows which opens a form window like the edit button by default.
+
+The columns in bold are required, which is determined by whether or not the column is nullable in the database schema.
+
+The Save button isn't enabled until all the required fields are filled out properly, which is actively validated.
+
+After saving the new row is opened automatically, and also appears in the grid.
+
+You can also create and select related items simultaneously. For example, we can add a new media type to select while we're creating a new track.
+
+This also works through multiple levels of relationships. For example, we can create a new album for our new track, and a new artist for our new album.
+
+There is also a button in the toolbar for delete which also applies to the current row selection.
+
+And by default, delete asks for confirmation.
+
+You can delete multiple rows at once by selecting them by holding ctrl while clicking, or selecting a range by holding shift.
+
+
+
+
+ 

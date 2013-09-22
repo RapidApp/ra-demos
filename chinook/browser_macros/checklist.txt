@@ -176,9 +176,65 @@
 # GRID EDITING
 
 1. Refresh browser
-2. 
-
-
+2. Open Track grid
+3. Set page size to 15
+4. Enable cell editing
+5. Disable then re-enable again
+6. drag 'name' column wider
+7. Edits:
+    'Balls to the Wall' : append 'FOO'
+    'C.O.D.' : change to COD
+    'Breaking The Rules' :  prepend 'Blah!! -- '
+    'Breaking The Rules': Change media type:
+      * drag name column wider in grid/window
+      * double-click 'AAC audio file'
+8. Double-click open 'Breaking The Rules'
+9. Click to edit 'name' then 'composer' (but don't make changes)
+10. hit escape
+11. close the tab
+12. with 'Breaking The Rules' still selected click Edit button
+13. Edits:
+     name: change 'Blah!!' to 'BLAH!!!'
+     genre: change to NONE (select none)
+     composer: MOZART
+     unitprice: 3.99
+14. Save
+15. Click Add:
+     name: 'The Happy Happy Joy Joy Song'
+     mediatype: 'MPEG Audio'
+     milliseconds: 104325
+     unitprice: 0.30
+16. Backspace/clear unitprice
+17. Enter unitprice: 3.14
+18. Click Save
+19. Close row page
+20. Click Add:
+     name: 'Come Sail Away'
+     mediatype: 
+      - Add New
+      - name: Mp3
+      - Save and Select
+     albumid:
+      - Add New
+      - name: 'Chef Aid: The South Park Album'
+      - artistid:
+         - Add New
+         - name: Eric Cartman
+         - Save and Select
+      - Save and Select
+     milliseconds: 312000
+     unitprice: 1.23
+21. Click Save
+22. Close row page
+23. Select 'The Happy Happy Joy Joy Song'
+24. Click delete
+25. Click Yes
+26. Select a range of rows:
+     - Hold control and click:
+        - 1st from bottom,
+        - 2nd from bottom,
+        - 4th from bottom (i.e. skipping 1)
+        
 
 
 ## Custom edit options to cover: ##
@@ -202,7 +258,7 @@
 
 
 ## Additional items to demo ##
-1. Custom renders
+1. Custom renderers, editors and validators
 ##############################
 
 
