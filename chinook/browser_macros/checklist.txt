@@ -188,7 +188,17 @@
 4. autoload_added_record
 5. confirm_on_destroy
 6. allow_batch_update
+7. init_pagesize
 ###################################
+
+
+## Grid CRUD scenarios ##
+1. 
+#########################
+
+
+
+
 
 
 ## Additional items to demo ##

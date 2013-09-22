@@ -42,6 +42,19 @@ __PACKAGE__->config(
                Album => {
                   include_colspec => ['*','artistid.name'] 
                },
+               Genre => {
+                  # persist nothing immediately except delete 
+                  persist_immediately => {
+                     create => 0,
+                     update => 0,
+                     destroy => 1
+                  },
+                  confirm_on_destroy => 1, # <-- already the default
+                  # Use the grid itself instead of the add form
+                  use_add_form => 0,
+                  # don't include the edit toolbar button
+                  use_edit_form => 0,
+               },
                Invoice => {
                   # Delete all invoice_lines with invoice:
                   destroyable_relspec => ['*','invoice_lines']
@@ -53,6 +66,12 @@ __PACKAGE__->config(
                      'unitprice','quantity',
                      'invoiceid.billing*'
                   ],
+               },
+               MediaType => {
+                  # persist everything without conf
+                  persist_all_immediately => 1,
+                  confirm_on_destroy => 0,
+                  use_add_form => 0
                },
                Track => {
                   include_colspec => ['*','albumid.artistid.*'] 
