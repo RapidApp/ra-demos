@@ -247,21 +247,6 @@
      -6th row name: append ' abc' click to the left
 
 
-# Custom CRUD configs
-
-1. Refresh Browser
-
-## Custom edit options to cover: ##
-1. persist_immediately (create/update/destroy)
-2. persist_all_immediately
-3. use_add_form
-4. autoload_added_record
-5. confirm_on_destroy
-6. allow_batch_update
-7. init_pagesize
-###################################
-
-
 ## Grid CRUD scenarios ##
 1. Track: 
     - Persist nothing immediately
@@ -274,7 +259,32 @@
 3. Genre:
     - No add form
     - no delete confs 
+4. Invoice:
+    - destroyable_relspec => ['*','invoice_lines']
 #########################
+
+
+
+
+
+# Custom CRUD configs (browser demo)
+
+1. Refresh Browser
+2. 
+
+
+
+
+
+## Custom edit options to cover: ##
+1. persist_immediately (create/update/destroy)
+2. persist_all_immediately
+3. use_add_form
+4. autoload_added_record
+5. confirm_on_destroy
+6. allow_batch_update
+7. init_pagesize
+###################################
 
 
 

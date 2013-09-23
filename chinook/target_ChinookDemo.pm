@@ -80,7 +80,7 @@ __PACKAGE__->config(
                      update => 0,
                      destroy => 0
                   },
-                  # Don't automatically open rows after creating:
+                  # Don't automatically open created rows:
                   autoload_added_record => 0
                },
             }, # (grid_params)
@@ -116,6 +116,18 @@ __PACKAGE__->config(
                MediaType => {
                   display_column => 'name'
                },
+               Track => {
+                  columns => {
+                     bytes => {
+                        renderer => 'Ext.util.Format.fileSize',
+                        header => 'Size'
+                     },
+                     unitprice => {
+                        renderer => 'Ext.util.Format.usMoney',
+                        header => 'Unit Price'
+                     }
+                  },
+               }
             }, # (TableSpecs)
          }, # (DB)
       }, # (configs)
