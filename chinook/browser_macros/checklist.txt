@@ -263,7 +263,17 @@
 
 
 ## Grid CRUD scenarios ##
-1. 
+1. Track: 
+    - Persist nothing immediately
+    - no autoload_added_record
+    - everything else default
+2. MediaType: 
+    - No add form
+    - no delete confs 
+    - no persist create (use grid itself as add form)
+3. Genre:
+    - No add form
+    - no delete confs 
 #########################
 
 

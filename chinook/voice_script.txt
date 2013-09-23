@@ -466,7 +466,7 @@ If we try to delete these rows without first changing or removing the related ro
 
 The message in this exception dialog is from the database itself, and additional Perl diagnostic info is shown below. All database changes are wrapped in transactions and are atomic, so if an exception occurs the operation is rolled back.
 
-You may have noticed that each change and cell edit is saving immediately. This is because the grid is set to persist changes immediately, which can be configured along with other CRUD interface behaviors in the config.
+You may have noticed that each change and cell edit is saving immediately. This is because the grid is set to persist changes immediately, which is configurable as well as other general CRUD interface behaviors.
 
 # Custom CRUD configs
 

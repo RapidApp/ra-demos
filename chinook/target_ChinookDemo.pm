@@ -43,20 +43,14 @@ __PACKAGE__->config(
                   include_colspec => ['*','artistid.name'] 
                },
                Genre => {
-                  # persist nothing immediately except delete 
-                  persist_immediately => {
-                     create => 0,
-                     update => 0,
-                     destroy => 1
-                  },
-                  confirm_on_destroy => 1, # <-- already the default
-                  # Use the grid itself instead of the add form
+                  # Leave persist_immediately on without the add form
+                  # (inserts blank/default rows immediately)
                   use_add_form => 0,
-                  # don't include the edit toolbar button
-                  use_edit_form => 0,
+                  # No delete confirmations:
+                  confirm_on_destroy => 0
                },
                Invoice => {
-                  # Delete all invoice_lines with invoice:
+                  # Delete all invoice_lines with invoice (cascade):
                   destroyable_relspec => ['*','invoice_lines']
                },
                InvoiceLine => {
@@ -68,13 +62,26 @@ __PACKAGE__->config(
                   ],
                },
                MediaType => {
-                  # persist everything without conf
-                  persist_all_immediately => 1,
-                  confirm_on_destroy => 0,
-                  use_add_form => 0
+                  # Use the grid itself to set new row values:
+                  use_add_form => 0, #<-- disables autoload_added_record
+                  persist_immediately => {
+                     create => 0,
+                     update => 1,
+                     destroy => 1
+                  },
+                  # No delete confirmations:
+                  confirm_on_destroy => 0
                },
                Track => {
-                  include_colspec => ['*','albumid.artistid.*'] 
+                  include_colspec => ['*','albumid.artistid.*'],
+                  # Don't persist anything immediately:
+                  persist_immediately => {
+                     create => 0,
+                     update => 0,
+                     destroy => 0
+                  },
+                  # Don't automatically open rows after creating:
+                  autoload_added_record => 0
                },
             }, # (grid_params)
             virtual_columns => {
