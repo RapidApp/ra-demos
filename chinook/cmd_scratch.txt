@@ -7,8 +7,9 @@ git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
 git push -f -u origin master
 
 
- # (tmp/fixme) fix multi-line cmds in history:
-sed -i -e '/\\$/,/[^\\]$/{p;d;};s/   */ \&\& \\\n\t/g' cmd_history.sh
+ # fix multi-line cmds in history:
+sed -i -e '/\\$/,/[^\\]$/{p;d;};s/   */ \\\n   /g' cmd_history.sh
+
 Commit 'Fixed multi-line cmds in history'
 
 
