@@ -8,8 +8,7 @@ git push -f -u origin master
 
 
  # (tmp/fixme) fix multi-line cmds in history:
-sed -i 's/     / \\\n    /g' cmd_history.sh
-sed -i 's/     / \\\n    /g' cmd_history.sh
+sed -i -e '/\\$/,/[^\\]$/{p;d;};s/   */ \&\& \\\n\t/g' cmd_history.sh
 Commit 'Fixed multi-line cmds in history'
 
 
