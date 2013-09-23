@@ -234,8 +234,22 @@
         - 1st from bottom,
         - 2nd from bottom,
         - 4th from bottom (i.e. skipping 1)
-        
+     - Hold shift and click:
+        - 5 rows up
+27. Scroll to the right
+27. Click delete
+28. Click yes
+29. Click "Ok" on error
+30. Scroll back to the left
+31. Enable cell editing
+32. Edits:
+     -5th row name: append ' 123' ENTER
+     -6th row name: append ' abc' click to the left
 
+
+# Custom CRUD configs
+
+1. Refresh Browser
 
 ## Custom edit options to cover: ##
 1. persist_immediately (create/update/destroy)
@@ -259,6 +273,8 @@
 
 ## Additional items to demo ##
 1. Custom renderers, editors and validators
+2. Excel export
+3. Batch modify
 ##############################
 
 

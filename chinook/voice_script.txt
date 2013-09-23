@@ -460,6 +460,18 @@ And by default, delete asks for confirmation.
 
 You can delete multiple rows at once by selecting them by holding ctrl while clicking, or selecting a range by holding shift.
 
+However, the database won't allow us to delete these rows because they are being referenced from other tables, as we can see in these multi relationships, and we have foreign key constraints enabled in the database.
+
+If we try to delete these rows without first changing or removing the related rows we should receive an error.
+
+The message in this exception dialog is from the database itself, and additional Perl diagnostic info is shown below. All database changes are wrapped in transactions and are atomic, so if an exception occurs the operation is rolled back.
+
+You may have noticed that each change and cell edit is saving immediately. This is because the grid is set to persist changes immediately, which can be configured along with other CRUD interface behaviors in the config.
+
+# Custom CRUD configs
+
+
+
 
 
 
