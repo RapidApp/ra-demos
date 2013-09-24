@@ -123,17 +123,17 @@ CallMacro(name,seq) {
   else if(name = "EditMacroNavCore") {
     return EditMacroNavCore(seq)
   }
-  else if(name = "EditMacroEight") {
-    return EditMacroEight(seq)
+  else if(name = "EditMacroEditorType") {
+    return EditMacroEditorType(seq)
   }
-  else if(name = "EditMacroNine") {
-    return EditMacroNine(seq)
+  else if(name = "EditMacroVirtualColumn") {
+    return EditMacroVirtualColumn(seq)
   }
-  else if(name = "EditMacroTen") {
-    return EditMacroTen(seq)
+  else if(name = "EditMacroVirtColWritable") {
+    return EditMacroVirtColWritable(seq)
   }
-  else if(name = "EditMacroEleven") {
-    return EditMacroEleven(seq)
+  else if(name = "EditMacroVirtColDisplayCol") {
+    return EditMacroVirtColDisplayCol(seq)
   }
   
   
@@ -669,7 +669,7 @@ EditMacroNavCore(seq) {
 }
 
 
-EditMacroEight(seq) {
+EditMacroEditorType(seq) {
   global
   Sleep 500
   if(seq = 1) {
@@ -706,7 +706,7 @@ EditMacroEight(seq) {
 }
 
 
-EditMacroNine(seq) {
+EditMacroVirtualColumn(seq) {
   global
   Sleep 500
   if(seq = 1) {
@@ -755,7 +755,7 @@ EditMacroNine(seq) {
   return 0 ; not finished
 }
 
-EditMacroTen(seq) {
+EditMacroVirtColWritable(seq) {
   global
   Sleep 500
   if(seq = 1) {
@@ -797,7 +797,7 @@ EditMacroTen(seq) {
 }
 
 
-EditMacroEleven(seq) {
+EditMacroVirtColDisplayCol(seq) {
   global
   Sleep 500
   if(seq = 1) {
