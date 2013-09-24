@@ -17,7 +17,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroFour
+;skip_to = EditMacroCrudOpts
 exit_at = END_SCRIPT
 
 
@@ -576,7 +576,115 @@ EditMacroCrudOpts(seq) {
   global
   Sleep 500
   if(seq = 1) {
-    
+    Send {Space}{#} Set custom CRUD options{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("__PACKAGE__",0)
+    Sleep 200
+    vimJumpString("grid_params",0)
+    Sleep 200
+    vimJumpString("Track",0)
+    Sleep 200
+    vimJumpString("include_colspec",0)
+    Sleep 200
+    Sleep 500
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{,}{Enter}
+    vimNewHashCnf("persist_immediately",0)
+  }
+  else if (seq = 4) {
+    SendRaw create  => 0,
+    Send {Enter}
+    SendRaw update  => 0,
+    Send {Enter}
+    SendRaw destroy => 0
+    Sleep 500
+    Send {Up 4}{End}{Enter}
+    SendRaw # Don't persist anything immediately:
+  }
+  else if (seq = 5) {
+    Send {Down}{End}{Enter}{Tab}
+    SendRaw # 'create => 0' changes these defaults:
+    Sleep 500
+    Send {Enter}{Space 2}
+    SendRaw use_add_form => '0' (normally 'tab')
+    Sleep 500
+    Send {Enter}
+    SendRaw autoload_added_record => 0 (normally '1')
+  }
+  else if (seq = 6) {
+    Send {Down 4}{End}{Enter}
+    SendRaw use_add_form => 'window'
+    Sleep 500
+    Send {Up}{End}{Enter}
+    SendRaw # Use the add form in a window:
+  }
+  else if (seq = 7) {
+    Send {Up 12}{End}{Enter}
+    vimNewHashCnf("MediaType",0)
+  }
+  else if (seq = 8) {
+    SendRaw # Use the grid itself to set new row values:
+    Sleep 500
+    Send {Enter}{Backspace 2}
+    SendRaw use_add_form => 0, #<-- also disables autoload_added_record
+  }
+  else if (seq = 9) {
+    Send {Enter}
+    vimNewHashCnf("persist_immediately",0)
+    SendRaw create  => 0,
+    Send {Enter}
+    SendRaw update  => 1,
+    Send {Enter}
+    SendRaw destroy => 1
+  }
+  else if (seq = 10) {
+    Send {Down}{End}{Enter}
+    SendRaw confirm_on_destroy => 0
+    Sleep 500
+    Send {Up}{End}{Enter}
+    SendRaw # No delete confirmations:
+  }
+  else if (seq = 11) {
+    Send {Up 17}{End}{Enter}
+    vimNewHashCnf("Genre",0)
+  }
+  else if (seq = 12) {
+    SendRaw # Leave persist_immediately on without the add form
+    Sleep 500
+    Send {Enter}
+    SendRaw (inserts blank/default rows immediately):
+    Sleep 500
+    Send {Enter}{Backspace 2}
+    SendRaw use_add_form => 0
+  }
+  else if (seq = 13) {
+    Send {,}{Enter}
+    SendRaw # No delete confirmations:
+    Send {Enter}{Backspace 2}
+    SendRaw confirm_on_destroy => 0
+  }
+  else if (seq = 14) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("Invoice",0)
+  }
+  else if (seq = 15) {
+    SendRaw # Delete invoice_lines with invoice (cascade):
+    Sleep 500
+    Send {Enter}{Backspace 2}
+    SendRaw destroyable_relspec => ['*','invoice_lines']
+  }
+  else if(seq = 16) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
   }
   else {
     return 1 ; finished
@@ -598,7 +706,9 @@ EditMacroEditorType(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("Genre",0)
+    vimJumpStringTop("TableSpecs",0)
+    Sleep 200
+    vimJumpString("Genre",0)
     Sleep 100
     Send {Down}
     Send i ; go into INSERT mode
