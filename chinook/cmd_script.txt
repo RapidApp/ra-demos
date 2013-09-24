@@ -121,20 +121,20 @@ Commit '(3) - configured display_columns (TableSpecs)'
 Commit '(4) - turned on grid editing for all Sources'
  # <[RunTestServer]>
  #
+ # <[EditMacroCrudOpts]>
+#Commit '(5) - configured various CRUD options'
+ # <[RunTestServer]>
+ #
  # <[EditMacroEditorType]>
-Commit '(5) - set auto_editor_type for certain Sources'
+Commit '(6) - set auto_editor_type for certain Sources'
  # <[RunTestServer]>
  #
  # <[EditMacroVirtualColumn]>
-Commit '(6) - created "full_name" virtual column'
+Commit '(7) - created "full_name" virtual column'
  # <[RunTestServer]>
  #
  # <[EditMacroVirtColWritable]>
-Commit '(7) - full_name virtual column now writable'
- # <[RunTestServer]>
- #
- # <[EditMacroVirtColDisplayCol]>
-Commit '(8) - set full_name virtual column as display_column'
+Commit '(8) - full_name virtual column writable + display_column'
  # <[RunTestServer]>
  #
  # <[EditMacroAuthCore]>
