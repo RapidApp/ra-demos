@@ -126,7 +126,7 @@ Commit '(5) - configured various CRUD options'
  # <[RunTestServer]>
  #
  # <[EditMacroEditorType]>
-Commit '(6) - set auto_editor_type for certain Sources'
+Commit '(6) - set auto_editor_type (combo) + column TableSpecs'
  # <[RunTestServer]>
  #
  # <[EditMacroVirtualColumn]>

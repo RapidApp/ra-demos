@@ -594,7 +594,7 @@ EditMacroCrudOpts(seq) {
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
-    Send {End}{,}{Enter}
+    Send {End}{Backspace}{,}{Enter}
     vimNewHashCnf("persist_immediately",0)
   }
   else if (seq = 4) {
@@ -720,6 +720,31 @@ EditMacroEditorType(seq) {
     Send {Left}{Backspace 4}combo
   }
   else if(seq = 5) {
+    Send {Down 4}{End}{Enter}
+    vimNewHashCnf("Track",0)
+  }
+  else if(seq = 6) {
+    vimNewHashCnf("columns",0)
+  }
+  else if(seq = 7) {
+    vimNewHashCnf("bytes",0)
+  }
+  else if(seq = 8) {
+    SendRaw renderer => 'Ext.util.Format.fileSize'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw header => 'Size'
+  }
+  else if(seq = 9) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("unitprice",0)
+    Sleep 500
+    SendRaw renderer => 'Ext.util.Format.usMoney'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw header => 'Unit Price'
+  }
+  else if(seq = 10) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit
