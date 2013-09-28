@@ -44,7 +44,7 @@ return
 ; -----------------------------------
 
 ResetDefaultKeyDelay() {
-  SetKeyDelay, 10
+  SetKeyDelay, 15
 }
 
 
@@ -214,7 +214,7 @@ AdvanceNextLine() {
     }
     
     if(is_speedup) {
-      SetKeyDelay, 0
+      SetKeyDelay, 1
     }
     
     SendRaw %line%
