@@ -14,7 +14,7 @@ git push -f -u origin master
  #     replace all occurrences of multiple spaces (followed by a non-#)
  #       with a backslash and newline and 3 spaces.
  # the useless-looking whitespace-capture is to prevent the command from
- # re-processing itself.                 -->     \( \)                 \1
+ # re-processing itself.           -->     \( \)                 \1
 sed -i -e '/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g' cmd_history.sh
 
 alias Commit='\
