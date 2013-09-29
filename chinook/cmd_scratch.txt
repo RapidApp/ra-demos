@@ -10,11 +10,19 @@ git push -f -u origin master
  # fix multi-line cmds in history:
  # interpretation:
  #   for a line which ends with a backslash, pass unmodified until a line which doesn't.
- #   for other lines which begin with a word character,
+ #   for other lines which begin with an alpha character,
  #     replace all occurrences of multiple spaces (followed by a non-#)
  #       with a backslash and newline and 3 spaces.
-sed -i -e '/\\$/,/[^\\]$/{p;d;};/^[A-Za-z0-9]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g' cmd_history.sh
+ # the useless-looking whitespace-capture is to prevent the command from
+ # re-processing itself.                 -->     \( \)                 \1
+sed -i -e '/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g' cmd_history.sh
+
+alias Commit='\
+    history -w && \
+    cp $HISTFILE cmd_history.sh && \
+    sed -i -e '"'"'/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g'"'"' cmd_history.sh && \
+    git add --all && \
+    git commit -m'
 
 Commit 'Fixed multi-line cmds in history'
-
 
