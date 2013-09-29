@@ -13,7 +13,7 @@ git push -f -u origin master
  #   for other lines which begin with a word character,
  #     replace all occurrences of multiple spaces (followed by a non-#)
  #       with a backslash and newline and 3 spaces.
-sed -i -e '/\\$/,/[^\\]$/{p;d;};/^[A-Za-z0-9]/s/   *\([^#]\)/ \\\n   \1/g' cmd_history.sh
+sed -i -e '/\\$/,/[^\\]$/{p;d;};/^[A-Za-z0-9]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g' cmd_history.sh
 
 Commit 'Fixed multi-line cmds in history'
 
