@@ -1,5 +1,7 @@
 source ../env_setup.sh
- # -- RapidApp "Chinook" Demo --
+ # -- RapidApp "Chinook" Video Demo Series --
+ #
+ # Part 1. Intro and Setup
  #
  # * Agenda
  #    * Build a new webapp from scratch, using RapidApp
@@ -9,7 +11,7 @@ source ../env_setup.sh
  #       (http://chinookdatabase.codeplex.com/)
  #    * All steps performed live/real-world within this shell
  #       (SSH session on an ordinary Linux box)
- #    * Test as we go in Firefox
+ #    * Test and demo as we go in Firefox
  #    * Record all commands & changes real-time in Git
  #       (https://github.com/IntelliTree/RA-ChinookDemo)
  #
@@ -53,8 +55,14 @@ git init  # <-- Initialize git repo
 alias Commit='\
     history -w && \
     cp $HISTFILE cmd_history.sh && \
+    RestoreHistNewlines cmd_history.sh && \
     git add --all && \
     git commit -m'
+ #
+ # Setup 'RestoreHistNewlines' alias used in 'Commit'
+ # (puts back newlines for multi-line commands):
+alias RestoreHistNewlines='sed -i -e '"'"'/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g'"'"''
+ #
  # Now we can record progress/checkpoints with one command:
 Commit 'first commit - freshly created Catalyst app'
  #
@@ -82,8 +90,17 @@ script/ra_chinookdemo_create.pl \
     quote_names=1  #<-- important!
 Commit 'Created DBIC schema/model "DB"'
  #
+git diff
+q
+Commit '01_prepared_app'
+git tag 01_prepared_app
+# Push to Github:
+git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
+#git push -u --tags origin master
 clear
- # -- RapidApp "Chinook" Demo (continued) --
+ # -- RapidApp "Chinook" Video Demo Series --
+ #
+ #  Part 2. RapidDbic Basics
  #
  # * Progress so far:
  #   * Created 'RA::ChinookDemo' with catalyst.pl
@@ -98,8 +115,6 @@ clear
  #
 git log
 q
-Commit '01_prepared_app'
-git tag 01_prepared_app
  #
  # <[EditMacroOne]> - Configure bare-bones RapidDbic
  #
@@ -136,6 +151,28 @@ Commit '(7) - created "full_name" virtual column'
  # <[EditMacroVirtColWritable]>
 Commit '(8) - full_name virtual column writable + display_column'
  # <[RunTestServer]>
+clear
+Commit '02_rapiddbic_basics'
+git tag 02_rapiddbic_basics
+# Push to Github:
+#git push --tags origin master
+clear
+ # -- RapidApp "Chinook" Video Demo Series --
+ #
+ # Part 3. User Authentication and Saved Views
+ #
+ # * Progress so far:
+ #   * Created 'RA::ChinookDemo' with catalyst.pl
+ #   * Setup 'DB' model connected to Chinook database
+ #      (http://chinookdatabase.codeplex.com/)
+ #   * Setup RapidDbic with various example configs
+ #   * Recording changes as we go in git
+ #      (https://github.com/IntelliTree/RA-ChinookDemo)
+ #
+ # ----
+ #
+git log
+q
  #
  # <[EditMacroAuthCore]>
 Commit '(9) - enabled AuthCore to password protect site'
@@ -148,6 +185,12 @@ Commit '(10) - enabled basic user management interface'
  # <[EditMacroNavCore]>
 Commit '(11) - enabled Navcore for saved views'
  # <[RunTestServer]>
+clear
+Commit '03_auth_and_saved_views'
+git tag 03_auth_and_saved_views
+# Push to Github:
+#git push --tags origin master
+clear
  # END_SCRIPT
  
 script/ra_chinookdemo_server.pl

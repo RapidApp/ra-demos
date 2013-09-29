@@ -6,6 +6,10 @@ http://chinookdatabase.codeplex.com/
 git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
 git push -f -u origin master
 
+git push -u --tags origin master
+
+git push -f -u --tags origin master
+
 
  # fix multi-line cmds in history:
  # interpretation:
