@@ -18,9 +18,10 @@ skip_to = 0
 exit_at = 0
 
 ;skip_to = EditMacroCrudOpts
+;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
-bypass_test_server = 1
+bypass_test_server = 0
 fake_db_setup = 1
 
 
@@ -993,6 +994,7 @@ CreateSQLiteDB(seq) {
     Send {Enter}
   }
   else {
+    auto_next = 0 ;<-- break auto_next
     no_newline_prefix = 1
     return 1 ; finished
   }
@@ -1009,7 +1011,8 @@ RunTestServer(seq) {
   }
   else if(seq = 2) {
     Send {Enter}
-    Sleep 10000 ; min sleep time
+    Sleep 5000 ; min sleep time
+    auto_next = 0 ;<-- break auto_next
   }
   else if(seq = 3) {
     ; stop the test server

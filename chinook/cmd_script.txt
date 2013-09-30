@@ -147,7 +147,7 @@ Commit '(4) - turned on grid editing for all Sources'
  #
  # <[EditMacroCrudOpts]>
 Commit '(5) - configured various CRUD options'
- # <[RunTestServer]>
+ # <[RunTestServer]> - at_commit_5
  #
  # <[EditMacroEditorType]>
 Commit '(6) - set auto_editor_type (combo) + column TableSpecs'
