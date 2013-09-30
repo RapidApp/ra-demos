@@ -20,8 +20,8 @@ exit_at = 0
 ;skip_to = EditMacroCrudOpts
 exit_at = END_SCRIPT
 
-
-fake_db_setup = 0
+bypass_test_server = 1
+fake_db_setup = 1
 
 
 ResetDefaultKeyDelay()
@@ -94,7 +94,9 @@ CallMacro(name,seq) {
   ResetDefaultKeyDelay()
   
   if(name = "RunTestServer") {
-    ; return 1 ; <-- bypass
+    if(bypass_test_server) {
+      return 1
+    }
     return RunTestServer(seq)
   }
   
