@@ -1,12 +1,15 @@
 Tasks to complete the demo:
 
  * Finalize cmd_script (with plenty of 'clear' statements)
+ * Finalize all in-code comments
  * Decide final "Part" breakdown and assign names/tags
  * Break out individual Camtasia "project" pieces and 
    figure out how they will be re-assembled
  * Re-record intro to be shorter and consider video 
    "parts"
  * Re-record the entire console video for final cmd_script
+    - do some requests to the test server for the console
+ * Finalize commits to be used
  * Update audio for changed commit order
 
  

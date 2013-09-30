@@ -35,7 +35,7 @@ source ../env_setup.sh
  #
  # ----
 clear
- # Install RapidApp (and its dependencies):
+ # Install the latest RapidApp (and its dependencies):
 cpanm RapidApp
  #
  # --> (Side note: if you don't have "cpanm")
@@ -49,7 +49,11 @@ clear
  # Create new Catalyst app "RA::ChinookDemo":
 catalyst.pl RA::ChinookDemo
 cd RA-ChinookDemo/  # <-- Enter the new app directory
-git init  # <-- Initialize git repo
+ #
+ # Initialize git repo and setup Github remote
+git init 
+git remote add origin \
+  git@github.com:IntelliTree/RA-ChinookDemo.git
  #
  # Setup 'Commit' alias/shortcut:
 alias Commit='\
@@ -59,11 +63,16 @@ alias Commit='\
     git add --all && \
     git commit -m'
  #
- # Setup 'RestoreHistNewlines' alias used in 'Commit'
- # (puts back newlines for multi-line commands):
-alias RestoreHistNewlines='sed -i -e '"'"'/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g'"'"''
+ # Setup 'RestoreHistNewlines' alias (used in 'Commit' above)
+ # - 'sed' command puts newlines back for multi-line commands 
+ #   that use backslash (\) to escape newlines that get stripped
+ #   by the shell when recorded in the history file. This is 
+ #   just being done for readability in cmd_history.sh:
+alias RestoreHistNewlines='\
+  sed -i -e \
+   '"'"'/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g'"'"''
  #
- # Now we can record progress/checkpoints with one command:
+ # Now we can record progress & history in a simple one-liner:
 Commit 'first commit - freshly created Catalyst app'
  #
  # Download the Chinook sample database:
@@ -88,15 +97,13 @@ script/ra_chinookdemo_create.pl \
     sqlite_unicode=1 \
     on_connect_call='use_foreign_keys' \
     quote_names=1  #<-- important!
+ #
 Commit 'Created DBIC schema/model "DB"'
  #
-git diff
-q
 Commit '01_prepared_app'
 git tag 01_prepared_app
-# Push to Github:
-git remote add origin git@github.com:IntelliTree/RA-ChinookDemo.git
-#git push -u --tags origin master
+# Push to Github (First push, with tags):
+git push -u --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  #
@@ -154,8 +161,8 @@ Commit '(8) - full_name virtual column writable + display_column'
 clear
 Commit '02_rapiddbic_basics'
 git tag 02_rapiddbic_basics
-# Push to Github:
-#git push --tags origin master
+ # Push to Github:
+git push --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  #
@@ -188,9 +195,11 @@ Commit '(11) - enabled Navcore for saved views'
 clear
 Commit '03_auth_and_saved_views'
 git tag 03_auth_and_saved_views
-# Push to Github:
-#git push --tags origin master
+ # Push to Github:
+git push --tags origin master
 clear
+ #
+ #
  # END_SCRIPT
  
 script/ra_chinookdemo_server.pl
