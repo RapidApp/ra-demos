@@ -1,5 +1,6 @@
+### Clear any previous work
+rm -rf RA-ChinookDemo/
 source ../env_setup.sh
-history -c
  # -- RapidApp "Chinook" Video Demo Series --
  #
  # Part 1. Intro and Setup
