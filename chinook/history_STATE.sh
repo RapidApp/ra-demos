@@ -1,4 +1,3 @@
-source ../env_setup.sh
  # -- RapidApp "Chinook" Video Demo Series --
  #
  # Part 1. Intro and Setup
@@ -52,8 +51,7 @@ cd RA-ChinookDemo/  # <-- Enter the new app directory
  #
  # Initialize git repo and setup remote (on Github)
 git init 
-git remote add origin \
-  git@github.com:IntelliTree/RA-ChinookDemo.git
+git remote add origin   git@github.com:IntelliTree/RA-ChinookDemo.git
  #
  # Setup 'Commit' alias/shortcut:
 alias Commit='\
@@ -83,21 +81,13 @@ cp ../Chinook1.4_Sqlite/Chinook_Sqlite_AutoIncrementPKs.sql sql/
 ls -lh sql/Chinook_Sqlite_AutoIncrementPKs.sql
  #
  # Create new SQLite database (takes ~ 10 minutes)
- # <[CreateSQLiteDB]>
+time sqlite3 chinook.db < sql/Chinook_Sqlite_AutoIncrementPKs.sql
  #
 Commit 'setup chinook SQLite database'
  #
  # Create DBIC schema/model (using the Catalyst Helper)
  # -See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
-script/ra_chinookdemo_create.pl \
-    model DB \
-    DBIC::Schema \
-    RA::ChinookDemo::DB \
-    create=static generate_pod=0 \
-    dbi:SQLite:chinook.db \
-    sqlite_unicode=1 \
-    on_connect_call='use_foreign_keys' \
-    quote_names=1  #<-- important!
+script/ra_chinookdemo_create.pl     model DB     DBIC::Schema     RA::ChinookDemo::DB     create=static generate_pod=0     dbi:SQLite:chinook.db     sqlite_unicode=1     on_connect_call='use_foreign_keys'     quote_names=1  #<-- important!
  #
 Commit 'Created DBIC schema/model "DB"'
  #
@@ -122,93 +112,41 @@ clear
  # ----
  #
 git log
-q
  #
- # <[EditMacroOne]> - Configure bare-bones RapidDbic
+ # Configure bare-bones RapidDbic:
+vim lib/RA/ChinookDemo.pm
  #
  # Remove the auto-generated Root Controller:
  # - Needed because local app controllers always take precidence
 rm -f lib/RA/ChinookDemo/Controller/Root.pm
 Commit '(1) - Bare-bones working app (RapidDbic)'
- # <[RunTestServer]>
- #
- # <[EditMacroTwo]>
-Commit '(2) - example joined columns (grid configs)'
- # <[RunTestServer]>
- #
- # <[EditMacroThree]>
-Commit '(3) - configured display_columns (TableSpecs)'
- # <[RunTestServer]>
- #
- # <[EditMacroFour]>
-Commit '(4) - turned on grid editing for all Sources'
- # <[RunTestServer]>
- #
- # <[EditMacroCrudOpts]>
-Commit '(5) - configured various CRUD options'
- # <[RunTestServer]>
- #
- # <[EditMacroEditorType]>
-Commit '(6) - set auto_editor_type (combo) + column TableSpecs'
- # <[RunTestServer]>
- #
- # <[EditMacroVirtualColumn]>
-Commit '(7) - created "full_name" virtual column'
- # <[RunTestServer]>
- #
- # <[EditMacroVirtColWritable]>
-Commit '(8) - full_name virtual column writable + display_column'
- # <[RunTestServer]>
-clear
-Commit '02_rapiddbic_basics'
-git tag 02_rapiddbic_basics
- # Push to Github:
-git push --tags origin master
-clear
- # -- RapidApp "Chinook" Video Demo Series --
- #
- # Part 3. User Authentication and Saved Views
- #
- # * Progress so far:
- #   * Created 'RA::ChinookDemo' with catalyst.pl
- #   * Setup 'DB' model connected to Chinook database
- #      (http://chinookdatabase.codeplex.com/)
- #   * Setup RapidDbic with various example configs
- #   * Recording changes as we go in git
- #      (https://github.com/IntelliTree/RA-ChinookDemo)
- #
- # ----
- #
-git log
-q
- #
- # <[EditMacroAuthCore]>
-Commit '(9) - enabled AuthCore to password protect site'
- # <[RunTestServer]>
- #
- # <[EditMacroCoreAdmin]>
-Commit '(10) - enabled basic user management interface'
- # <[RunTestServer]>
- #
- # <[EditMacroNavCore]>
-Commit '(11) - enabled Navcore for saved views'
- # <[RunTestServer]>
-clear
-Commit '03_auth_and_saved_views'
-git tag 03_auth_and_saved_views
- # Push to Github:
-git push --tags origin master
-clear
- #
- #
- # END_SCRIPT
- 
+ # Start the test server:
 script/ra_chinookdemo_server.pl
  #
- # push github:
-#git remote add origin \
-#    git@github.com:IntelliTree/RA-ChinookDemo.git
-#git push -f -u origin master
+ # Configure joined columns
+vim lib/RA/ChinookDemo.pm
+Commit '(2) - example joined columns (grid configs)'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
  #
- #   END
- 
+ # Set 'display_column' for Sources
+vim lib/RA/ChinookDemo.pm
+Commit '(3) - configured display_columns (TableSpecs)'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Enable grid editing
+vim lib/RA/ChinookDemo.pm
+Commit '(4) - turned on grid editing for all Sources'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Set custom CRUD options
+vim lib/RA/ChinookDemo.pm
+Commit '(5) - configured various CRUD options'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Set certain Sources to be dropdowns 
+vim lib/RA/ChinookDemo.pm
+Commit '(6) - WILL CHANGE - RESUME FROM LAST COMMIT'

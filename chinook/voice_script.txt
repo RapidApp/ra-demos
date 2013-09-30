@@ -6,7 +6,7 @@
 
 
 
-Part 0 – Intro and setup
+Part 0  Intro and setup
 
 
 (A) - INTRO
@@ -17,16 +17,16 @@ In this demo video we're going to build a new webapp from scratch, step by step,
 
 We're going to build a Database-driven application, using the "RapidDbic" plugin, which is a component of RapidApp that provides out-of-the box front-ends for DBIx colon-colon Class, or "DBIC" for short. 
 
-RapidDbic essentially auto-configures other RapidApp modules, which as we'll see, sets up grid and page views for DBIC Sources, proving CRUD, interactive query builders, customizable views, and so on…
+RapidDbic essentially auto-configures other RapidApp modules, which as we'll see, sets up grid and page views for DBIC Sources, proving CRUD, interactive query builders, customizable views, and so on
 
-For this demo, as I mentioned, we're going to use the Chinook sample database. Chinook is a freely available sample data model, with some nice sample data. It provides multiple tables with various types columns, indexes, relationships, foreign-key constraints, and so on. The purpose of Chinook is exactly for the type of demo we're doing in this video, showcasing the common use-cases for relational databases…
+For this demo, as I mentioned, we're going to use the Chinook sample database. Chinook is a freely available sample data model, with some nice sample data. It provides multiple tables with various types columns, indexes, relationships, foreign-key constraints, and so on. The purpose of Chinook is exactly for the type of demo we're doing in this video, showcasing the common use-cases for relational databases
 
 
 All steps will be performed live/real-world within this shell, which is an SSH session on an ordinary Linux box.
 
 We will test as we go, and demonstrate the features and functionality in Firefox.
 
-But all commands and changes will be done in this command shell and recorded with Git, and since you are already in the future, it is available on Github at the url shown…
+But all commands and changes will be done in this command shell and recorded with Git, and since you are already in the future, it is available on Github at the url shown
 
 I'm also recording the full command history - which is what is on the screen now, and is both the live commands being run, as well as serving the function of slides for this video
 
@@ -43,7 +43,7 @@ Git, just so you can follow along in the repo and download the code we'll be bui
 
 And finally, Linux and bash just since that is the environment we're working in, within the command shell.
 
-If you're not up to speed on all these topics, don't worry, you can still follow along and learn as you go, and there are plenty of resources available online. This video is designed to make following along as easy as possible, with every command and change recorded….
+If you're not up to speed on all these topics, don't worry, you can still follow along and learn as you go, and there are plenty of resources available online. This video is designed to make following along as easy as possible, with every command and change recorded.
 
 
 
@@ -182,7 +182,7 @@ Rows can also be opened in their own view by double-clicking. The default row pa
 
 For clients that can't double-click, like tablets, you can also single click on the special Open Item Column to open the row.
 
-The grid is paginated with standard paging controls in the toolbar, including page forward, page backward, … first page, last page,  …. And setting the items per page.
+The grid is paginated with standard paging controls in the toolbar, including page forward, page backward,  first page, last page,  . And setting the items per page.
 
 Also notice that the sort applies to the entire set rather than the current page.
 
@@ -267,7 +267,7 @@ The dialog box is just a helper. Once you get the hang of the format you can jus
 
 The offset string is relative to the current date and time by default, but you can supply different relative starting points like this month, this year, this quarter, and so on.
 
-So, this quarter, minus 1 quarter, would be the first day of last quarter, or midnight on april 1st. A relative date just translates into a normal date, which is a single point in time. But if we add a 'before' condition to go with our 'after' condition, we can define a range, … in this case, the 3 month span between the start and the end of last quarter, which is currently the beginning of april through the end of june.
+So, this quarter, minus 1 quarter, would be the first day of last quarter, or midnight on april 1st. A relative date just translates into a normal date, which is a single point in time. But if we add a 'before' condition to go with our 'after' condition, we can define a range,  in this case, the 3 month span between the start and the end of last quarter, which is currently the beginning of april through the end of june.
 
 If we save this filter we can now see that there were 3 invoices last quarter that were greater than 10. And if we remove the total condition we can see there were 18 in all. 
 
@@ -297,7 +297,7 @@ In this case, customerid is a foreign key which links each invoice row to a spec
 
 Customer id is a single relationship, or a "belongs_to", because you can imagine that each invoice 'belongs to' a given customer.
 
-The other side of this single relationship – that is, from the perspective of the customer table – is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
+The other side of this single relationship  that is, from the perspective of the customer table  is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
 
 The invoice table has a multi relationship of its own, invoice_lines, because an invoice "has_many" lines.
 
@@ -351,7 +351,7 @@ Well, we sort of can. We do have albumid, so we can see it belongs to albumid 4,
 
 But, "album id 4" isn't very friendly or descriptive, and we don't want our users to have to memorize IDs. If we wanted to see the album title in the Track grid, we could always add it as another joined column. 
 
-But, another way is to change which column from the related row is shown in the local relationship column, which we can also do. The default … display_column … is the primary key, albumid, but if we change it to 'title', "Let There Be Rock" will be displayed here instead of "4"
+But, another way is to change which column from the related row is shown in the local relationship column, which we can also do. The default  display_column  is the primary key, albumid, but if we change it to 'title', "Let There Be Rock" will be displayed here instead of "4"
 
 To do this we need to edit the RapidDbic config.
 
@@ -398,7 +398,7 @@ EDIT GRIDS
 
 So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But this is also fully configurable.
 
-NEW: "This system also supports editing, but not out of the box for safety …"
+NEW: "This system also supports editing, but not out of the box for safety "
 
 Let's commit our progress and go back into the RapidDbic config in the main class file to enable editing.
 

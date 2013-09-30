@@ -1,5 +1,6 @@
 Tasks to complete the demo:
 
+ * Record refresh transition for post Grid Editing config
  * Finalize cmd_script (with plenty of 'clear' statements)
  * Finalize all in-code comments
  * Decide final "Part" breakdown and assign names/tags
@@ -11,6 +12,8 @@ Tasks to complete the demo:
     - do some requests to the test server for the console
  * Finalize commits to be used
  * Update audio for changed commit order
+ * Create sub-demo with the chinook model image, drawing lines
+   while explaining/talking about the belongs_to/has_many rels
 
  
 "RapidApp Chinook Demo series"

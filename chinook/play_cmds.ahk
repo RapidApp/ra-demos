@@ -21,7 +21,7 @@ exit_at = 0
 exit_at = END_SCRIPT
 
 
-fake_db_setup = 1
+fake_db_setup = 0
 
 
 ResetDefaultKeyDelay()
@@ -94,7 +94,7 @@ CallMacro(name,seq) {
   ResetDefaultKeyDelay()
   
   if(name = "RunTestServer") {
-    return 1 ; <-- bypass
+    ; return 1 ; <-- bypass
     return RunTestServer(seq)
   }
   
