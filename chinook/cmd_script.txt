@@ -38,7 +38,7 @@ source ../env_setup.sh
  # ----
 clear
  # Install the latest RapidApp (and its dependencies):
-cpanm RapidApp
+cpanm RapidApp !2000
  #
  # --> (Side note: if you don't have "cpanm")
  #
@@ -49,7 +49,7 @@ cpanm RapidApp
  #
 clear
  # Create new Catalyst app "RA::ChinookDemo":
-catalyst.pl RA::ChinookDemo
+catalyst.pl RA::ChinookDemo !2000
 cd RA-ChinookDemo/  # <-- Enter the new app directory
  #
  # Initialize git repo and setup remote (on Github)
@@ -98,7 +98,7 @@ script/ra_chinookdemo_create.pl \
     dbi:SQLite:chinook.db \
     sqlite_unicode=1 \
     on_connect_call='use_foreign_keys' \
-    quote_names=1  #<-- important!
+    quote_names=1  #<-- required for RapidApp !2000
  #
 Commit 'Created DBIC schema/model "DB"'
  #
@@ -180,7 +180,7 @@ clear
  #
  # ----
  #
-git log
+git log !500
 q
  #
  # <[EditMacroAuthCore]>

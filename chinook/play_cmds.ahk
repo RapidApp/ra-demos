@@ -9,6 +9,7 @@
 ShellTitle = demohost - SecureCRT
 speed_up_str = -->
 next_lone_newline = 0
+next_newline_sleep = 0
 no_newline_prefix = 1
 auto_next = 0
 indx = 1
@@ -157,10 +158,20 @@ AdvanceNextLine() {
   
     if(next_lone_newline) {
       SendPlay {Enter}
+      
+      ; New - when in auto_next mode, pause after "real" commands
+      ; for specified duration
+      if(auto_next && next_newline_sleep) {
+        Sleep %next_newline_sleep%
+      }
+      
+      next_newline_sleep = 0
       next_lone_newline = 0
       no_newline_prefix = 1
       return
     }
+    
+    next_newline_sleep = 0
   
     FileReadLine, line, cmd_script.txt, %indx%
     if(ErrorLevel) {
@@ -220,7 +231,12 @@ AdvanceNextLine() {
       SetKeyDelay, 1
     }
     
-    SendRaw %line%
+    line_array2 = 0
+    StringSplit, line_array, line, `!
+    SendRaw %line_array1%
+    next_newline_sleep = %line_array2%
+    
+    ;SendRaw %line%
     
     ; If we're a comment line (that is not a pause):
     if(is_comment = 1 && is_pause = 0) {
