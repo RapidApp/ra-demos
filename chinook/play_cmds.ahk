@@ -22,7 +22,7 @@ exit_at = 0
 ;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
-bypass_test_server = 0
+bypass_test_server = 1
 fake_db_setup = 1
 
 
