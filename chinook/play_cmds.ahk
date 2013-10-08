@@ -1,6 +1,17 @@
 ;# This AutoHotKey macro script plays a series of commands
 ;# and shell interactions for the "Chinook" RapidApp demo video
 ;# (Note that this is built expecting a specfic environment)
+;
+; Assumes and requires a FireFox browser at 0:0, 
+; setup for the chinook demo video recording
+;
+; CRT position	: -7, -99
+; CRT size		: 1055,896
+;
+; FF Position	: 0,0
+; FF Size		: 1023,769
+; ------------------------------------------------------
+
 
 #Include funcs.ahk
 
@@ -22,8 +33,8 @@ exit_at = 0
 ;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
-bypass_test_server = 1
-fake_db_setup = 1
+bypass_test_server = 0
+fake_db_setup = 0
 
 
 ResetDefaultKeyDelay()

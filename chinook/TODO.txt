@@ -14,6 +14,7 @@ Tasks to complete the demo:
  * Update audio for changed commit order
  * Create sub-demo with the chinook model image, drawing lines
    while explaining/talking about the belongs_to/has_many rels
+ * Add multi-rel filters demo now that #10 is fixed
 
  
 "RapidApp Chinook Demo series"
@@ -25,4 +26,29 @@ VIDEO PARTS:
  Part 3. User Authentication and Saved Views
  Part 4. Customization
  
- 
+
+UPDATED ORDERED TASKS:
+
+1.  Create new 'Joined Demo + display_columns' video:
+     * Merge Joined Demo & Display Columns parts
+     * Edit/update for new/altered cmd_script (commit order)
+2.  Create Grid Editing Config video (existing audio)
+3.  Create Grid Editing Demo video (screen already recorded)
+4.  Create TableSpecs + Virtual Columns video
+     * write checklist process
+     * record browser demos
+     * update commits with real/demoed chinook.db
+5.  MAYBE go back and add video part discussing searching multi-rels
+6.  Create/decide on final intro and video parts
+7.  MAYBE record FINAL console cmds and final git commits
+     * Set system date along the way to achieve nice commit timeline
+     * Go back and remove '-f' from first git push
+     * Save existing chinook.db states to drop in for the final commit history
+       (since the browser-side db changes are already done)
+8.  Record new intro + setup 
+9.  Update first config/main feature demo for new/altered cmd_script (commit order)
+10. Splice in frames that show commits
+11. Create sub-demo with the chinook model image, drawing lines
+    while explaining/talking about the belongs_to/has_many rels
+12. Add call-outs and zooms
+13. Record any conclusion audio and title pages/splash
