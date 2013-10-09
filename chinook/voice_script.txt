@@ -371,7 +371,7 @@ As discussed, we're setting the display_column for Album to "title".
 
 While we're at it, let's set the display_column for a few other sources, too.
 
-Now let's save our changes and start the app back up.
+Now let's save and commit our changes and start the app back up.
 
 # Browser demo
 
@@ -396,15 +396,11 @@ With this filter, only Tracks with the Media Type "AAC audio file" will be shown
 
 EDIT GRIDS
 
-So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only. But this is also fully configurable.
-
-NEW: "This system also supports editing, but not out of the box for safety "
-
-Let's commit our progress and go back into the RapidDbic config in the main class file to enable editing.
+So far we've only been viewing data, and out-of-the-box, RapidDbic grids are read-only, for safety. But robust CRUD and editing features are also available - and fully configurable.
 
 Create, update and delete functionality can be configured in the grid_params section, which we're going to enable across the board. 
 
-The special pseudo name "star-default" can be used to apply settings to all sources at once to save us from having to retype the same options over and over. But anything supplied in this section can still be overridden in the individual source configs.
+The special pseudo name "star-defaults" can be used to apply settings to all sources at once to save us from having to retype the same options over and over. But anything supplied in this section can still be overridden in the individual source configs.
 
 Access to update rows can be enabled with the 'updatable_colspec' setting which uses the same format as 'include_colspec' which we already saw. Colspecs are wildcards which match column names, so 'star' allows editing of all local columns. Like the include_colspec setting, joined columns can also be specified to allow editing of joined rows, but we're just enabling local editing for now.
 
@@ -428,43 +424,66 @@ Now let's save, restart and check it out.
 
 # Browser demo
 
-Let's refresh the browser to see the updated config and go back into the Track grid. And I'm just going to decrease the page size so we don't have to scroll up and down
+To see the updated config, let's do a full browser refresh this time, instead of reloading a single tab like we did before.
 
-Now that editing is enabled you'll notice a number of new buttons and controls which allow for making changes in various ways. 
+Notice that the Track tab still automatically re-opened after the reload. Once again, this is because of the RESTful URL navigation in the TabGui interface. The active tab sets the URL, and the URL in turn sets the active tab. So reloading the Track URL takes us back to the Track tab, as it should be.
 
-Updatable columns are shown by a small pencil icon in the header, and you can modify them in the grid itself if you toggle on cell editing via the new toolbar button.
 
-This is a simple on off switch that lets you click and edit cells.
+To make things a little easier to see I'm just going to shrink the browser a bit and zoom-in. 
 
-Another way to edit is from the individual row page by double-clicking. Updatable columns are again shown with a pencil icon.
+  and let's hide the navtree to make more room, 
 
-You may have noticed trackid is not editable even though we set updatable_colspec to all columns. This is because editing is turned off by default for auto-increment primary keys because you typically don't want to edit that type of column. But this is a column-level config default that can still be changed.
+  and decrease the items per page so we don't have to 
+  scroll up and down,
 
-Still another way to edit rows is with the edit button in the bottom toolbar. This opens the selected row in a form window where you can edit all columns at once.
+  and also some column tweaks...
 
-Also in the bottom toolbar is a button to add new rows which opens a form window like the edit button by default.
+The TabGui is flexible enough to work nicely at any resolution or window size.
 
-The columns in bold are required, which is determined by whether or not the column is nullable in the database schema.
+Now that we've enabled editing, there are a number of new buttons and elements showing in the grid view.
 
-The Save button isn't enabled until all the required fields are filled out properly, which is actively validated.
+The small pencil icons in the headers identify which columns can be updated. You can modify them directly in the grid if you enable cell editing. This toggle button lets you quickly switch between select and edit mode, which changes what happens when you click on cells in the grid.
+
+When cell editing is on you can modify row columns one at a time by clicking on them. You can also advance to the next row by hitting the ENTER key, and advance to the next column by hitting TAB. And you can move backwards by adding SHIFT. SHIFT-ENTER moves up while SHIFT-TAB moves left. 
+
+Just like when creating Filters, the type of field provided for editing is column-specific. Name and composer are simple text columns, so their editors are simple text fields. Mediatypeid, on the other hand is a single relationship column, and so its editor is an appropriate single-selection dialog of rows in the related source.
+
+Another way to edit is from the individual row page by double-clicking. 
+
+This is the built-in row page, which is a property grid with similar cell-editing functionality, and updatable columns identified by a pencil icon. Note that row pages with custom layouts, edit behaviors and interfaces are also supported, and will be covered later in the Customizations demo.
+
+You may have noticed trackid is not editable, even though we set updatable_colspec to all columns. Editing is turned off by default for the auto-increment primary key column since you typically wouldn't want to edit it. But this is a column-level config default that can still be changed.
+
+Still another way to edit rows is with the edit button in the bottom toolbar. This opens a form window where you can edit all updatable columns of the selected row at once.
+
+This form-based interface is also the default for adding new rows, via the Add button. However, the fields are determined by the creatable_colspec instead of the updatable_colspec, which are the same in our case but could be different. The add form also loads by default in a separate tab, instead of a window.
+
+The columns in bold are required, which is set according to whether or not they are nullable in the database schema.
+
+The Save button is only enabled once all fields are validated, including required fields, and acceptable values for the column types. The validation is real-time, so the form can go back to being invalid which "re-disables" the save button. 
 
 After saving the new row is opened automatically, and also appears in the grid.
 
-You can also create and select related items simultaneously. For example, we can add a new media type to select while we're creating a new track.
+You can also create and select related items simultaneously. For example, we can create a new media type to select while creating a new track.
 
 This also works through multiple levels of relationships. For example, we can create a new album for our new track, and a new artist for our new album.
 
-There is also a button in the toolbar for delete which also applies to the current row selection.
+There is also a toolbar button for delete which applies to the current row selection.
 
 And by default, delete asks for confirmation.
 
-You can delete multiple rows at once by selecting them by holding ctrl while clicking, or selecting a range by holding shift.
+You can also select and delete multiple rows at once using the standard multi-select paradigms such as holding ctrl while clicking, or selecting a range by holding shift.
 
-However, the database won't allow us to delete these rows because they are being referenced from other tables, as we can see in these multi relationships, and we have foreign key constraints enabled in the database.
+However, because we have foreign key constraints enabled, the database won't allow us to delete these rows because they are being referenced from other tables, as we can see in these multi relationships.
 
-If we try to delete these rows without first changing or removing the related rows we should receive an error.
+If we try to delete these rows without first changing or removing the related rows, we'll receive an error.
 
-The message in this exception dialog is from the database itself, and additional Perl diagnostic info is shown below. All database changes are wrapped in transactions and are atomic, so if an exception occurs the operation is rolled back.
+The message in the exception dialog is generated by the database itself. Additional Perl debug info is also shown for reference. All database changes are wrapped in transactions, so if an exception occurs the operation is rolled back to protect the integrity of the data.
+
+
+
+
+
 
 You may have noticed that each change and cell edit is saving immediately. This is because the grid is set to persist changes immediately, which is configurable as well as other general CRUD interface behaviors.
 

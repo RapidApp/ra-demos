@@ -175,25 +175,49 @@
 
 # GRID EDITING
 
+
 1. Refresh browser
-2. Open Track grid
-3. Set page size to 15
-4. Enable cell editing
-5. Disable then re-enable again
-6. drag 'name' column wider
+ - Click open Album tab
+ - Click Track tab
+ - Click Album tab
+ - close Album tab
+2. Shrink browser from 1024x768 to 800x600
+ - Hide navtree
+3. Set page size to 12
+4. Column size/order changes:
+ - Drag composer after name
+ - Drag name bigger
+ - Drag composer bigger
+ - Drag albumid bigger
+ - drag mediatypeid bigger (make sure to clear '...' truncation)
+5. Enable cell editing
+ - Disable again 
+ - click 'Balls to the Wall'  (click in right-end of cell...)
+ - click 'C.O.D.'
+6. Enable cell editing again
 7. Edits:
     'Balls to the Wall' : append 'FOO'
     'C.O.D.' : change to COD
     'Breaking The Rules' :  prepend 'Blah!! -- '
-    'Breaking The Rules': Change media type:
+  
+  - ENTER to move cell down
+  - TAB to move cell right
+  - SHIFT+ENTER X5 to move cells up
+  - SHIFT+TAB to move cell left
+  
+  - Click edit 'Breaking The Rules' row:
+    - name column (no change)
+    - composer (no change)
+    - mediatypeid:
       * drag name column wider in grid/window
       * double-click 'AAC audio file'
+  - DISABLE cell editing
 8. Double-click open 'Breaking The Rules'
 9. Click to edit 'name' then 'composer' (but don't make changes)
 10. hit escape
 11. close the tab
-12. with 'Breaking The Rules' still selected click Edit button
-13. Edits:
+12. click to select 'Breaking The Rules'
+13. click the Edit button. Edits:
      name: change 'Blah!!' to 'BLAH!!!'
      genre: change to NONE (select none)
      composer: MOZART
@@ -284,6 +308,7 @@
 5. confirm_on_destroy
 6. allow_batch_update
 7. init_pagesize
+8. tree_width???
 ###################################
 
 
@@ -295,6 +320,7 @@
 1. Custom renderers, editors and validators
 2. Excel export
 3. Batch modify
+4. Custom icons
 ##############################
 
 

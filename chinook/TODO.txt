@@ -45,7 +45,8 @@ UPDATED ORDERED TASKS:
      * Go back and remove '-f' from first git push
      * Save existing chinook.db states to drop in for the final commit history
        (since the browser-side db changes are already done)
-8.  Record new intro + setup 
+8.  Record new intro + setup
+     - discuss git tags aligned to videos (i.e. show git pull commands)?
 9.  Update first config/main feature demo for new/altered cmd_script (commit order)
 10. Splice in frames that show commits
 11. Create sub-demo with the chinook model image, drawing lines

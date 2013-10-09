@@ -10,6 +10,9 @@
 ;
 ; FF Position	: 0,0
 ; FF Size		: 1023,769
+;
+;  For 640x480 content area (default navtree width)
+;  Size: 910,596
 ; ------------------------------------------------------
 
 
