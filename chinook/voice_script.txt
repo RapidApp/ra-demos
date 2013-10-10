@@ -5,6 +5,18 @@
 ##################
 
 
+### NEW Intro ###
+
+Welcome to the RapidApp "Chinook" demo.
+
+In this demo we're going to create a complete web application from the ground up using the RapidApp open-source framework.
+
+We're going to build this application around the free Chinook sample database ...
+
+
+####################
+
+
 
 Part 0  Intro and setup
 
