@@ -34,6 +34,12 @@ UPDATED ORDERED TASKS:
      * Edit/update for new/altered cmd_script (commit order)
 2.  Create Grid Editing Config video (existing audio)
 3.  Create Grid Editing Demo video (screen already recorded)
+
+** GO BACK AND MOVE Invoice CASCADE into first grid editing section
+      - cmd_script + audio updates required
+    (Invoice and InvoiceLine grid_params created together)
+
+
 4.  Create TableSpecs + Virtual Columns video
      * write checklist process
      * record browser demos
@@ -53,3 +59,4 @@ UPDATED ORDERED TASKS:
     while explaining/talking about the belongs_to/has_many rels
 12. Add call-outs and zooms
 13. Record any conclusion audio and title pages/splash
+
