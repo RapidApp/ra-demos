@@ -518,7 +518,13 @@ use_add_form defaults to whatever persist_immediately-create is set to. Turning 
 
 On the other hand, at the opposite-end of the spectrum, when the add form is turned off but persist_immediately-create left on, blank rows will be inserted into the database. Obviously, this requires that all the columns be nullable, auto-increments, or have non-conflicting defaults configured in the table schema.
 
+And finally, when both are off, we're simply using the grid to set values instead of the add form, which makes no difference to the database.
 
+If it's not clear already, it should be when I demo it in the browser in just a moment.
+
+Use_add_form is a true/false, on/off setting, but true value is dual-purpose which can be set to 'tab', which is the default true value, or 'window' to control if the form should load in a tab or window, as the names suggest.
+
+There is also a use_edit_form setting which supports the same false, window or tab choices.
 
 
 
