@@ -264,13 +264,31 @@
 27. Click delete
 28. Click yes
 29. Click "Ok" on error
-30. Scroll back to the left
-31. Enable cell editing
-32. Edits:
+----
+30. Open InvoiceLine grid
+     - click expand tree
+     - click Invoice Line
+     - click empty space in tab strip (re-hide tree)
+31. Enable all columns
+32. AutolSize columns
+33. Scroll 'billingcity' into view
+34. Enable editing
+35. Change first 'Oslo' to 'Oslo FOOOO'
+36. Hit TAB to edit billingstate
+37. Enter 'BLAH'
+38. Hit Enter then Escape
+39. Click Reload button
+40. Click back to the Track grid
+41. Enable cell editing
+42. Edits:
      -5th row name: append ' 123' ENTER
      -6th row name: append ' abc' click to the left
 
 
+     
+     
+     
+     
 ## Grid CRUD scenarios ##
 1. Track: 
     - Persist nothing immediately
