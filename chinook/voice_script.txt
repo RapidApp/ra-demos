@@ -500,23 +500,170 @@ When we modify these columns, we're actually changing the related Invoice row. N
 
 By reloading the grid we can see that change has also applied to the other rows which belong to the same parent Invoice, which is expected. This is just the implication of editing through relationships, which is one of the many things made possible by RapidApp's declarative configuration scheme. 
 
-You may have noticed that each change and cell edit is saving immediately. This is because the grid is set to persist changes immediately, which is also a configurable behavior that can be customized in the RapidDbic config.
+You may have noticed that each change and cell edit we make save instantly. This is because of the persist_immediately settings which are on by default, but can also be customized in the RapidDbic config.
 
 # Custom CRUD configs
 
-Persist immediately are an individual on/off settings for each of the types of write operations: create, update and destroy, which can be configured in the grid_params section. 
+Persist immediately is a grid_params setting that can be turned on or off for each kind of write operation: create, update and destroy. 
 
-It is on by default, which causes all changes to be saved to the database automatically, in real-time. When it's turned off, it's up to the user when or if to save outstanding changes, which is no different than the way you typically edit a document on a filesystem.
+This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This is similar to the behavior of a text editor, or other typical file-based application.
+
+As we'll see in a moment, you can further control how and when to enter data for new rows with the 'use_add_form' setting. This can be turned off to skip prompting the user for column values, and instead insert blank, empty rows.
+
+The persist_immediately-create setting determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set column values before clicking save.
+
+Since these settings work together, turning off persist_immediately-create automatically turns off the add form, too. This in turn turns off autoload_added_recorded, which controls whether or not to automatically open new rows after being created, as the name implies. 
+
+The defaults of these options are based on each other, but can still be set independently.
+
+use_add_form also accepts a string value to control whether to use a 'window' or a 'tab' when displaying the form.
+
+There is also a use_edit_form setting which supports the same false, window or tab choices. Turning it off simply removes the edit button from the interface.
+
+Turning off use_add_form means the grid will be used for both creating and editing rows. When persist_immediately-create is also off, the user is still able supply initial column values before saving new rows to the database.
+
+On the other hand, if you turn off the add form without turning off persist_immediately-create, actual blank rows will be inserted into the database. 
+
+Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values. It is because this isn't always the case that the system turns on use_add_form automatically with persist_immediately-create. 
+
+The goal of the configuration is to support multiple modes of operation while still being simple, so common-sense defaults are used whenever possible. 
+
+Now let's save, commit and restart so we see these configs in action.
+
+
+
+However, 
+
+
+
+
+When the add form is off,
+
+both the add form and persist_immediately-create are off the grid 
+
+
+
+
+
+
+
+
+
+When the add form
+
+If you set it to a different value, like 1, it just means the system will decide which to use. And, to explicitly turn it off simply set it to 0, which again, also changes the autoload_added_recorded default.
+
+
+For consistency, the system requires that you enter all 3 options whenever setting persist_immediately, but, you can mix and match the values. For instance, you can turn off create, but leave update and destroy on. This combination turns off the add form without effecting the database, since you can edit columns in the grid before saving the new row.
+
+On the other hand, if you turn off the add form without turning off persist_immediately-create, actual blank rows will be inserted into the database. 
+
+Obviously, this requires that blank rows be allowed by the database schema to begin with, which means that all the columns in the table be nullable, auto-increments, or have non-conflicting default values configured.
+
+Now let's save, commit and restart so we see these configs in action.
+
+
+
+The add form is automatically
+
+
+
+
+
+
+the process for entering data for new rows
+
+new rowsfor how new rows 
+
+how new rows are createdwhether or not 
+
+much like a  persist changes in the database.
+
+decides when to save outstanding changes instead of the system, which behaves more like a file-based application, with the traditional edit/save workflow.
+
+It's up to the user when persist_immediately is turned off, which makes things behave more like editing a file on a file system. 
+
+
+This is just like how you typically edit and save files on a filesystem, so you can think of persist_immediately as an autosave feature.
+
+You can also choose whether or not to use the add form when creating rows with the use_add_form setting
+
+This is straightforward for update and destroy, but what it means for create depends on the use_add_form setting
+
+, especially for update and destroy, but the behavior of create is also determined by the . 
+
+Instead of prompting the user for column values, the add button creates blank, empty rows when use_add_form is disabled. In this case, the persist_immediately-create setting 
+
+Whether or not the blank rows are literally 
+
+
+
+ which can then be edited like any other row.
+
+ without , leaving them to be updated later on.
+
+it for leaving update as the only avenue to set the values.
+
+making editing the only way to supply  relying on editing . But of course, the new row can then be edited. 
+
+This is like giving a new file a filename by saving it as a first step saving a new file and giving it a filename before creating a blank file, with a filename on disk, and saving it with a filename as a first step, instead of on disk as a first step, and then editing it, versus entering content before saving. The only meaningful difference between the two is when the first save happens, but has potentially larger significance in the case of multi-user databases
+
+The persist_immediately-create setting adds the additional layer which determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set values before clicking save.
+
+ until the user clicks save.
+
+when the add form is disabled, 
+
+This is a lot simpler than it might sound at first, and will make more sense in a moment when we're actually looking at it in the browser.
+
+
+
+
+
+
+#### scratch......
+
+
+
+provides the same workflow as the default config, just using the grid instead of the add form, since you can 
+
+the grid functions like the add form, since you 
+
+always have to enter all 3
+
+You can mix and match persist_immediately settings, but . 
 
 For the sake of consistency, you are required to configure all 3 at once in the single, parent option, but they don't have to be the same.
 
-The effect of this setting is fairly straightforward in the case of update and destroy, but the behavior of create also depends on the client-side use_add_form setting.
+
+
+is dual-purpose which can be set to 'tab', which is the default true value, or 'window' to control if the form should load in a tab or window, as the names suggest.
+
+
+You can also 
+
+
+, but we can turned back on if we want to, which we'll do here.
+
+
+
+
+
+
+
+become clear 
+
+come back and edit the values
+
+the add form the add button is turned off blank rows are createdthis is turned off the add function 
+
+The add form 
 
 The add form lets you supply the column values for the row at the same time it is being created. When it is turned off, rows are created blank, but then subsequently edited in the grid. There are pros and cons for each, which should become apparent momentarily.
 
 use_add_form defaults to whatever persist_immediately-create is set to. Turning it on when persist_immediately-create is off just means you have to click save twice when creating rows, once in form and then again in the grid, which is usually redundant, but insignificant.
 
-On the other hand, at the opposite-end of the spectrum, when the add form is turned off but persist_immediately-create left on, blank rows will be inserted into the database. Obviously, this requires that all the columns be nullable, auto-increments, or have non-conflicting defaults configured in the table schema.
+On the other hand, at the opposite-end of the spectrum, when the add form is turned off but persist_immediately-create left on, blank rows will be inserted into the database. Obviously, this requires that blank rows be allowed by the database schema to begin with, which means that all the columns in the table be nullable, auto-increments, or have non-conflicting default values configured.
 
 And finally, when both are off, we're simply using the grid to set values instead of the add form, which makes no difference to the database.
 
@@ -530,7 +677,6 @@ There is also a use_edit_form setting which supports the same false, window or t
 
 
 
-#### scratch......
 
 saved to the database. 
 
