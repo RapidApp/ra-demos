@@ -286,9 +286,49 @@
 
 
      
-     
-     
-     
+# Custom CRUD configs (browser demo)
+
+0. Close open tabs
+1. Refresh Browser
+2. Open Track grid
+2a. hide navtree
+3. Auto-Size columns
+4. Enable cell editing
+5. Starting with row 2:
+    - append random chars to 3 rows in 'name'
+    - hit ENTER between each then ESC
+6. Do the same for 2 more rows further down
+7. Click Save
+8. Starting with row 3:
+    - enter gibberish in 'name' to a bunch of rows as
+      fast as possible
+9. Click Undo
+10. Click Add:
+     name: 'United States of Whatever'
+     mediatype: 'MPEG Audio'
+     milliseconds: 12345
+     unitprice: 222
+11. Click Save
+12. Scroll to the right then back
+13. Click Save
+14. Close the row page
+15. Click-quick-show navtree
+16. Click MediaType
+17. Click in empty space in grid to re-hide navtree
+18. Click Add
+19. Edit phantom row name: 'sdgsdfg'
+20. Hit ENTER
+21. Edit phantom row name: 'Ogg'
+22. Click save
+23. Click Add
+24. Delete phantom row
+25. Click-quick-show navtree
+26. Click Genre
+27. Click in empty space in grid to re-hide navtree
+28. Change page-size to 10
+29. click last page
+      
+      
 ## Grid CRUD scenarios ##
 1. Track: 
     - Persist nothing immediately
@@ -305,14 +345,6 @@
     - destroyable_relspec => ['*','invoice_lines']
 #########################
 
-
-
-
-
-# Custom CRUD configs (browser demo)
-
-1. Refresh Browser
-2. 
 
 
 

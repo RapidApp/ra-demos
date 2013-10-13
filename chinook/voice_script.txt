@@ -530,6 +530,91 @@ The goal of the configuration is to support multiple modes of operation while st
 
 Now let's save, commit and restart so we see these configs in action.
 
+# Custom CRUD demo
+
+When persist_immediately is off, changes are queued until you click the newly available Save button, which is enables as soon as the first change is made. 
+
+Unsaved changes are also shown visually by a red asterisk in the tab title, and a red triangle on individual columns.
+
+You can make as many changes within the current page as you like before clicking save which persists all of them at once.
+
+Changes can be made a lot faster in this mode since they don't each require a round-trip to the server.
+
+You can also revert changes instead of saving them with the Undo button, which is also newly available.
+
+We specifically configured this grid to still use the add form, but now in a window instead of a tab.
+
+But since persist_immediately-create is off, we still have to click save again in the grid before the new row is actually inserted in the database. The row page still automatically opens because it matches the add form setting by default. 
+
+On the other hand, in media type, the add form is off, which means clicking Add inserts blank rows immediately. However, since persist_immediately-create is off, the row doesn't really exist until we click save. 
+
+It is currently a phantom row, which, like the add form, represents what **will** be inserted, and it can be edited any other row to change what that is. 
+
+It is the column values that are set when save is clicked that get inserted into the database, at which point it will transform into a real row with real values returned from the database, such as mediatypeid, which is an auto-increment that was assigned automatically by the database.
+
+Deleting a phantom row means it existed.
+
+In the Genre grid we left persist_immediately on for all operations, which you can also tell by the absence of save and undo buttons. 
+
+But since we also turned off the add form, clicking the add button creates and inserts blank rows instantly, with no intermediate phantom step.
+
+We can still edit the rows to set the column values, so there is no real difference from a workflow standpoint, other than the fact that we're making the database a participant in the whole process, including the blank stage.
+
+Different workflow scenarios and table schemas benefit from different crud options
+
+Despite being blank, these are real rows so we can as many as we want at once, while the system restricts .
+
+Since these are In this mode, we can also create lots of blank rows at once
+
+
+the database 
+
+ in the toolbar.
+
+
+
+
+Also, as a side note, I had made the pagesize smaller to avoid scrolling to make things easier to see, but the system does automatically scroll new rows into view, if necessary 
+
+ column. Notice it now has a value for
+
+Once the row has been saved it transforms into a real row
+
+, and can be edited to change what that is. 
+
+
+Phantom rows can be edited like any other row, and everyshow every column as dirty, and .
+
+, just like the contents of the add form represent what will be inserted which we can edit like any other row.
+
+It’s a phantom row representing 
+
+still isn't really created until we click save, even though it shows in the grid
+
+
+we still have to click Save 
+
+ in a window.
+
+ changes are also shown 
+
+ as well as a red asterisk in the title. Dirty columns are shown by a red triangle, and 
+
+, as well as .
+
+Dirty columns are
+
+Columns that have been changed, 
+
+Column changes are are shown
+
+
+, which now shows
+
+
+ and shown visually  instead of sent to the servercan still be made
+
+is off for the Track grid, changes  there are two new buttons in the toolbar, Save and Undo.
 
 
 However, 
