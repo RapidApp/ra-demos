@@ -283,9 +283,9 @@
 42. Edits:
      -5th row name: append ' 123' ENTER
      -6th row name: append ' abc' click to the left
+-----
 
 
-     
 # Custom CRUD configs (browser demo)
 
 0. Close open tabs
@@ -327,7 +327,29 @@
 27. Click in empty space in grid to re-hide navtree
 28. Change page-size to 10
 29. click last page
-      
+30. click add 3 blank rows
+31. Go back and edit/set values:
+     - 'Tween'
+     - 'Death Metal'
+-----
+
+
+
+
+
+
+
+
+
+
+
+
+#####################################################################
+
+
+
+
+
       
 ## Grid CRUD scenarios ##
 1. Track: 
