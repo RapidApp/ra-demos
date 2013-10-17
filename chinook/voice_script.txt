@@ -576,6 +576,42 @@ All sorts of different core CRUD workflow scenarios can be configured with only 
 
 These interfaces, while complete and fully functional out of the box, are still only base paradigms which can be customized and extended into unique applications.
 
+
+# VIRTUAL COLUMNS (Config)
+
+Another powerful, general-purpose database feature is virtual_columns which can be configured ad-hoc. 
+
+Virtual Columns behave like ordinary columns, but with user-defined, computed values, supplied as SQL expressions.
+
+It is basically a free-form hook into the column interface.
+
+For example, the Employee table has physical columns lastname and firstname. We can add a simple virtual column called "fullname" that will be a concatenation of the two...
+
+---
+
+Virtual_columns are set up in their own section in the RapidDbic config, just like grid_params and TableSpecs, and is similarly subdivided by result source.
+
+Virtual columns accept the same options as 'add_columns' in DBIC, such as data_type, nullability, and size. The special 'sql' parameter defines the SQL expression to use to compute the column value for each row.
+
+The special pseudo-name 'self' is replaced with the alias representing the current row, but the string is otherwise literal SQL. 
+
+Pipe-pipe is the concatenation operator in SQLite, so here we are simply generating a string consisting of firstname, a space, and then lastname of the current row.
+
+Note that the SQL you supply must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, under MySQL, this wouldn't work. Instead of the double-pipe, you would need to use the CONCAT function.
+
+
+
+
+
+
+
+
+
+
+
+ ########### scratch ..........
+
+
 And these still only provide a base
 
 Even though 
@@ -593,12 +629,6 @@ Tables with lots of columns to be filled out may be better ser
 
 
 
-
-
-
-
-
- ########### scratch ..........
 
 Different combinations of these options can support all kinds of scenarios
 
@@ -629,7 +659,7 @@ Phantom rows can be edited like any other row, and everyshow every column as dir
 
 , just like the contents of the add form represent what will be inserted which we can edit like any other row.
 
-It's a phantom row representing 
+It?s a phantom row representing 
 
 still isn't really created until we click save, even though it shows in the grid
 
@@ -868,7 +898,7 @@ is set independently for , update and destroy, in the grid_params section.
 
 It's on by default for all three, 
 
-The effect of this setting is fairly straightforward in the case of update and destroy, but the behavior of create depends on ...
+The effect of this setting is fairly straightforward in the case of update and destroy, but the behavior of create depends on ?
 
 Are Boolean options, so they combine to produce 4 possible modes for creating rows they produce 4 distinct modes
 
