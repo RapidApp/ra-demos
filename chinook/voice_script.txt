@@ -577,6 +577,16 @@ All sorts of different core CRUD workflow scenarios can be configured with only 
 These interfaces, while complete and fully functional out of the box, are still only base paradigms which can be customized and extended into unique applications.
 
 
+# TableSpecs (Config)
+
+Individual edit behaviors can be customized as well.
+
+For example, when editing single relationships, a grid selector
+
+
+
+
+
 # VIRTUAL COLUMNS (Config)
 
 Another powerful, general-purpose database feature is virtual_columns which can be configured ad-hoc. 

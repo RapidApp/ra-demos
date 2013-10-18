@@ -330,7 +330,8 @@
 30. click add 3 blank rows
 31. Go back and edit/set values:
      - 'Tween'
-     - 'Death Metal'
+     - 'Comedy Rap'
+     - 'Nintendocore'
 -----
 
 
