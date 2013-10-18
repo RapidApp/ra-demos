@@ -265,6 +265,11 @@
 28. Click yes
 29. Click "Ok" on error
 ----
+
+
+
+
+
 30. Open InvoiceLine grid
      - click expand tree
      - click Invoice Line
