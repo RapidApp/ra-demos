@@ -36,8 +36,8 @@ exit_at = 0
 ;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
-bypass_test_server = 0
-fake_db_setup = 0
+bypass_test_server = 1
+fake_db_setup = 1
 
 
 ResetDefaultKeyDelay()
@@ -131,6 +131,9 @@ CallMacro(name,seq) {
   }
   else if(name = "EditMacroFour") {
     return EditMacroFour(seq)
+  }
+  else if(name = "EditMacroRelEditing") {
+    return EditMacroRelEditing(seq)
   }
   else if(name = "EditMacroCrudOpts") {
     return EditMacroCrudOpts(seq)
@@ -560,6 +563,34 @@ EditMacroFour(seq) {
   else if(seq = 4) {
     Send {Escape}
     Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+
+EditMacroRelEditing(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Configure editing across relationships{Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+ 
+  }
+  else if(seq = 4) {
+    Send {Escape}
+    Sleep 200
     ;vimJumpStringTop("__PACKAGE__",0)
     ;Sleep 200
     vimJumpString("Album",0)
@@ -589,6 +620,81 @@ EditMacroFour(seq) {
   }
   else if(seq = 9) {
     SendRaw 'invoiceid.billing*'
+  }
+  else if(seq = 10) {
+    Send {Up 6}{End}{Enter}
+    vimNewHashCnf("Invoice",0)
+  }
+  else if (seq = 11) {
+    SendRaw # Delete invoice_lines with invoice (cascade):
+    Sleep 500
+    Send {Enter}{Backspace 2}
+    SendRaw destroyable_relspec => ['*','invoice_lines']
+  }
+  else if(seq = 12) {
+    Send {Escape}
+    Sleep 200
+    Send {Z 2} ; Save and exit
+    no_newline_prefix = 1
+    return 1 ; finished
+  }
+  else {
+    return 1 ; finished
+  }
+
+  return 0 ; not finished
+}
+
+
+
+EditMacroEditorType(seq) {
+  global
+  Sleep 500
+  if(seq = 1) {
+    Send {Space}{#} Set certain Sources to be dropdowns {Enter}
+    Send vim lib/RA/ChinookDemo.pm
+  }
+  else if(seq = 2) {
+    Send {Enter}
+  }
+  else if(seq = 3) {
+    vimJumpStringTop("TableSpecs",0)
+    Sleep 200
+    vimJumpString("Genre",0)
+    Sleep 100
+    Send {Down}
+    Send i ; go into INSERT mode
+    Sleep 500
+    Send {End}{,}{Enter}
+    SendRaw auto_editor_type => 'grid'
+  }
+  else if(seq = 4) {
+    Send {Left}{Backspace 4}combo
+  }
+  else if(seq = 5) {
+    Send {Down 4}{End}{Enter}
+    vimNewHashCnf("Track",0)
+  }
+  else if(seq = 6) {
+    vimNewHashCnf("columns",0)
+  }
+  else if(seq = 7) {
+    vimNewHashCnf("bytes",0)
+  }
+  else if(seq = 8) {
+    SendRaw renderer => 'Ext.util.Format.fileSize'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw header => 'Size'
+  }
+  else if(seq = 9) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("unitprice",0)
+    Sleep 500
+    SendRaw renderer => 'Ext.util.Format.usMoney'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw header => 'Unit Price'
   }
   else if(seq = 10) {
     Send {Escape}
@@ -702,17 +808,8 @@ EditMacroCrudOpts(seq) {
     Send {Enter}{Backspace 2}
     SendRaw confirm_on_destroy => 0
   }
-  else if (seq = 14) {
-    Send {Down}{End}{Enter}
-    vimNewHashCnf("Invoice",0)
-  }
-  else if (seq = 15) {
-    SendRaw # Delete invoice_lines with invoice (cascade):
-    Sleep 500
-    Send {Enter}{Backspace 2}
-    SendRaw destroyable_relspec => ['*','invoice_lines']
-  }
-  else if(seq = 16) {
+  
+  else if(seq = 14) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit
@@ -726,70 +823,6 @@ EditMacroCrudOpts(seq) {
   return 0 ; not finished
 }
 
-
-
-EditMacroEditorType(seq) {
-  global
-  Sleep 500
-  if(seq = 1) {
-    Send {Space}{#} Set certain Sources to be dropdowns {Enter}
-    Send vim lib/RA/ChinookDemo.pm
-  }
-  else if(seq = 2) {
-    Send {Enter}
-  }
-  else if(seq = 3) {
-    vimJumpStringTop("TableSpecs",0)
-    Sleep 200
-    vimJumpString("Genre",0)
-    Sleep 100
-    Send {Down}
-    Send i ; go into INSERT mode
-    Sleep 500
-    Send {End}{,}{Enter}
-    SendRaw auto_editor_type => 'grid'
-  }
-  else if(seq = 4) {
-    Send {Left}{Backspace 4}combo
-  }
-  else if(seq = 5) {
-    Send {Down 4}{End}{Enter}
-    vimNewHashCnf("Track",0)
-  }
-  else if(seq = 6) {
-    vimNewHashCnf("columns",0)
-  }
-  else if(seq = 7) {
-    vimNewHashCnf("bytes",0)
-  }
-  else if(seq = 8) {
-    SendRaw renderer => 'Ext.util.Format.fileSize'
-    Sleep 500
-    Send {,}{Enter}
-    SendRaw header => 'Size'
-  }
-  else if(seq = 9) {
-    Send {Down}{End}{Enter}
-    vimNewHashCnf("unitprice",0)
-    Sleep 500
-    SendRaw renderer => 'Ext.util.Format.usMoney'
-    Sleep 500
-    Send {,}{Enter}
-    SendRaw header => 'Unit Price'
-  }
-  else if(seq = 10) {
-    Send {Escape}
-    Sleep 200
-    Send {Z 2} ; Save and exit
-    no_newline_prefix = 1
-    return 1 ; finished
-  }
-  else {
-    return 1 ; finished
-  }
-
-  return 0 ; not finished
-}
 
 
 EditMacroVirtualColumn(seq) {

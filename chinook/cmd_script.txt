@@ -105,7 +105,7 @@ Commit 'Created DBIC schema/model "DB"'
 Commit '01_prepared_app'
 git tag 01_prepared_app
 # Push to Github (First push, with tags):
-git push -f -u --tags origin master
+#git push -u --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  #
@@ -145,26 +145,30 @@ Commit '(3) - configured display_columns (TableSpecs)'
 Commit '(4) - turned on grid editing for all Sources'
  # <[RunTestServer]>
  #
- # <[EditMacroCrudOpts]>
-Commit '(5) - configured various CRUD options'
- # <[RunTestServer]> - at_commit_5
+# <[EditMacroRelEditing]>
+Commit '(5) - Example editing across relationships'
+ # <[RunTestServer]>
  #
  # <[EditMacroEditorType]>
 Commit '(6) - set auto_editor_type (combo) + column TableSpecs'
  # <[RunTestServer]>
  #
+ # <[EditMacroCrudOpts]>
+Commit '(7) - configured various CRUD options'
+ # <[RunTestServer]> - at_commit_5
+ #
  # <[EditMacroVirtualColumn]>
-Commit '(7) - created "full_name" virtual column'
+Commit '(8) - created "full_name" virtual column'
  # <[RunTestServer]>
  #
  # <[EditMacroVirtColWritable]>
-Commit '(8) - full_name virtual column writable + display_column'
+Commit '(9) - full_name virtual column writable + display_column'
  # <[RunTestServer]>
 clear
 Commit '02_rapiddbic_basics'
 git tag 02_rapiddbic_basics
  # Push to Github:
-git push --tags origin master
+#git push --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  #
@@ -198,7 +202,7 @@ clear
 Commit '03_auth_and_saved_views'
 git tag 03_auth_and_saved_views
  # Push to Github:
-git push --tags origin master
+#git push --tags origin master
 clear
  #
  #
