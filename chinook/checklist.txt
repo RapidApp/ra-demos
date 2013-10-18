@@ -337,11 +337,37 @@
 
 
 
+# Virtual Column (browser demo)
 
+1. Reload Employee grid
+2. Toggle off all columns and select only:
+    - lastname
+    - firstname
+    - title
+    - full_name
+3. Enable grid editing
+4. Change 'Adams' to 'Adamson'
+5. Change 'Michael' to 'Mike'
+6. Sort desc on full_name then asc 
+-----
 
+# Edit Virtual Column (browser demo)
 
-
-
+1. Reload Employee grid
+2. Toggle off all columns and select only:
+    - lastname
+    - firstname
+    - title
+    - full_name
+3. Enable grid editing
+4. Change 'Steve Johnson' to 'Mike Johnson'
+5. Change 'Michael Mitchell' to 'Ricky Bobby'
+6. Change 'Andrew Adamson' to 'Peter Griffin'
+7. Drag full_name before lastname
+8. Column changes:
+    - hide firstname & lastname
+    - show 'reportsto' & 'employees'
+    - AutoSize columns
 
 
 #####################################################################

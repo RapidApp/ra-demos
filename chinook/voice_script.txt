@@ -583,9 +583,9 @@ Another powerful, general-purpose database feature is virtual_columns which can 
 
 Virtual Columns behave like ordinary columns, but with user-defined, computed values, supplied as SQL expressions.
 
-It is basically a free-form hook into the column interface.
+This is basically a free-form hook into the column interface.
 
-For example, the Employee table has physical columns lastname and firstname. We can add a simple virtual column called "fullname" that will be a concatenation of the two...
+For example, the Employee table has physical columns lastname and firstname. We can add a simple virtual column called "fullname" to be a concatenation of the two...
 
 ---
 
@@ -593,14 +593,60 @@ Virtual_columns are set up in their own section in the RapidDbic config, just li
 
 Virtual columns accept the same options as 'add_columns' in DBIC, such as data_type, nullability, and size. The special 'sql' parameter defines the SQL expression to use to compute the column value for each row.
 
-The special pseudo-name 'self' is replaced with the alias representing the current row, but the string is otherwise literal SQL. 
+This is a literal SQL string that will be evaluated by the database, except for the special pseudo-name 'self' which is replaced with the alias of the current row.
 
-Pipe-pipe is the concatenation operator in SQLite, so here we are simply generating a string consisting of firstname, a space, and then lastname of the current row.
+Pipe-pipe is the string concatenation operator in SQLite, so here we are simply joining firstname and lastname with a space in the middle.
 
-Note that the SQL you supply must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, under MySQL, this wouldn't work. Instead of the double-pipe, you would need to use the CONCAT function.
+The SQL must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, under MySQL, this wouldn't work. Instead of the double-pipes, you would need to use the CONCAT function.
+
+Let's save and commit and get back into the app.
+
+# VIRTUAL COLUMNS (Demo)
+
+After reloading the Employee grid we can see that our new virtual full_name column is showing up as expected.
+
+Since the column doesn't really exist in the table, but is instead based on other columns, changes to those underlying columns are reflected instantly, just as we would expect and want.
+
+But the column is still searchable, sortable, and so on, like any ordinary column. 
+
+You do need to keep in mind that since virtual_columns are computed, the database has to calculate the value every time, and in every context which it's referenced. 
+
+This can be a performance issue, particularly when attempting to sort a large number of rows, so in many cases it makes sense to disable sort for those columns. 
+
+Quick Search is also automatically disabled on virtual columns for this reason.
+
+It all depends on how expensive the computation is for the database to perform and for how many rows it has to be done for.
+
+Virtual Columns aren't automatically editable because the intended effect is ambiguous. But, this can be enabled if we tell the system what to do with the edited value.
 
 
+# EDIT VIRTUAL COLUMNS (Config)
 
+This is done by supplying the special set_function parameter within the virtual column config.
+
+This CodeRef will be called whenever the virtual column is modified, with the DBIC row object and new column value supplied as arguments.
+
+You will typically want this function to be the inverse of the logic in the SQL expression. 
+
+In this case, we can split the full name string back into its first and last name components, and then update the physical columns accordingly. These new values will in turn be reflected in the virtual column value, and completing the loop.
+
+The logic is of either side is entirely up to you, and you can accomplish all sorts of different things.
+
+Our full_name virtual_column is useful as the display_column for Employee, since it does a better job of representing a given row than any other single column.
+
+Let's see how this works in the interface.
+
+# EDIT VIRTUAL COLUMNS (Demo)
+
+Now that we've supplied a set_function, the full_name virtual column shows as editable in the interface. Assuming our logic is sane, edits will appear to work like any other column, even though custom code is at work behind the scenes.
+
+And this appears to be working correctly, with changes to full_name updating the real columns firstname and lastname.
+
+The Employee table has a foreign key, or single relationship, 'reportsto' pointing back at itself, the Employee table, so we can see both sides of the relationship in the same grid, with the multi-relationship column 'employees' showing the other side.
+
+We can see each employee reports to someone, except the General Manager, and also how many report to each employee. For instance, 3 employees report to nancy, and this agrees whether we look at it from their perspective, ... or from nancy's.
+
+And since we set the display_column for Employee to full_name, that is what shows in the reportsto relationship, which makes things even easier to see and follow.
 
 
 
