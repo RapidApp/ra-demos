@@ -509,28 +509,46 @@ For example, we can allow editing only on the local columns 'invoiceid' and 'uni
 
 Notice here that invoiceid is both a column name and a relationship name, and don't conflict because of the context in which they're used. Names preceding dots match relationship paths to columns to be joined, while everything else matches columns.
 
-The colspec format is both flexible and as compact.
+The colspec format is both flexible and compact.
 
 Now let's save, restart and check it out.
 
 
 # Relation Editing (demo) (MOVED)
 
-Now in the InvoiceLine grid we can see that updating is allowed only for local columns unitprice and quantity, but also for related 'invoiceid' columns with names starting with "billing".
+Now in the InvoiceLine grid we can see that updating is allowed only for local columns invoiceid and unitprice, but also for joined columns from the invoiceid relationship with names starting with "billing".
 
-When we modify these columns, we're actually changing the related Invoice row. Note that since multiple InvoiceLines can be associated with a single Invoice, these types of changes indirectly affect other rows by association. 
+Also, because we used *.* in the include_colspec, all the columns of the other relationship, trackid, have been joined as well.
 
-By refreshing the grid data we can see the change has also applied to the other rows belonging to the same parent Invoice, which is as expected. This is just the implication of editing through relationships which aren't one-to-one. 
+But we'll go ahead and hide them for now to focus on the editable invoiceid join.
 
-Editing a joined column is really just editing a remote row from a distance, which we can see if we look at the real row in the Invoice grid. And just to hammer home the point, if we make changes here they show up there.
+When we modify these columns, we're actually changing the related Invoice row. Note that since more than one InvoiceLine is associated with a single Invoice, these changes indirectly affect other InvoiceLine rows, by association. 
 
-These 4 rows are the invoice_lines for this invoice, which we can see in the relationship, which we also configured in the destroyable_relspec setting. So, if we delete the Invoice row, its 4 invoice_lines will be deleted too.
+If we refresh the data we can see the change we just made is also showing up for the other rows belonging to the same parent Invoice, which is to be expected. This is just the implication of editing across relationships which are many to one. 
 
-And just to confirm this happened, if we refresh the InvoiceLine data, we can see they have disappeared.
+Editing a joined column is really just "updating from a distance", which we can see if we look at the real row in the Invoice grid. And, likewise, if we make local changes here, they will show up in the corresponding joined columns there. These are just different views of the same data.
 
+These 4 rows are also shown in the multi relationship 'invoice_lines' in the parent Invoice, which is the other side of the 'invoiceid' relationship. And, because we added 'invoice_lines' to destroyable_relspec for the Invoice grid, if we delete this Invoice row, its 4 invoice_lines will automatically be deleted too.
 
+And, just to confirm this happened, we can refresh the InvoiceLine data and see that they have disappeared.
 
-The system also allows you to modify relationships as we've already seen.
+You can also change the Invoice a particular InvoiceLine is linked to by modifying the invoiceid. 
+
+This changes the foreign key, or the link itself, which is only in the local InvoiceLine row. This is very different from changing joined columns, which actually alters the remote, *related* row, as we just saw.
+
+This is the default selector interface for changing single relationships, like invoiceid. It?s a fully functional grid with sorting, searching, paging, and so on.
+
+This is really useful in cases like this, with lots of rows and lots of columns, to be able to find the exact row you're looking for.
+
+However, in other places, this might be overkill. For example, since there are only a handful of Media Types, instead of a full-blown grid, it might be better served by a basic dropdown. This is also a simple configuration option.
+
+# Editor type + column TableSpecs (config)
+
+TODO
+
+# Editor type + column TableSpecs (config)
+
+TODO
 
 ----
 
