@@ -499,17 +499,17 @@ This can be done by adding the invoice_lines relationship to destroyable_relspec
 
 Editing of joined columns can also be enabled. For example, lets configure the InvoiceLine grid to be able to modify columns of the parent Invoice.
 
-*** (snippet already **partially** recorded)
 The system requires access to read columns to modify them, so any updatable_colspec must fall within the include_colspec. 
 
 The wildcard format applies to both column and relationship names, so you can enter things like 'star-dot-star' to join all columns in all relationships in one swoop. You can actually take it further, with star-dot-star-dot-star and so on, but keep in mind each level multiplies the number of columns by the number of relationships.
 
 Now let's configure editing for specific local and joined columns.
 
-For example, we can allow editing only on the local columns 'invoiceid', 'unitprice' and 'quantity', as well as all the columns that start with 'billing' in the parent Invoice. This config is just for illustration to show how you can configure any combination you like. The colspec format is very flexible as well as compact.
+For example, we can allow editing only on the local columns 'invoiceid' and 'unitprice', as well as all the columns that start with 'billing' in the parent Invoice. 
 
-Now let's save and commit our changes and start the app back up.
-***
+Notice here that invoiceid is both a column name and a relationship name, and don't conflict because of the context in which they're used. Names preceding dots match relationship paths to columns to be joined, while everything else matches columns.
+
+The colspec format is both flexible and as compact.
 
 Now let's save, restart and check it out.
 

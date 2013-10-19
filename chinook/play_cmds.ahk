@@ -630,9 +630,6 @@ EditMacroRelEditing(seq) {
     Send {,}
     SendRaw 'unitprice'
     Sleep 500
-    Send {,}
-    SendRaw 'quantity'
-    Sleep 500
     Send {,}{Enter}
     SendRaw 'invoiceid.billing*'
   }
