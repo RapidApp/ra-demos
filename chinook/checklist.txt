@@ -277,12 +277,23 @@
 1.  Enable all columns
 2.  AutolSize columns
 3.  Scroll 'billingcity' into view
-4.  Enable editing
-5.  Change first 'Oslo' to 'Oslo FOOOO'
-6.  Hit TAB to edit billingstate
-7.  Enter 'BLAH'
-8.  Hit Enter then Escape
-9.  Click Reload button
+4.  Scroll 'composer (trackid)' into view
+5.  Change columns:
+     - toggle off Open Item Column
+     - toggle off all columns
+     - select only:
+        - invoicelineid
+        - invoiceid
+        - invoicedate
+        - billingaddress
+        - billingcity
+        - billingstate
+6.  Enable editing
+7.  Change first 'Oslo' to 'Oslo FOOOO'
+8.  Hit TAB to edit billingstate
+9.  Enter 'BLAH'
+10. Hit Enter then Escape
+11. Click Reload button
 10. Open Invoice grid (and mouse-out to rehide tree)
 11. click-highlight 'Oslo FOOOO' row
 12. Enable editing
@@ -292,12 +303,33 @@
       - click blank area in top-toolbar to end edit
 14. Click back to InvoiceLine grid
 15. Click Reload button
-16. Click back to Invoice grid (with Pawnee row still selected)
-17. Scroll to right
-18. Click delete button
-19. Click yes (confirm delete 1 item)
-20. Click back to InvoiceLine grid
-21. Click Reload button
+16. Hold shift to highlight the 4 InvoiceLIne rows
+17. Click back to Invoice grid (with Pawnee row still selected)
+18. Scroll to right
+19. Click delete button
+20. Click yes (confirm delete 1 item)
+21. Click back to InvoiceLine grid
+22. Click Reload button
+23. Click in blank part of grid to hide column menu
+24. Click in invoicelineid to highlight the middle 'Brussels' row
+25. Click-edit 'invoiceid'
+26. Click-select the 'Boston' Invoice
+27. Click Select
+28. Of the still selected row, click-edit (but don't change):
+     - billingaddress
+     - billingcity
+     - billingstate
+     - Hit Escape
+29. Click-edit 'invoiceid' again:
+     - sort by billing address
+     - Search for 'Germany' in quick search
+     - Click next page
+     - Click previous page
+30. Click Cancel
+31. Click back to Track grid
+32. (Make sure cell editing is still on)
+33. Click-edit 'mediatypeid' on a row in the middle
+34. Close grid window
 -----
 
 

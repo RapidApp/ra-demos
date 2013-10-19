@@ -662,7 +662,7 @@ EditMacroEditorType(seq) {
   else if(seq = 3) {
     vimJumpStringTop("TableSpecs",0)
     Sleep 200
-    vimJumpString("Genre",0)
+    vimJumpString("MediaType",0)
     Sleep 100
     Send {Down}
     Send i ; go into INSERT mode
@@ -674,22 +674,46 @@ EditMacroEditorType(seq) {
     Send {Left}{Backspace 4}combo
   }
   else if(seq = 5) {
-    Send {Down 4}{End}{Enter}
+    Send {Down}{End}{Enter}
     vimNewHashCnf("Track",0)
   }
   else if(seq = 6) {
     vimNewHashCnf("columns",0)
-  }
-  else if(seq = 7) {
+    
+    ; NEW (for faster dev, these are being added in one seq)
+    Sleep 500
+    vimNewHashCnf("trackid",0)
+    Sleep 500
+    SendRaw hidden => 1
+    
+    Sleep 500
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("name",0)
+    Sleep 500
+    SendRaw width => 140
+    
+    Sleep 500
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("mediatypeid",0)
+    Sleep 500
+    SendRaw width => 150
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw header => 'Media Type'
+    Sleep 500
+    
+    
+    Send {Down}{End}{Enter}
     vimNewHashCnf("bytes",0)
-  }
-  else if(seq = 8) {
+    Sleep 500
+    
     SendRaw renderer => 'Ext.util.Format.fileSize'
     Sleep 500
     Send {,}{Enter}
     SendRaw header => 'Size'
-  }
-  else if(seq = 9) {
+    
+    Sleep 500
+    
     Send {Down}{End}{Enter}
     vimNewHashCnf("unitprice",0)
     Sleep 500
@@ -697,8 +721,22 @@ EditMacroEditorType(seq) {
     Sleep 500
     Send {,}{Enter}
     SendRaw header => 'Unit Price'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw no_quick_search => 1
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw no_multifilter => 1
+    
+    Sleep 500
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("milliseconds",0)
+    SendRaw no_column => 1
+    
   }
-  else if(seq = 10) {
+
+  else if(seq = 7) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit
