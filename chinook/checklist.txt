@@ -175,7 +175,6 @@
 
 # GRID EDITING
 
-
 1. Refresh browser
  - Click open Album tab
  - Click Track tab
@@ -269,6 +268,7 @@
 
 
 
+# Relationship editing (browser demo)   (MOVED/in-progress)
 
 30. Open InvoiceLine grid
      - click expand tree

@@ -601,35 +601,35 @@ EditMacroRelEditing(seq) {
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{Enter}
-    vimNewHashCnf("InvoiceLine",0)
-  }
-  else if(seq = 5) {
-    SendRaw include_colspec => ['*','*.*'],
-  }
-  else if(seq = 6) {
-    Send {Up}{End}{Enter}{Tab}
-    SendRaw # join all columns of all relationships (first-level):
-    Send {Down}{End}{Enter}
-  }
-  else if(seq = 7) {
-    vimNewArrCnf("updatable_colspec",0)
-  }
-  else if(seq = 8) {
-    SendRaw 'unitprice','quantity',
-    Send {Enter}
-  }
-  else if(seq = 9) {
-    SendRaw 'invoiceid.billing*'
-  }
-  else if(seq = 10) {
-    Send {Up 6}{End}{Enter}
     vimNewHashCnf("Invoice",0)
   }
-  else if (seq = 11) {
+  else if (seq = 5) {
     SendRaw # Delete invoice_lines with invoice (cascade):
     Sleep 500
     Send {Enter}{Backspace 2}
     SendRaw destroyable_relspec => ['*','invoice_lines']
+  }
+  else if (seq = 6) {
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("InvoiceLine",0)
+  }
+  else if(seq = 7) {
+    SendRaw include_colspec => ['*','*.*'],
+  }
+  else if(seq = 8) {
+    Send {Up}{End}{Enter}{Tab}
+    SendRaw # join all columns of all relationships (first-level):
+    Send {Down}{End}{Enter}
+  }
+  else if(seq = 9) {
+    vimNewArrCnf("updatable_colspec",0)
+  }
+  else if(seq = 10) {
+    SendRaw 'unitprice','quantity',
+    Send {Enter}
+  }
+  else if(seq = 11) {
+    SendRaw 'invoiceid.billing*'
   }
   else if(seq = 12) {
     Send {Escape}
@@ -790,7 +790,7 @@ EditMacroCrudOpts(seq) {
     SendRaw # No delete confirmations:
   }
   else if (seq = 11) {
-    Send {Up 17}{End}{Enter}
+    Send {Up 21}{End}{Enter}
     vimNewHashCnf("Genre",0)
   }
   else if (seq = 12) {
