@@ -625,13 +625,18 @@ EditMacroRelEditing(seq) {
     vimNewArrCnf("updatable_colspec",0)
   }
   else if(seq = 10) {
-    SendRaw 'unitprice','quantity',
-    Send {Enter}
-  }
-  else if(seq = 11) {
+    SendRaw 'invoiceid'
+    Sleep 500
+    Send {,}
+    SendRaw 'unitprice'
+    Sleep 500
+    Send {,}
+    SendRaw 'quantity'
+    Sleep 500
+    Send {,}{Enter}
     SendRaw 'invoiceid.billing*'
   }
-  else if(seq = 12) {
+  else if(seq = 11) {
     Send {Escape}
     Sleep 200
     Send {Z 2} ; Save and exit

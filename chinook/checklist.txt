@@ -268,26 +268,36 @@
 
 
 
-# Relationship editing (browser demo)   (MOVED/in-progress)
+# Relationship editing (browser demo)
 
-30. Open InvoiceLine grid
+0.  Open InvoiceLine grid
      - click expand tree
      - click Invoice Line
      - click empty space in tab strip (re-hide tree)
-31. Enable all columns
-32. AutolSize columns
-33. Scroll 'billingcity' into view
-34. Enable editing
-35. Change first 'Oslo' to 'Oslo FOOOO'
-36. Hit TAB to edit billingstate
-37. Enter 'BLAH'
-38. Hit Enter then Escape
-39. Click Reload button
-40. Click back to the Track grid
-41. Enable cell editing
-42. Edits:
-     -5th row name: append ' 123' ENTER
-     -6th row name: append ' abc' click to the left
+1.  Enable all columns
+2.  AutolSize columns
+3.  Scroll 'billingcity' into view
+4.  Enable editing
+5.  Change first 'Oslo' to 'Oslo FOOOO'
+6.  Hit TAB to edit billingstate
+7.  Enter 'BLAH'
+8.  Hit Enter then Escape
+9.  Click Reload button
+10. Open Invoice grid (and mouse-out to rehide tree)
+11. click-highlight 'Oslo FOOOO' row
+12. Enable editing
+13. Click 'Oslo FOOOO' and change:
+      - billingcity to 'Pawnee'
+      - hit TAB and change billingstate to 'Indiana'
+      - click blank area in top-toolbar to end edit
+14. Click back to InvoiceLine grid
+15. Click Reload button
+16. Click back to Invoice grid (with Pawnee row still selected)
+17. Scroll to right
+18. Click delete button
+19. Click yes (confirm delete 1 item)
+20. Click back to InvoiceLine grid
+21. Click Reload button
 -----
 
 
