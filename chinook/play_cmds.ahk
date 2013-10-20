@@ -679,60 +679,65 @@ EditMacroEditorType(seq) {
   }
   else if(seq = 6) {
     vimNewHashCnf("columns",0)
-    
+    Sleep 500
     ; NEW (for faster dev, these are being added in one seq)
-    Sleep 500
-    vimNewHashCnf("trackid",0)
-    Sleep 500
-    SendRaw hidden => 1
     
-    Sleep 500
-    Send {Down}{End}{Enter}
-    vimNewHashCnf("name",0)
-    Sleep 500
-    SendRaw width => 140
-    
-    Sleep 500
-    Send {Down}{End}{Enter}
-    vimNewHashCnf("mediatypeid",0)
-    Sleep 500
-    SendRaw width => 150
-    Sleep 500
-    Send {,}{Enter}
-    SendRaw header => 'Media Type'
-    Sleep 500
-    
-    
-    Send {Down}{End}{Enter}
     vimNewHashCnf("bytes",0)
     Sleep 500
-    
     SendRaw renderer => 'Ext.util.Format.fileSize'
     Sleep 500
-    Send {,}{Enter}
-    SendRaw header => 'Size'
-    
-    Sleep 500
-    
+   
     Send {Down}{End}{Enter}
     vimNewHashCnf("unitprice",0)
     Sleep 500
     SendRaw renderer => 'Ext.util.Format.usMoney'
     Sleep 500
     Send {,}{Enter}
-    SendRaw header => 'Unit Price'
+    SendRaw header   => 'Price'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw width    => 50
+    Sleep 500
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("name",0)
+    Sleep 500
+    SendRaw header   => 'Name'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw width    => 140
+    Sleep 500
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("mediatypeid",0)
+    Sleep 500
+    SendRaw header   => 'Media Types'
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw width    => 150
+    Sleep 500
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("playlist_tracks",0)
+    SendRaw sortable  => 0
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("composer",0)
+    Sleep 500
+    SendRaw hidden   => 1
     Sleep 500
     Send {,}{Enter}
     SendRaw no_quick_search => 1
     Sleep 500
     Send {,}{Enter}
-    SendRaw no_multifilter => 1
-    
+    SendRaw no_multifilter  => 1
     Sleep 500
     
     Send {Down}{End}{Enter}
-    vimNewHashCnf("milliseconds",0)
+    vimNewHashCnf("trackid",0)
+    Sleep 500
     SendRaw no_column => 1
+    Sleep 500
     
   }
 

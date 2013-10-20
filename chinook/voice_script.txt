@@ -544,11 +544,15 @@ However, in other places, this might be overkill. For example, since there are o
 
 # Editor type + column TableSpecs (config)
 
-The TableSpec option 'auto_editor_type' controls the default interface type for selecting a row from the given source, such as in a single relationship column. 
+The TableSpec option 'auto_editor_type' determines the selector interface for single relationships, or foreign keys, linking to this table. 
 
-By default this is a grid, but can alternatively be set to 'combo' for a simple dropdown. The display column is used for the list entries, and all rows are loaded at once, so this setting is only suitable for relatively small tables with distinctive display columns.
+By default it's a grid, but can be set to 'combo' for a simple dropdown instead, with the display column used for the list entries. The combo has no pagination, meaning all rows are loaded in the list at once, so it's only suitable for relatively small tables with distinctive display columns.
 
-This is clearly the case for Media Type, but is still a judgment call that the system can't make on its own. That's why it defaults to heavier grid interface, which works for any type of data.
+This is clearly the case for Media Type, but is still a judgment call that the system can't make on its own. That's why the default is the heavier grid interface which works in all cases.
+
+The system automatically configures column behaviors based on the 
+
+There are also column-specific TableSpec
 
 The system automatically configures a great deal based on the database schema, but that only goes so far.
 
