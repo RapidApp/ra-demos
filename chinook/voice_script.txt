@@ -564,39 +564,42 @@ You can also turn off certain capabilities, like storability, which you might wa
 
 We don't have enough rows for it to matter, but it would be a very different story with hundreds of thousands, or millions of rows.
 
-You can also configure certain columns to start hidden.
+You can also configure certain columns to start hidden, as well as other Boolean flags such as excluding columns from the grid quick search, and from filters.
 
-There are other Boolean flags available as well, such as excluding columns from the grid quick search and filters.
+You can also turn add and edit off for individual columns which will override the creatable and updatable colspecs. 
 
+This config is actually already the default for trackid because its an auto increment column, but you can turn them back on if you want.
 
+Or, you can disable the column from showing up altogether, which will hide it in the grid and columns menu.
 
-which, such as. This is sometimes a good idea
+This is still separate from the quick search and filters, so to completely hide it from the interface you need to turn those off as well.
 
+These are just a few of the column-level options that are available. 
 
+I should also mention that these TableSpec settings are actually just defaults that get consumed by the real components later on, like grids and pages, which link to the result sources. 
 
- to display it as
+The final options can be set programmatically in those components, such as on each request, based on the user session for the purposes of permissions, and so on. 
 
- is an integer column, 
-
-
-according to the data.
-
- for the data model. These are set according
-
-The system automatically configures column behaviors according to the schema.
-
-There are also column-specific TableSpec
-
-The system automatically configures a great deal based on the database schema, but that only goes so far.
+But those details will be covered in a much later demo. I only bring it up now to be clear that RapidApp is NOT limited by hard-coded settings.
 
 
 # Editor type + column TableSpecs (demo)
 
-TODO
+If we reload the Track grid we can see the new column settings, like headers, default widths, and the custom renderers we configured for bytes and price.
 
-----
+Also, since we turned off sorting for the playlist_tracks column, clicking its header does nothing. We can also see that the sort options disabled in its header menu.
 
-You may have noticed that each change and cell edit we make save instantly. This is because of the persist_immediately settings which are on by default, but can also be customized in the RapidDbic config.
+The columns we set as hidden, composer and milliseconds, are also already unchecked in the columns menu as expected, and trackid isn't available at all since we disabled it entirely. 
+
+Media Type and Genre also now use simple combo dropdowns for editing which can be changed much faster than the grid selector.
+
+Notice that the Genre dropdown provides (None) as a choice but Media Type doesn't. This is once again because mediatypeid isn't nullable, while genreid is.
+
+When allowed, NULL can also be chosen in the grid selector via the 'Select None' button in the bottom-left corner. The button is only shown when the foreign key column is nullable, which albumid is.
+
+... TODO: transition text
+
+You may have noticed that each change and cell edit we make saves instantly. This is because of the persist_immediately settings which are on by default, but can also be customized in the RapidDbic config.
 
 # Custom CRUD configs
 

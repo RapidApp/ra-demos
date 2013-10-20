@@ -32,7 +32,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroCrudOpts
+;skip_to = EditMacroEditorType
 ;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
@@ -670,6 +670,7 @@ EditMacroEditorType(seq) {
     Send {End}{,}{Enter}
     SendRaw auto_editor_type => 
     Sleep 500
+    Send {Space}
     SendRaw 'grid'
     Sleep 1000
     Send {Left}{Backspace 4}combo
@@ -754,7 +755,27 @@ EditMacroEditorType(seq) {
     Send {Down}{End}{Enter}
     vimNewHashCnf("trackid",0)
     Sleep 500
-    SendRaw no_column => 1
+    SendRaw allow_add  => 0
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw allow_edit => 0
+    
+    Sleep 1000
+    Send {Backspace}1{Up}{End}{Left}{Backspace}1
+    Sleep 1000
+    Send {Left 15}{#}
+    Sleep 500
+    Send {Down}{Left}{#}
+    Sleep 1000
+    Send {End}{Enter}{Backspace}
+    
+    SendRaw no_column   => 1
+    Sleep 1000
+    Send {,}{Enter}
+    SendRaw no_quick_search => 1
+    Sleep 500
+    Send {,}{Enter}
+    SendRaw no_multifilter  => 1
     Sleep 500
     
   }
