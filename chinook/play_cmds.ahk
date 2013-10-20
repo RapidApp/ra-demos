@@ -668,13 +668,18 @@ EditMacroEditorType(seq) {
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{,}{Enter}
-    SendRaw auto_editor_type => 'grid'
-  }
-  else if(seq = 4) {
+    SendRaw auto_editor_type => 
+    Sleep 500
+    SendRaw 'grid'
+    Sleep 1000
     Send {Left}{Backspace 4}combo
   }
+  else if(seq = 4) {
+    Send {Up 4}{End}{,}{Enter}
+    SendRaw auto_editor_type => 'combo'
+  }
   else if(seq = 5) {
-    Send {Down}{End}{Enter}
+    Send {Down 5}{End}{Enter}
     vimNewHashCnf("Track",0)
   }
   else if(seq = 6) {
@@ -702,24 +707,37 @@ EditMacroEditorType(seq) {
     Send {Down}{End}{Enter}
     vimNewHashCnf("name",0)
     Sleep 500
-    SendRaw header   => 'Name'
+    SendRaw header => 'Name', width => 140
     Sleep 500
-    Send {,}{Enter}
-    SendRaw width    => 140
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("albumid",0)
+    Sleep 500
+    SendRaw header => 'Album', width => 130
     Sleep 500
     
     Send {Down}{End}{Enter}
     vimNewHashCnf("mediatypeid",0)
     Sleep 500
-    SendRaw header   => 'Media Types'
+    SendRaw header => 'Media Type', width => 165
     Sleep 500
-    Send {,}{Enter}
-    SendRaw width    => 150
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("genreid",0)
+    Sleep 500
+    SendRaw header => 'Genre', width => 110
     Sleep 500
     
     Send {Down}{End}{Enter}
     vimNewHashCnf("playlist_tracks",0)
     SendRaw sortable  => 0
+    Sleep 500
+    
+    Send {Down}{End}{Enter}
+    vimNewHashCnf("milliseconds",0)
+    Sleep 500
+    SendRaw hidden   => 1
+    Sleep 500
     
     Send {Down}{End}{Enter}
     vimNewHashCnf("composer",0)

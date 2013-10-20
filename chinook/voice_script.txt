@@ -544,20 +544,53 @@ However, in other places, this might be overkill. For example, since there are o
 
 # Editor type + column TableSpecs (config)
 
-The TableSpec option 'auto_editor_type' determines the selector interface for single relationships, or foreign keys, linking to this table. 
+The TableSpec option 'auto_editor_type' determines the interface used when selecting a single row from the source, such as when it's the *target* of a foreign key, or single relationship column, as we just saw in the Track grid.
 
-By default it's a grid, but can be set to 'combo' for a simple dropdown instead, with the display column used for the list entries. The combo has no pagination, meaning all rows are loaded in the list at once, so it's only suitable for relatively small tables with distinctive display columns.
+By default this is a grid selector, but can be set to 'combo' to be a simple dropdown menu instead, with the display column used for the entries in the list. 
 
-This is clearly the case for Media Type, but is still a judgment call that the system can't make on its own. That's why the default is the heavier grid interface which works in all cases.
+This is only suitable for relatively small tables with distinctive display columns. This is a judgment call that the system can't make on its own.
 
-The system automatically configures column behaviors based on the 
+Based on our knowledge of the real data and how it's being used in our application, we'll go ahead and use the combo for Media Type, ... and also Genre.
+
+There are also column-level TableSpec settings that we can set to further tailor interfaces and behaviors specific to our data.
+
+For example, 'bytes' is an integer column in the Track table, but more specifically, we know it represents file sizes, so we can set a renderer specific to that content. This is just the name of a JavaScript function used to format the column.
+
+Likewise, the schema only know that 'unitprice' is a decimal column, but since we know it's storing money values, we can set a money-specific renderer for displaying it as well.
+
+Friendly header names, and default column widths can also be set, which we'll go ahead and do for several columns.
+
+You can also turn off certain capabilities, like storability, which you might want to do in certain places for performance. Here we're turning it off for the multi-relationship playlist_tracks which is a comparatively expensive subquery returning the related count. 
+
+We don't have enough rows for it to matter, but it would be a very different story with hundreds of thousands, or millions of rows.
+
+You can also configure certain columns to start hidden.
+
+There are other Boolean flags available as well, such as excluding columns from the grid quick search and filters.
+
+
+
+which, such as. This is sometimes a good idea
+
+
+
+ to display it as
+
+ is an integer column, 
+
+
+according to the data.
+
+ for the data model. These are set according
+
+The system automatically configures column behaviors according to the schema.
 
 There are also column-specific TableSpec
 
 The system automatically configures a great deal based on the database schema, but that only goes so far.
 
 
-# Editor type + column TableSpecs (config)
+# Editor type + column TableSpecs (demo)
 
 TODO
 
