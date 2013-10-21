@@ -32,7 +32,7 @@ active_macro_seq = 0
 skip_to = 0
 exit_at = 0
 
-;skip_to = EditMacroEditorType
+;skip_to = EditMacroVirtualColumn
 ;skip_to = at_commit_5
 exit_at = END_SCRIPT
 
@@ -806,10 +806,11 @@ EditMacroCrudOpts(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("__PACKAGE__",0)
-    Sleep 200
-    vimJumpString("grid_params",0)
-    Sleep 200
+    ;vimJumpStringTop("__PACKAGE__",0)
+    ;Sleep 200
+    ;vimJumpString("grid_params",0)
+    Send {Up 69}
+    Sleep 2000
     vimJumpString("Track",0)
     Sleep 200
     vimJumpString("include_colspec",0)
@@ -920,9 +921,7 @@ EditMacroVirtualColumn(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("DB",0)
-    Sleep 200
-    vimJumpString("(grid_params",0)
+    vimJumpStringTop("(TableSpecs",0)
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
@@ -986,17 +985,26 @@ EditMacroVirtColWritable(seq) {
     SendRaw $row->update({ firstname=>$fn, lastname=>$ln });
   }
   else if(seq = 7) {
-    Send {Escape}
-    Sleep 200
-    vimJumpString("Genre",0)
-    Sleep 200
-    Send i ; go into INSERT mode
+    ;Send {Escape}
+    ;Sleep 200
+    ;vimJumpStringTop("(TableSpecs",0)
+    ;Sleep 500
+    ;vimJumpString("Genre",0)
+    ;Sleep 200
+    ;Send i ; go into INSERT mode
+    ;Sleep 500
+    ;Send {Enter}{Up}
+    SetKeyDelay, 30
+    Send {Up 62}{Enter}
+    ResetDefaultKeyDelay()
     Sleep 500
-    Send {Enter}{Up}
     vimNewHashCnf("Employee",0)
   }
   else if(seq = 8) {
     SendRaw display_column => 'full_name'
+    Sleep 500
+    Send {Up}{Enter}{Tab}{#}{Space}
+    SendRaw Use virtual column 'full_name' as the display column:
   }
   else if(seq = 9) {
     Send {Escape}
