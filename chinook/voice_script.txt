@@ -595,7 +595,7 @@ Media Type and Genre also now use simple combo dropdowns for editing which can b
 
 Notice that the Genre dropdown provides (None) as a choice but Media Type doesn't. This is once again because mediatypeid isn't nullable, while genreid is.
 
-When allowed, NULL can also be chosen in the grid selector via the 'Select None' button in the bottom-left corner. The button is only shown when the foreign key column is nullable, which albumid is.
+When allowed, NULL can also be chosen in the grid selector via 'Select None' in the bottom-left. The button is only shown when the foreign key column is nullable, which albumid is.
 
 ... TODO: transition text
 
@@ -605,7 +605,7 @@ You may have noticed that each change and cell edit we make saves instantly. Thi
 
 Persist immediately is a grid_params setting that can be turned on or off for each kind of write operation: create, update and destroy. 
 
-This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This is similar to the behavior of a text editor, or other typical file-based application.
+This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This mode is similar to the behavior of a text editor, or other typical file-based application.
 
 As we'll see in a moment, you can further control how and when to enter data for new rows with the 'use_add_form' setting. This can be turned off to skip prompting the user for column values, and instead insert blank, empty rows.
 
@@ -619,7 +619,7 @@ use_add_form also accepts a string value to control whether to use a 'window' or
 
 There is also a use_edit_form setting which supports the same false, window or tab choices. Turning it off simply removes the edit button from the interface.
 
-Turning off use_add_form means the grid will be used for both creating and editing rows. When persist_immediately-create is also off, the user is still able supply initial column values before saving new rows to the database.
+Turning off use_add_form means the grid will be used for both creating and editing rows. When persist_immediately-create is also off, the user can edit the initial column values before saving new rows to the database.
 
 On the other hand, if you turn off the add form without turning off persist_immediately-create, actual blank rows will be inserted into the database. 
 
@@ -633,7 +633,7 @@ Now let's save, commit and restart so we see these configs in action.
 
 When persist_immediately is off, changes are queued until you click the newly available Save button, which is enabled as soon as the first change is made. 
 
-Unsaved changes are also shown visually by a red asterisk in the tab title, and a red triangle on individual columns.
+Unsaved changes are also shown visually with a red asterisk in the tab title, and a red triangle on individual columns.
 
 You can make as many changes within the current page as you like before clicking save which persists all of them at once.
 
@@ -653,7 +653,7 @@ This is basically the same concept as the add form, in that the field values don
 
 It is the values that are set when save is clicked that get inserted, at which point the phantom row transforms into a real row, with real values returned from the database, such as mediatypeid, which is an auto-increment column that is assigned automatically by the database.
 
-Deleting a phantom row means it existed, just like closing the add form instead of saving it. These are just different interface styles for the same concept.
+Deleting a phantom row means it never existed, just like if you closed the add form instead of saving it. These are just different interface styles for the same concept.
 
 In the Genre grid we left persist_immediately on for all operations, which you can see from the absence of save and undo buttons in the toolbar. 
 
@@ -663,28 +663,18 @@ We can still edit the rows to set the column values, so there is no real differe
 
 There are different rationales and reasons you might want to pick one over another which will depend on the database design and application requirements. 
 
-All sorts of different core CRUD workflow scenarios can be configured with only a handful of options. 
+All sorts of different CRUD workflows can be configured with only a handful of options. 
 
 These interfaces, while complete and fully functional out of the box, are still only base paradigms which can be customized and extended into unique applications.
-
-
-# TableSpecs (Config)
-
-Individual edit behaviors can be customized as well.
-
-For example, when editing single relationships, a grid selector
-
-
-
 
 
 # VIRTUAL COLUMNS (Config)
 
 Another powerful, general-purpose database feature is virtual_columns which can be configured ad-hoc. 
 
-Virtual Columns behave like ordinary columns, but with user-defined, computed values, supplied as SQL expressions.
+Virtual Columns behave like ordinary columns, but with user-defined, computed values.
 
-This is basically a free-form hook into the column interface.
+This basically provides a free-form hook into the column interface.
 
 For example, the Employee table has physical columns lastname and firstname. We can add a simple virtual column called "fullname" to be a concatenation of the two...
 
@@ -698,7 +688,7 @@ This is a literal SQL string that will be evaluated by the database, except for 
 
 Pipe-pipe is the string concatenation operator in SQLite, so here we are simply joining firstname and lastname with a space in the middle.
 
-The SQL must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, under MySQL, this wouldn't work. Instead of the double-pipes, you would need to use the CONCAT function.
+The SQL must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, this wouldn't work in MySQL. Instead of the double-pipes, you would need to use the CONCAT function.
 
 Let's save and commit and get back into the app.
 
