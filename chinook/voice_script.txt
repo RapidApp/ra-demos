@@ -43,21 +43,21 @@ Next, we need to create the new Catalyst application using the helper script pro
 
 The catalyst.pl helper script has now created a skeleton of base files and directories which will be working in moving forward.
 
-The first thing we're going to do is setup the git repository to track our changes.
+Now I'm going to setup the actual git repository and tracking mechanisms I already described for the purposes of the demo. 
 
-I'm also going to setup a simple bash alias to automate committing changes going forward.
+First, Initialize a fresh repo, 
+  and then link it to Github.
 
-So when we type Commit with a capital C, it will automatically:
-* Write outstanding commands to the history file
-* And copy it to cmd_history.sh
+I'm going to setup a shortcut command to automate recording the changes as we go, so we can use 'Commit' with a capital C to:
+
+* Append the command history to cmd_history.sh
+* Reformat multiline commands, which I'll explain in a second
 * Add all changes to the git index
 * And commit those changes with the supplied commit message
 
-Now, we'll use this new command to record our first commit.
+This RestoreHistNewlines alias is just for formatting, to put back newlines that get stripped in the command history. You don't need to understand it unless you're interested.
 
-again, this is the repository that is available on github. I'll push it at the end of the video. 
-
-
+The only thing that matters for the purposes of the demo is that we can now record our changes with the Commit command, which we'll start using now.
 
 Now we need to download the actual Chinook database
 
