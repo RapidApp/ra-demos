@@ -2,20 +2,21 @@
 rm -rf RA-ChinookDemo/
 source ../env_setup.sh
  # -- RapidApp "Chinook" Video Demo Series --
+ # 
+ #     (www.rapidapp.info/demos/chinook)
  #
  # Part 1. Intro and Setup
  #
  # * Agenda
  #    * Build a new webapp from scratch, using RapidApp
- #    * Database-driven, with the "RapidDbic" plugin
- #       (CRUD, query builder, custom views, etc)
- #    * Using the "Chinook" sample database
+ #    * Around the "Chinook" sample database
  #       (http://chinookdatabase.codeplex.com/)
+ #    * Focus on database features using the "RapidDbic" plugin
+ #       (grids, CRUD, query builder, custom views, etc)
+ #    * Record all commands & changes real-time in Git
+ #       (https://github.com/IntelliTree/RA-ChinookDemo) 
  #    * All steps performed live/real-world within this shell
  #       (SSH session on an ordinary Linux box)
- #    * Test and demo as we go in Firefox
- #    * Record all commands & changes real-time in Git
- #       (https://github.com/IntelliTree/RA-ChinookDemo)
  #
  # -->
 ###################################################################
@@ -28,12 +29,10 @@ source ../env_setup.sh
  #
  # * You should already know about:
  #    *  Perl
- #    *  CPAN
  #    *  Catalyst
  #    *  DBIx::Class (aka "DBIC")
  #    *  Relational database concepts
  #    *  Git
- #    *  Linux/bash
  #
  # ----
 clear

@@ -1,49 +1,43 @@
-Part 0 - Intro and setup
+Part 1 - Intro and setup
 
-(A) - INTRO
+##### NEW #####
 
 Welcome to the RapidApp "Chinook" demo.
 
-In this demo video we're going to build a new webapp from scratch, step by step, using RapidApp, with the "Chinook" sample database for the backend
+In this demo we're going to create a complete web application from the ground up using the RapidApp.
 
-We're going to build a Database-driven application, using the "RapidDbic" plugin, which is a component of RapidApp that provides out-of-the box front-ends for DBIx colon-colon Class, or "DBIC" for short. 
+We'll be building around the freely available Chinook sample db to demonstrate RapidApp's powerful suite of database features, which are bundled in the turn-key "RapidDbic" plugin.
 
-RapidDbic essentially auto-configures other RapidApp modules, which as we'll see, sets up grid and page views for DBIC Sources, proving CRUD, interactive query builders, customizable views, and so on
+We'll use this to start with generalized, out-of-the-box base interfaces and functions, like grids, CRUD modes, query builders, customized views, users and permissions, and so on, and then progressively customize and extend unique examples, including integration with existing code from the Perl, Catalyst and DBIC ecosystems.
 
-For this demo, as I mentioned, we're going to use the Chinook sample database. Chinook is a freely available sample data model, with some nice sample data. It provides multiple tables with various types columns, indexes, relationships, foreign-key constraints, and so on. The purpose of Chinook is exactly for the type of demo we're doing in this video, showcasing the common use-cases for relational databases
+In an effort to make this demo as efficient and useful as possible, each video is being recorded in lock-step with a repository on Github, containing not only the code, but also the complete history of shell commands. 
+
+In fact, this *is* the shell we'll be working in, which is an SSH session on a Linux box. 
+
+I'm using simple text comments instead of slides so they are a part of the command history, which is in cmd_history.sh in the repo:
+
+(open the cmd history in github)
+
+The intent is to make it easy to jump ahead to specific sections and topics while still being a step-by-step tutorial, with full continuity, beginning to end, so it should be useful to both novice and experienced developers.
+
+RapidApp is built on top of existing technologies, and this demo assumes you are already familiar with at least the basics of:
+
+ Perl,
+ Catalyst,
+ And DBIC.
+
+You should also be familiar with relational database concepts in general, ... table schemas, foreign keys, and whatnot.
+
+And you obviously need to understand Git for the premise of this demo to make sense.
 
 
-All steps will be performed live/real-world within this shell, which is an SSH session on an ordinary Linux box.
-
-We will test as we go, and demonstrate the features and functionality in Firefox.
-
-But all commands and changes will be done in this command shell and recorded with Git, and since you are already in the future, it is available on Github at the url shown
-
-I'm also recording the full command history - which is what is on the screen now, and is both the live commands being run, as well as serving the function of slides for this video
-
-
-This video does assume the viewer has some prior knowledge. To get the most out of this video you should already know about
-
-Perl and CPAN.
-
-Catalyst, since RapidApp is an extension to Catalyst, which is what we'll be working in.
-
-DBIC, and relational database concepts in general
-
-Git, just so you can follow along in the repo and download the code we'll be building
-
-And finally, Linux and bash just since that is the environment we're working in, within the command shell.
-
-If you're not up to speed on all these topics, don't worry, you can still follow along and learn as you go, and there are plenty of resources available online. This video is designed to make following along as easy as possible, with every command and change recorded.
-
-(B) - APP/GIT SETUP
+# App/Git setup
 
 So, first things first, we need to download and install the latest RapidApp from CPAN. 
 
 As you can see, I already have RapidApp on my system, but if I didn't, it would have been automatically installed, along with all its dependencies, including Catalyst.
 
 If you don't have cpanm, you need to install cpanminus. Cpanminus is a handy tool for installing CPAN packages with dependencies without all the fuss and setup required for the traditional cpan client.
-
 
 Next, we need to create the new Catalyst application using the helper script provided by Catalyst. The app could be named anything, but I'm going to call it RA::ChinookDemo.
 
@@ -286,7 +280,7 @@ In this case, customerid is a foreign key which links each invoice row to a spec
 
 Customer id is a single relationship, or a "belongs_to", because you can imagine that each invoice 'belongs to' a given customer.
 
-The other side of this single relationship  that is, from the perspective of the customer table  is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
+The other side of this single relationship - that is, from the perspective of the customer table - is a multi relationship, or a "has_many", because a given customer can be thought to "have many" invoices.
 
 The invoice table has a multi relationship of its own, invoice_lines, because an invoice "has_many" lines.
 

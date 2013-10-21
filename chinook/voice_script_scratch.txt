@@ -2,6 +2,11 @@
 
 "RapidDbic is a jump-starter for a database driven application"
 
+
+
+
+So, this is sort of like a movie with four tracks instead of two. Not only audio and video, but code and command tracks, too.
+
 ##################
 
 
@@ -20,6 +25,112 @@ We're going to build this application around the free Chinook sample database ..
 
 
 
+
+
+
+the structure of this demo to make sense.
+
+
+
+
+And if you don't know about Git, the whole premise of how this demo is structured 
+
+real-time code and command history premise of this 
+
+change tracking concept of this demo
+
+
+
+
+Catalyst, since RapidApp is an extension to Catalyst, which is what we'll be working in.
+
+DBIC, and relational database concepts in general
+
+Git, just so you can follow along in the repo and download the code we'll be building
+
+And finally, Linux and bash just since that is the environment we're working in, within the command shell.
+
+If you're not up to speed on all these topics, don't worry, you can still follow along and learn as you go, and there are plenty of resources available online. This video is designed to make following along as easy as possible, with every command and change recorded .
+
+
+
+
+ users.
+
+This video part covers the preliminary setup of a new Catalyst app
+
+a transparent, 
+
+In this video we'll be  
+
+
+
+
+Everything is live code
+
+ slight of hand
+
+, with functioning example code at every point, as well as providing the full step-by-step 
+
+ parts and sections and the parts and sections they are interested you want to learn about while still 
+
+
+
+
+repository
+
+In order to make this demo more useful than just a video, I'm recording in lock-step with a Git repository, to record everything that happens from the standp[oint of code
+
+which contains not only 
+
+ it is tightly integrated with a companion Git repository
+
+based on both
+
+ with the RapidApp API, including how RapidApp integrates with the rest of the 
+
+Ecosphere 
+
+
+ of this module, 
+
+ of , which will be our focus
+
+Chinook is a freely available sample data model, with some nice sample data. It provides multiple tables with various types columns, indexes, relationships, foreign-key constraints, and so on. 
+
+The focus
+
+ open-source framework.
+
+We're going to build this application around the free Chinook sample database in order to showcase 
+
+
+
+
+
+
+#####
+
+(A) - INTRO
+
+Welcome to the RapidApp "Chinook" demo.
+
+In this demo video we're going to build a new webapp from scratch, step by step, using RapidApp, with the "Chinook" sample database for the backend
+
+We're going to build a Database-driven application, using the "RapidDbic" plugin, which is a component of RapidApp that provides out-of-the box front-ends for DBIx colon-colon Class, or "DBIC" for short. 
+
+RapidDbic essentially auto-configures other RapidApp modules, which as we'll see, sets up grid and page views for DBIC Sources, proving CRUD, interactive query builders, customizable views, and so on 
+
+For this demo, as I mentioned, we're going to use the Chinook sample database. Chinook is a freely available sample data model, with some nice sample data. It provides multiple tables with various types columns, indexes, relationships, foreign-key constraints, and so on. The purpose of Chinook is exactly for the type of demo we're doing in this video, showcasing the common use-cases for relational databases 
+
+
+All steps will be performed live/real-world within this shell, which is an SSH session on an ordinary Linux box.
+
+We will test as we go, and demonstrate the features and functionality in Firefox.
+
+But all commands and changes will be done in this command shell and recorded with Git, and since you are already in the future, it is available on Github at the url shown 
+
+I'm also recording the full command history - which is what is on the screen now, and is both the live commands being run, as well as serving the function of slides for this video
 
 
 
