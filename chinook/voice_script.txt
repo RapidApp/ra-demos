@@ -46,7 +46,7 @@ RapidApp is built on top of existing technologies, and this demo assumes you are
  Catalyst,
  And DBIC.
 
-You should also be familiar with relational database concepts in general, ... table schemas, foreign keys, and whatnot.
+You should also be familiar with relational database concepts in general, ... table schemas, data types, foreign keys, and whatnot.
 
 And you obviously need to understand Git for the premise of this demo to make sense.
 
@@ -70,26 +70,30 @@ First, Initialize a fresh repo,
 
 I'm going to setup a shortcut command to automate recording the changes as we go, so we can use 'Commit' with a capital C to:
 
-* Append the command history to cmd_history.sh
+* Append the latest command history to cmd_history.sh
 * Reformat multiline commands, which I'll explain in a second
 * Add all changes to the git index
-* And commit those changes with the supplied commit message
+* and commit those changes with a commit message
 
-This RestoreHistNewlines alias is just for formatting, to put back newlines that get stripped in the command history. You don't need to understand it unless you're interested.
+RestoreHistNewlines is itself an alias which I'll create now. 
 
-The only thing that matters for the purposes of the demo is that we can now record our changes with the Commit command, which we'll start using now.
+This is just for formatting of the history file, so that commands we split up into multiple lines using backslashes will look the same instead of being mushed into one line.
 
-Now we need to download the actual Chinook database
+We're just using sed to do some string processing. You don't need to understand it unless you're interested. The only reason it's being shown is because in this demo, everything is. 
 
-Chinook is available in multiple database formats, and DBIC supports multiple formats, but we'll be using SQLite for this demo.
+The only thing that matters for our purposes is that we can now record changes as we go with a single command:
 
-I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead I've just already downloaded and extracted this zip file into the parent directory of our app.
+Now we need to download the actual Chinook database.
+
+Chinook is available in multiple formats. DBIC supports multiple formats, but we'll be using SQLite for this demo.
+
+I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead I've just already downloaded and extracted this zip file into the parent directory of our app, which I'll copy into our working directory now.
 
 We're going to use the basic sql file which includes both the DDL, or schema, and the sample data.
 
 As you can see, this file is about 1.8 megs.
 
-Now, I'm going to use it to create a new SQLite database, chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes
+Now, I'm going to use it to create a new SQLite database, chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes.
 
 Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
 
@@ -108,17 +112,19 @@ Now we're going to create a Catalyst DBIC Schema Model for our new database usin
 * using this for the DBIC schema namespace
 * And now we'll set some Schema::Loader options, creating the result classes one time, statically, and also turning off POD generation in the created files
 * Now comes the DSN string, which we're pointing at our SQLite database file
-* And finally, we'll set some connect_info options, such as enabling Unicode
-*  and setting quote_names, which is required for RapidApp
+* And finally, we'll set some SQLite-specific connect_info options, such as enabling Unicode 
+*  and turning on foreign key constraints, which are standard, but not on by default in SQLite
+*  and finally, setting quote_names, which has to do with how keywords are quoted in the SQL DBIC generates, and is required for RapidApp
 
 For more info on this command and the available options, see the DBIC::Schema helper docs on CPAN
 
 Now we'll commit the changes, which shows the files that were just created. 
 
-These include the DBIC Schema and 11 result classes for each of the tables in the Chinook database, and the Catalyst Model, which links to them
+These include the DBIC Schema and 11 result classes for each of the tables in the Chinook database, and the Catalyst Model, which links to them.
 
 
-Part 1 - RapidDbic
+
+Part 2 - RapidDbic
 
 
 RECAP

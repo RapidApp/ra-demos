@@ -106,15 +106,17 @@ alias Commit='\
     git add --all && \
     git commit -m'
  #
- # Setup 'RestoreHistNewlines' alias (used in 'Commit' above)
- # - 'sed' command puts newlines back for multi-line commands 
- #   that used backslash (\) to escape newlines. They get stripped
- #   by the shell when recorded in the history file, and this
- #   puts them back... 
- #   This is just for readability in cmd_history.sh:
+ # Setup 'RestoreHistNewlines' alias (used in 'Commit' above):
 alias RestoreHistNewlines='\
   sed -i -e \
    '"'"'/\\$/,/[^\\]$/{p;d;};/^[a-z]/s/ \( \) *\([^#]\)/ \\\n \1 \2/g'"'"''
+ #
+ # ^^ 'sed' command puts newlines back for multi-line commands 
+ #    that use backslash (\) to escape newlines. They get stripped
+ #    by the shell when recorded in the history file, and this
+ #    puts them back... 
+ #    This is just for readability in cmd_history.sh
+ #
  #
  # Now we can record progress & history in a simple one-liner:
 Commit 'first commit - freshly created Catalyst app'
