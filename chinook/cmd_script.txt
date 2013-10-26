@@ -27,6 +27,49 @@ source ../env_setup.sh
 ###################################################################
  # --
  #
+ # Part 1 ($self)
+ #   * Intro, agenda, prerequisite knowledge, etc
+ #   * RapidApp installation
+ #   * Create a new skeleton Catalyst app
+ #   * Setup Git and Commit shortcuts
+ #   * Download the chinook database from the web
+ #   * Setup Catalyst DBIC Model for the database
+ #   git tag: 01_prepared_app
+ #
+ # Part 2 (RapidDbic Basics)
+ #   * Enable RapidDbic Plugin
+ #   * Demo main out-of-the-box features
+ #     * Schema-based interfaces, grids, searching, reports, etc
+ #   * Relationships
+ #   * Editing (CRUD)
+ #   * Interface options
+ #   * Virtual Columns
+ #   git tag: 02_rapiddbic_basics
+ #
+ # Part 3 (User Authentication and Saved Views)
+ #   * AuthCore Plugin
+ #     * Instant user db, sessions, authentication
+ #   * User management
+ #   * NavCore Plugin
+ #     * Saved Views (per-user and public)
+ #     * Managable navagation tree (drag/drop)
+ #   git tag: 03_auth_and_saved_views
+ #
+ # Part 4 and Beyond
+ #   * Extension and Customization
+ #   * Templates
+ #   * Integrating normal Catalyst Controllers/Views
+ #   * Asset management (CSS, JavaScript, Images)
+ #
+ # Living Demo
+ #   * New sections added on an ongoing basis
+ #   * Future topics in branches
+ #
+ # ----
+ #
+ #
+ # Prerequisite Knowledge:
+ #
  # * You should already know about:
  #    *  Perl
  #    *  Catalyst
