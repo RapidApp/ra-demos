@@ -33,8 +33,8 @@ skip_to = 0
 exit_at = 0
 
 ;skip_to = EditMacroVirtualColumn
-;skip_to = at_commit_5
-exit_at = END_SCRIPT
+;skip_to = EditMacroVirtColWritable
+;exit_at = END_SCRIPT
 
 bypass_test_server = 1
 fake_db_setup = 1
@@ -78,7 +78,8 @@ AdvanceNext(auto) {
     }
   }
   else {
-    return AdvanceNextLine()
+    Gosub, AdvanceNextLine
+    return
   }
 }
 
@@ -95,12 +96,9 @@ StartStopAutoAdvance() {
 AutoAdvanceNext(delay) {
   global
   auto_next = 1
-  Sleep %delay%
-  if(auto_next) {
+  while auto_next {
+    Sleep %delay%
     AdvanceNext(1)
-  }
-  if(auto_next) {
-    return AutoAdvanceNext(delay)
   }
 }
 
@@ -168,8 +166,8 @@ FinishMacro() {
   active_macro_seq = 0
 }
 
-AdvanceNextLine() {
-  global
+AdvanceNextLine:
+  ;global
   WinGetActiveTitle, WinTitle
   if(WinTitle = ShellTitle) {
   
@@ -207,7 +205,8 @@ AdvanceNextLine() {
         skip_to = 0 ; turn off for rest of script
       }
       else {
-        return AdvanceNextLine()
+        Gosub, AdvanceNextLine
+        return
       }
     }
     
@@ -260,7 +259,8 @@ AdvanceNextLine() {
       ; Look ahead and advance to the next line if its a comment, too
       FileReadLine, nextline, cmd_script.txt, %indx%
       if(IsCommentLine(nextline) && !ErrorLevel) {
-        return AdvanceNextLine()
+        Gosub, AdvanceNextLine
+        return
       }
     }
 
@@ -283,8 +283,8 @@ AdvanceNextLine() {
     MsgBox Wanted active title '%ShellTitle%', got '%WinTitle%' - exiting!
     ExitApp
   }
-  return
-}
+return
+
 
 ; Gets a macro name from a special comment line:
 ; # <[SomeLabel]>
