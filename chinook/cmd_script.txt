@@ -60,6 +60,7 @@ source ../env_setup.sh
  #   * Templates
  #   * Integrating normal Catalyst Controllers/Views
  #   * Asset management (CSS, JavaScript, Images)
+ #   * Etc...
  #
  # Living Demo
  #   * New sections added on an ongoing basis
@@ -152,6 +153,8 @@ git tag 01_prepared_app
 #git push -u --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
+ # 
+ #     (www.rapidapp.info/demos/chinook)
  #
  #  Part 2. RapidDbic Basics
  #
@@ -168,6 +171,14 @@ clear
  #
 git log
 q
+git tag
+ #
+ # To jump straight to this point from scratch:
+ #
+ #   git clone https://github.com/IntelliTree/RA-ChinookDemo
+ #   cd RA-ChinookDemo
+ #   git checkout 01_prepared_app
+ #
  #
  # <[EditMacroOne]> - Configure bare-bones RapidDbic
  #
@@ -215,6 +226,8 @@ git tag 02_rapiddbic_basics
 #git push --tags origin master
 clear
  # -- RapidApp "Chinook" Video Demo Series --
+ # 
+ #     (www.rapidapp.info/demos/chinook)
  #
  # Part 3. User Authentication and Saved Views
  #
@@ -228,8 +241,16 @@ clear
  #
  # ----
  #
-git log !500
+git log
 q
+git tag
+ #
+ # To jump straight to this point from scratch:
+ #
+ #   git clone https://github.com/IntelliTree/RA-ChinookDemo
+ #   cd RA-ChinookDemo
+ #   git checkout 02_rapiddbic_basics
+ #
  #
  # <[EditMacroAuthCore]>
 Commit '(9) - enabled AuthCore to password protect site'
@@ -248,16 +269,3 @@ git tag 03_auth_and_saved_views
  # Push to Github:
 #git push --tags origin master
 clear
- #
- #
- # END_SCRIPT
- 
-script/ra_chinookdemo_server.pl
- #
- # push github:
-#git remote add origin \
-#    git@github.com:IntelliTree/RA-ChinookDemo.git
-#git push -f -u origin master
- #
- #   END
- 

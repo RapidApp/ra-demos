@@ -122,23 +122,29 @@ Now we'll commit the changes, which shows the files that were just created.
 
 These include the DBIC Schema and 11 result classes for each of the tables in the Chinook database, and the Catalyst Model, which links to them.
 
+We've now prepared a fresh Catalyst application environment. It doesn't do anything yet, but has the basic plumbing for access to the database that will serve as our launch point.
+
+Let's make another commit with a tag so its easy to jump back to this spot, ... and push to Github.
+
+In the next section we'll enable RapidApp and the RapidDbic plugin, and start playing with and configuring its out-of-the-box interfaces.
 
 
-Part 2 - RapidDbic
+Part 2 – RapidDbic Basics
 
 
-RECAP
+Welcome to Part 2 of the Chinook demo.
 
-To recap what's been done so far:
+
+To recap what's been done so far, from Part 1:
 
 * We've created a standard skeleton Catalyst app,
 *  setup SQLite with the Chinook sample database
 *  and created an associated DBIC Schema and model
 * We've been tracking our changes with git,
-*  and the repo is on Github,
+*  and the repo is available on Github,
 *  and we've also been using a custom shell alias, Commit with a capital C, to record notes and command history as we go, which is in the file cmd_history.sh
 
-As you can see we've made 3 commits so far. I'm making another now, with a tag, so it is easy to jump back to this spot.
+Here are the commits from Part 1. The most recent, 01_prepared_app, is also a tag of the same name. So, we could jump to point from scratch with these commands:
 
 Up until now this has been out-of-the-box Catalyst. Now we're going to enable RapidApp and load the RapidDbic plugin for web access to our SQLite database. This is done in the main application class, ChinookDemo.pm
 
@@ -160,7 +166,8 @@ That's all that's needed for the base setup, so we'll save and exit.
 
 We need to do one last thing before we can start using the app, which is to remove the auto-created Root controller that displays the catalyst welcome screen. We need to do this because locally defined controllers always get precedence. The default Root controller is just a placeholder, anyway.
 
-Now let's start the app using the test server:
+Now let's commit our changes,
+  and start the app using the test server:
 
 Since we left -Debug mode on, various console messages are shown. The cyan lines show RapidApp modules being loaded. RapidDbic is actually just a config wrapper; under the hood it sets up and configures the real RapidApp modules that do the heavy lifting.
 
