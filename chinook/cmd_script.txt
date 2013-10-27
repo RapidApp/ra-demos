@@ -153,6 +153,8 @@ Commit '01_prepared_app'
 git tag 01_prepared_app
 # Push to Github (First push, with tags):
 git push -u --tags origin master !5000
+ #
+ # --- END PART 1 ---
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  # 
@@ -225,6 +227,8 @@ Commit '02_rapiddbic_basics'
 git tag 02_rapiddbic_basics
  # Push to Github:
 git push --tags origin master !5000
+ #
+ # --- END PART 2 ---
 clear
  # -- RapidApp "Chinook" Video Demo Series --
  # 
@@ -268,4 +272,6 @@ Commit '03_auth_and_saved_views'
 git tag 03_auth_and_saved_views
  # Push to Github:
 git push --tags origin master !5000
+ #
+ # --- END PART 3 ---
 clear

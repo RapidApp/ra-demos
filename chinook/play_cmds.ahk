@@ -31,13 +31,15 @@ active_macro = 0
 active_macro_seq = 0
 skip_to = 0
 exit_at = 0
+ignore_git_push = 0
 
 ;skip_to = EditMacroVirtualColumn
-;skip_to = EditMacroCrudOpts
-;exit_at = END_SCRIPT
+;skip_to = First push
+exit_at = END PART 2
 
-bypass_test_server = 0
-fake_db_setup = 0
+bypass_test_server = 1
+fake_db_setup = 1
+ignore_git_push = 1
 
 
 ResetDefaultKeyDelay()
@@ -228,6 +230,10 @@ AdvanceNextLine:
         Gosub, AdvanceNextLine
         return
       }
+    }
+    
+    if(ignore_git_push && InStr(line,"git push")) {
+      line = # %line%
     }
     
     if(no_newline_prefix) {
