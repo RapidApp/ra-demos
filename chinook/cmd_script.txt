@@ -7,7 +7,7 @@ source ../env_setup.sh
  #
  # Part 1. Intro and Setup
  #
- # * Agenda
+ # * In this demo we will:
  #    * Build a new webapp from scratch, using RapidApp
  #    * Around the "Chinook" sample database
  #       (http://chinookdatabase.codeplex.com/)
@@ -26,6 +26,8 @@ source ../env_setup.sh
 #
 ###################################################################
  # --
+ #
+ # Agenda/Outline:
  #
  # Part 1 ($self)
  #   * Intro, agenda, prerequisite knowledge, etc
@@ -62,9 +64,9 @@ source ../env_setup.sh
  #   * Asset management (CSS, JavaScript, Images)
  #   * Etc...
  #
- # Living Demo
+ # "Living" Demo
  #   * New sections added on an ongoing basis
- #   * Future topics in branches
+ #   * Future topics and examples in branches
  #
  # ----
  #

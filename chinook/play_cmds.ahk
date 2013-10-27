@@ -33,7 +33,7 @@ skip_to = 0
 exit_at = 0
 
 ;skip_to = EditMacroVirtualColumn
-;skip_to = EditMacroVirtColWritable
+;skip_to = EditMacroCrudOpts
 ;exit_at = END_SCRIPT
 
 bypass_test_server = 1
@@ -451,9 +451,9 @@ EditMacroTwo(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("__PACKAGE__",0)
-    Sleep 200
-    vimJumpString("dbic_models",0)
+    ;vimJumpStringTop("__PACKAGE__",0)
+    ;Sleep 200
+    ;vimJumpString("dbic_models",0)
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{Backspace}
@@ -513,9 +513,10 @@ EditMacroThree(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("DB",0)
-    Sleep 200
-    vimJumpString("(grid_params",0)
+    ;vimJumpStringTop("DB",0)
+    ;Sleep 200
+    ;vimJumpString("(grid_params",0)
+    Send {Down 2}
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
@@ -567,9 +568,10 @@ EditMacroFour(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("__PACKAGE__",0)
-    Sleep 200
-    vimJumpString("grid_params",0)
+    ;vimJumpStringTop("__PACKAGE__",0)
+    ;Sleep 200
+    ;vimJumpString("grid_params",0)
+    Send {Up 19}
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{Enter}{Tab}
@@ -613,10 +615,10 @@ EditMacroRelEditing(seq) {
     Sleep 200
     ;vimJumpStringTop("__PACKAGE__",0)
     ;Sleep 200
-    vimJumpString("Album",0)
-    Sleep 500
-    vimJumpString("{}}",0)
-    ;Send {Down 2}
+    ;vimJumpString("Album",0)
+    ;Sleep 500
+    ;vimJumpString("{}}",0)
+    Send {Down 4}
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
@@ -680,11 +682,13 @@ EditMacroEditorType(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("TableSpecs",0)
+    ;vimJumpStringTop("TableSpecs",0)
+    ;Sleep 200
+    ;vimJumpString("MediaType",0)
+    ;Sleep 100
+    ;Send {Down}
+    Send {Down 18}
     Sleep 200
-    vimJumpString("MediaType",0)
-    Sleep 100
-    Send {Down}
     Send i ; go into INSERT mode
     Sleep 500
     Send {End}{,}{Enter}
@@ -829,11 +833,11 @@ EditMacroCrudOpts(seq) {
     ;vimJumpStringTop("__PACKAGE__",0)
     ;Sleep 200
     ;vimJumpString("grid_params",0)
-    Send {Up 69}
-    Sleep 2000
-    vimJumpString("Track",0)
-    Sleep 200
-    vimJumpString("include_colspec",0)
+    Send {Up 69}{Down 13}
+    ;Sleep 2000
+    ;vimJumpString("Track",0)
+    ;Sleep 200
+    ;vimJumpString("include_colspec",0)
     Sleep 200
     Sleep 500
     Send i ; go into INSERT mode
@@ -941,7 +945,8 @@ EditMacroVirtualColumn(seq) {
     Send {Enter}
   }
   else if(seq = 3) {
-    vimJumpStringTop("(TableSpecs",0)
+    ;vimJumpStringTop("(TableSpecs",0)
+    Send {Down 97}
     Sleep 500
     Send i ; go into INSERT mode
     Sleep 500
@@ -1028,7 +1033,10 @@ EditMacroVirtColWritable(seq) {
   }
   else if(seq = 9) {
     Send {Escape}
-    Sleep 200
+    Sleep 500
+    ; Go all the way to the top of the file:
+    Send {Up 100}
+    Sleep 1000
     Send {Z 2} ; Save and exit
     no_newline_prefix = 1
     return 1 ; finished

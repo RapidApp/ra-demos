@@ -24,15 +24,16 @@ vimJumpStringTop(str,scroll) {
 
 
 vimNewHashCnf(name,comment) {
-  SetKeyDelay, 30
   SendRaw %name% => {
   if(comment) {
     if(comment <> 1) {
       Send {Space}{#}{Space}%comment%
     }
   }
+  Sleep 100
   Send {Enter 2}
   SendRaw },
+  Sleep 100
   if(comment) {
     Send {Space}
     SendRaw # (%name%)
@@ -40,20 +41,20 @@ vimNewHashCnf(name,comment) {
   Send {Up 2}{End}{Enter}
   Sleep 200
   Send {Delete}{Tab}
-  ResetDefaultKeyDelay()
 }
 
 
 vimNewHashSub(name,comment) {
-  SetKeyDelay, 30
   SendRaw %name% => sub {
   if(comment) {
     if(comment <> 1) {
       Send {Space}{#}{Space}%comment%
     }
   }
+  Sleep 100
   Send {Enter 2}
   SendRaw },
+  Sleep 100
   if(comment) {
     Send {Space}
     SendRaw # (%name%)
@@ -61,7 +62,6 @@ vimNewHashSub(name,comment) {
   Send {Up 2}{End}{Enter}
   Sleep 200
   Send {Delete}{Tab}
-  ResetDefaultKeyDelay()
 }
 
 vimNewArrCnf(name,comment) {
@@ -72,8 +72,10 @@ vimNewArrCnf(name,comment) {
       Send {Space}{#}{Space}%comment%
     }
   }
+  Sleep 100
   Send {Enter 2}
   SendRaw ],
+  Sleep 100
   if(comment) {
     Send {Space}
     SendRaw # (%name%)
