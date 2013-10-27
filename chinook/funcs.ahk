@@ -1,4 +1,8 @@
 
+ResetDefaultKeyDelay() {
+  SetKeyDelay, 15
+}
+
 vimScrollUp(lines) {
   Loop, %lines% {
     Sleep 10
@@ -20,6 +24,7 @@ vimJumpStringTop(str,scroll) {
 
 
 vimNewHashCnf(name,comment) {
+  SetKeyDelay, 30
   SendRaw %name% => {
   if(comment) {
     if(comment <> 1) {
@@ -35,10 +40,12 @@ vimNewHashCnf(name,comment) {
   Send {Up 2}{End}{Enter}
   Sleep 200
   Send {Delete}{Tab}
+  ResetDefaultKeyDelay()
 }
 
 
 vimNewHashSub(name,comment) {
+  SetKeyDelay, 30
   SendRaw %name% => sub {
   if(comment) {
     if(comment <> 1) {
@@ -54,9 +61,11 @@ vimNewHashSub(name,comment) {
   Send {Up 2}{End}{Enter}
   Sleep 200
   Send {Delete}{Tab}
+  ResetDefaultKeyDelay()
 }
 
 vimNewArrCnf(name,comment) {
+  SetKeyDelay, 30
   SendRaw %name% => [
   if(comment) {
     if(comment <> 1) {
@@ -72,4 +81,5 @@ vimNewArrCnf(name,comment) {
   Send {Up 2}{End}{Enter}
   Sleep 200
   Send {Delete}{Tab}
+  ResetDefaultKeyDelay()
 }

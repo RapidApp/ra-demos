@@ -53,16 +53,53 @@ return
   StartStopAutoAdvance()
 return
 
+; F11
+F11::
+  StartStopAutoAdvance()
+return
+
+; F12
+F12::
+  auto_next = 0
+return
+
 ; Ctrl + Escape
 ^Escape::
   ExitApp
 return
 ; -----------------------------------
 
-ResetDefaultKeyDelay() {
-  SetKeyDelay, 15
+
+StartStopAutoAdvance() {
+  global
+  if(auto_next) {
+    auto_next = 0
+  }
+  else {
+    auto_next = 1
+    return AutoAdvanceNext()
+  }
 }
 
+AutoAdvanceNext() {
+  global
+  while auto_next {
+    ; Sleep a loop so it is non-blocking and will catch turning off
+    ; auto_next right away
+    Loop, 30 {
+      if(!auto_next) {
+        break
+      }
+      Sleep 10
+    }
+    if(auto_next) {
+      AdvanceNext(1)
+    }
+    else {
+      break
+    }
+  }
+}
 
 AdvanceNext(auto) {
   global
@@ -83,24 +120,7 @@ AdvanceNext(auto) {
   }
 }
 
-StartStopAutoAdvance() {
-  global
-  if(auto_next) {
-    auto_next = 0
-  }
-  else {
-    return AutoAdvanceNext(300)
-  }
-}
 
-AutoAdvanceNext(delay) {
-  global
-  auto_next = 1
-  while auto_next {
-    Sleep %delay%
-    AdvanceNext(1)
-  }
-}
 
 ; If AHK had simple eval support, we wouldn't need this
 CallMacro(name,seq) {
