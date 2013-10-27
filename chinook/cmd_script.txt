@@ -158,7 +158,7 @@ clear
  #
  #  Part 2. RapidDbic Basics
  #
- # * Progress so far:
+ # * Progress so far, from Part 1:
  #   * Created 'RA::ChinookDemo' with catalyst.pl
  #   * Setup SQLite database 'chinook.db'
  #      (http://chinookdatabase.codeplex.com/)
@@ -231,7 +231,7 @@ clear
  #
  # Part 3. User Authentication and Saved Views
  #
- # * Progress so far:
+ # * Progress so far, from Part 1 & 2:
  #   * Created 'RA::ChinookDemo' with catalyst.pl
  #   * Setup 'DB' model connected to Chinook database
  #      (http://chinookdatabase.codeplex.com/)
