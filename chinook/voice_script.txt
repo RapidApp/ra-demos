@@ -130,7 +130,7 @@ Let's make another commit with a tag so its easy to jump back to this spot, ... 
 In the next section we'll enable RapidApp and the RapidDbic plugin, and start playing with and configuring its out-of-the-box interfaces.
 
 
-Part 2 – RapidDbic Basics
+Part 2  RapidDbic Basics
 
 
 Welcome to Part 2 of the Chinook demo.
@@ -437,7 +437,7 @@ To see the updated config, this time let's do a full browser refresh instead of 
 
 Notice that the Track tab still automatically re-opened after the reload. Once again, this is because of the RESTful URL navigation in the TabGui interface. The active tab sets the URL, and the URL in turn sets the active tab. So reloading the Track URL takes us back to the Track tab, as it should be.
 
-To make things a little easier to see, let me shrink the browser and zoom-in a bit more. 
+To make things a little easier to see, let me shrink the browser, and zoom-in a bit more. 
 
   and let's hide the navtree to make more room, 
 
@@ -452,7 +452,7 @@ Now that we've enabled editing, there are a number of new buttons and elements s
 
 The small pencil icons in the headers identify columns that can be updated. You can modify them directly in the grid if you enable cell editing. This toggle button lets you quickly switch between select and edit mode, which changes what happens when you click on cells in the grid.
 
-When cell editing is on you can modify row columns one at a time by clicking on them. You can also advance to the next row by hitting the ENTER key, or advance to the next column by hitting TAB. And you can move backwards by adding SHIFT. SHIFT-ENTER moves up while SHIFT-TAB moves left. 
+When cell editing is on, you can modify row columns one at a time by clicking on them. You can also advance to the next row by hitting the ENTER key, or advance to the next column by hitting TAB. And you can move backwards by adding SHIFT. SHIFT-ENTER moves up while SHIFT-TAB moves left. 
 
 Just like when creating Filters, the type of field provided for editing is column-specific. Name and composer are simple text columns, so their editors are simple text fields. Mediatypeid, on the other hand is a single relationship column, and so its editor is an appropriate single-selection dialog of rows in the related source.
 
