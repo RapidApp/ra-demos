@@ -89,11 +89,13 @@ Chinook is available in multiple formats. DBIC supports multiple formats, but we
 
 I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead I've just already downloaded and extracted this zip file into the parent directory of our app, which I'll copy into our working directory now.
 
-We're going to use the basic sql file which includes both the DDL, or schema, and the sample data.
+There are several different formats available within in the zip file, each containing both the DDL, or schema, and the sample data.
 
-As you can see, this file is about 1.8 megs.
+We're going to use the text-based SQL version, with auto-increments.
 
-Now, I'm going to use it to create a new SQLite database, chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes.
+As you can see, this file is about 1.7 megs.
+
+Now, I'm going to use it to create a new SQLite database as chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes.
 
 Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
 
@@ -101,8 +103,7 @@ Now let's fast-forward to the future.
 
 The command finished and ended up taking just over 8 minutes. 
 
-Let's go ahead and commit our progress
-
+Let's go ahead and commit our progress.
 
 
 Now we're going to create a Catalyst DBIC Schema Model for our new database using the helper script. Under the hood this uses DBIC's Schema::Loader to automatically generate schema and result classes based on the database we just created.
@@ -328,10 +329,7 @@ Relationship columns are still considered "local" to the given source in which t
 Joined columns aren't configured automatically out-of-the-box because there are lots of possible configurations. You just need to tell the system which columns you want, in what sources, in the RapidDbic config.
 
 
-
 JOINED COLUMNS
-
-First let's commit our changes so far, and then edit the main application class some more.
 
 The settings for each DBIC Schema are defined in the hashkey of the model name, under the configs key. In our example we have only one schema model, DB, but others could also be defined and independently configured as well.
 
@@ -347,7 +345,7 @@ For example, 'artistid.name' will include the Artist 'name' column in the Album 
 
 Columns can also be joined across multiple levels. For example, albumid.artistid.*  will include all Artist columns in the Track grid, joined through the intermediate Album table. 
 
-Now let's save our changes and restart the app
+Now let's save and commit our changes and restart the app
 
 # Browser Demo
 
