@@ -613,7 +613,7 @@ You can further control how and where users enter data for new rows with the 'us
 
 The persist_immediately-create setting determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set column values before clicking save.
 
-Since these settings work together, turning off persist_immediately-create automatically turns off the add form, too. This in turn turns off autoload_added_recorded, which controls whether or not to automatically open new rows after being created, as the name implies. 
+Since these settings work together, turning off persist_immediately-create automatically turns off the add form, too. This in turn turns off autoload_added_record, which controls whether or not to automatically open new rows after being created, as the name implies. 
 
 The defaults of these options are based on each other, but can still be set independently.
 
@@ -645,7 +645,9 @@ You can also revert changes instead of saving them with the Undo button, which i
 
 We specifically configured this grid to still use the add form, but now in a window instead of a tab.
 
-But since persist_immediately-create is off, we still have to click save again in the grid before the new row is actually inserted in the database. The row page still automatically opens because it matches the add form setting by default. 
+But since persist_immediately-create is off, we still have to click save again in the grid before the new row is actually inserted in the database. 
+
+The row page also still opens the new row, because it is automatically enabled when turning on the add form. 
 
 On the other hand, in media type, the add form is off, which means clicking Add inserts blank rows immediately. However, since persist_immediately-create is off, the row still doesn't really exist until we click save. 
 
@@ -672,7 +674,7 @@ These interfaces, while complete and fully functional out of the box, are still 
 
 # VIRTUAL COLUMNS (Config)
 
-Another powerful, general-purpose database feature is virtual_columns which can be configured ad-hoc. 
+Another powerful, general-purpose database feature is virtual_columns, which can be configured ad-hoc. 
 
 Virtual Columns behave like ordinary columns, but with user-defined, computed values.
 
