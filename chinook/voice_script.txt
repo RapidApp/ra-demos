@@ -607,9 +607,9 @@ For example, you may have noticed that each change and cell edit we make saves i
 
 Persist immediately is a grid_params setting that can be turned on or off individually for each kind of write operation: create, update and destroy. 
 
-This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This mode is similar to the behavior of a text editor, or other typical file-based application, where changes are held unsaved in memory.
+This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This is similar to the behavior of a text editor, or other typical file-based application, where changes are held unsaved in memory.
 
-As we'll see in a moment, you can further control how and where users enter data for new rows with the 'use_add_form' setting. This can be turned off to skip prompting the user for column values, and instead insert blank, empty rows.
+You can further control how and where users enter data for new rows with the 'use_add_form' setting, which can turned off to skip prompting the user for column values, and instead insert blank, empty rows.
 
 The persist_immediately-create setting determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set column values before clicking save.
 
