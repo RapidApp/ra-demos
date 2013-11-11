@@ -558,7 +558,7 @@ There are also column-level TableSpec settings that we can set to further tailor
 
 For example, 'bytes' is an integer column in the Track table, but more specifically, we know it represents file sizes, so we can set a renderer specific to that content. This is just the name of a JavaScript function used to format the column.
 
-Likewise, the schema only know that 'unitprice' is a decimal column, but since we know it's storing money values, we can set a money-specific renderer for displaying it as well.
+Likewise, the schema only knows that 'unitprice' is a decimal column, but since we know it's storing money values, we can set a money-specific renderer for displaying it as well.
 
 Friendly header names, and default column widths can also be set, which we'll go ahead and do for several columns.
 
@@ -589,27 +589,27 @@ But those details will be covered in a much later demo. I only bring it up now t
 
 If we reload the Track grid we can see the new column settings, like headers, default widths, and the custom renderers we configured for bytes and price.
 
-Also, since we turned off sorting for the playlist_tracks column, clicking its header does nothing. We can also see that the sort options disabled in its header menu.
+Also, since we turned off sorting for the playlist_tracks column, clicking its header does nothing. We can also see that the sort options are disabled in its header menu.
 
 The columns we set as hidden, composer and milliseconds, are also already unchecked in the columns menu as expected, and trackid isn't available at all since we disabled it entirely. 
 
-Media Type and Genre also now use simple combo dropdowns for editing which can be changed much faster than the grid selector.
+Media Type and Genre also now use simple combo dropdowns for editing, which can be changed much faster than the grid selector.
 
-Notice that the Genre dropdown provides (None) as a choice but Media Type doesn't. This is once again because mediatypeid isn't nullable, while genreid is.
+Notice that the Genre dropdown provides "(None)" as a choice, but Media Type doesn't. This is once again because mediatypeid isn't nullable, while genreid is.
 
 When allowed, NULL can also be chosen in the grid selector via 'Select None' in the bottom-left. The button is only shown when the foreign key column is nullable, which albumid is.
 
-... TODO: transition text
+Besides schema, and column-specific options, the general behaviors of the CRUD interfaces can also be changed.
 
-You may have noticed that each change and cell edit we make saves instantly. This is because of the persist_immediately settings which are on by default, but can also be customized in the RapidDbic config.
+For example, you may have noticed that each change and cell edit we make saves instantly. This is because 'persist_immediately' is on. This is the simplest mode of operation, which is the default, but can also be customized in the RapidDbic config.
 
 # Custom CRUD configs
 
-Persist immediately is a grid_params setting that can be turned on or off for each kind of write operation: create, update and destroy. 
+Persist immediately is a grid_params setting that can be turned on or off individually for each kind of write operation: create, update and destroy. 
 
-This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This mode is similar to the behavior of a text editor, or other typical file-based application.
+This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This mode is similar to the behavior of a text editor, or other typical file-based application, where changes are held unsaved in memory.
 
-As we'll see in a moment, you can further control how and when to enter data for new rows with the 'use_add_form' setting. This can be turned off to skip prompting the user for column values, and instead insert blank, empty rows.
+As we'll see in a moment, you can further control how and where users enter data for new rows with the 'use_add_form' setting. This can be turned off to skip prompting the user for column values, and instead insert blank, empty rows.
 
 The persist_immediately-create setting determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set column values before clicking save.
 
