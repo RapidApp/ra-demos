@@ -629,6 +629,8 @@ Likewise, if persist_immediately-create is turned on, but the add_form is turned
 
 Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values. It is because this isn't always the case that the system turns on use_add_form automatically with persist_immediately-create.
 
+And we'll turn off delete confirmations here as well, so all CRUD operations in the Genre grid will be instant, with no hand holding.
+
 These are just a few scenarios that can be acheived with different combinations of these options.
 
 The goal of the configuration is to support multiple modes of operation while still being simple, so common-sense defaults are used whenever possible. 
