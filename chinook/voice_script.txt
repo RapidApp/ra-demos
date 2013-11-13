@@ -623,13 +623,17 @@ There is also a use_edit_form setting which supports the same false, window or t
 
 Turning off use_add_form means the grid will be used for both creating and editing rows. When persist_immediately-create is also off, the user can edit the initial column values before saving new rows to the database.
 
-On the other hand, if you turn off the add form without turning off persist_immediately-create, actual blank rows will be inserted into the database. 
+When deleting rows, a confirmation dialog is shown by default, but can be turned off with the confirm_on_destroy setting. And if persist_immediately-destroy is on, selected rows will be deleted from the database instantly when clicking or hitting delete.
 
-Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values. It is because this isn't always the case that the system turns on use_add_form automatically with persist_immediately-create. 
+Likewise, if persist_immediately-create is turned on, but the add_form is turned off, blank rows are instantly inserted into the database when clicking add.
+
+Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values. It is because this isn't always the case that the system turns on use_add_form automatically with persist_immediately-create.
+
+These are just a few scenarios that can be acheived with different combinations of these options.
 
 The goal of the configuration is to support multiple modes of operation while still being simple, so common-sense defaults are used whenever possible. 
 
-Now let's save, commit and restart so we see these configs in action.
+Now let's save, commit and restart, and take a look at how these different CRUD modes actually work in the browser.
 
 # Custom CRUD demo
 
