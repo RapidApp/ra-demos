@@ -675,50 +675,39 @@ There are different rationales and reasons you might want to pick one over anoth
 
 All sorts of different CRUD workflows can be configured with only a handful of options. 
 
-These interfaces, while complete and fully functional out of the box, are still only base paradigms which can be customized and extended into unique applications.
+---
+
+These graphical front-ends, while complete and fully functional, are still only one possible presentation for the lower-level APIs. For instance, you could replace the add_form with a custom design for a different look/feel, which wouldn't necesarily even have to be a form. It could be any anything that provides the mechanism to supply new row data, which is understood and supported by RapidApp as a general CRUD interface concept, which the out-of-the-box add_form is built on top of. Clean API hooks are provided throughout the layers of the RapidApp toolchain to facilitate customization. Again, this will be covered in more detail later in the customization and extension demo.
 
 
 # VIRTUAL COLUMNS (Config)
 
-Another powerful, general-purpose database feature is virtual_columns, which can be configured ad-hoc. 
-
-Virtual Columns behave like ordinary columns, but with user-defined, computed values.
-
-This basically provides a free-form hook into the column interface.
-
-For example, the Employee table has physical columns lastname and firstname. We can add a simple virtual column called "fullname" to be a concatenation of the two...
-
----
+One of RapidApp's particularly powerful and flexible backend API hooks are virtual columns. These are special, additional columns that you can add to your DBIC result sources that behave just like physical columns, but with custom-defined calculations as values.
 
 Virtual_columns are set up in their own section in the RapidDbic config, just like grid_params and TableSpecs, and is similarly subdivided by result source.
 
-Virtual columns accept the same options as 'add_columns' in DBIC, such as data_type, nullability, and size. The special 'sql' parameter defines the SQL expression to use to compute the column value for each row.
+For a simple example, lets add a virtual column called "fullname" to the Employee source as a concatination of the existing columns firstname and lastname.
 
-This is a literal SQL string that will be evaluated by the database, except for the special pseudo-name 'self' which is replaced with the alias of the current row.
+Virtual column definitions take the same options as the standard DBIC 'add_columns' function, such as data_type, nullability, and size, plus the special 'sql' parameter which defines the SQL expression used compute the column value for each row.
 
-Pipe-pipe is the string concatenation operator in SQLite, so here we are simply joining firstname and lastname with a space in the middle.
+Here we are simply joining firstname and lastname, with a space in the middle, using the SQLite pipe-pipe concatenation operator. The special pseudo-name 'self' is substituted with the alias to the current row at runtime.
 
-The SQL must be compatible with the syntax of the underlying database server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. For instance, this wouldn't work in MySQL. Instead of the double-pipes, you would need to use the CONCAT function.
+This is evaluated by the database itself, so the SQL must be compatible with the syntax of the server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not, it all depends on what you're trying to do. String manipulation is one of those things that works differently on different servers. For MySQL, for example, you would need to use the CONCAT function instead of the double-pipes.
 
-Let's save and commit and get back into the app.
+Virtual columns are implemented in this vendor-specific manner for the sake of performance, so the calculations can be done within the same query that fetches the rest of the data for the Result Set. But they will still always be many times slower than ordinary columns because they have to be calculated on every request and for every row considered by the query. Like multi-relationship columns, which is also a kind of virtual column, it usually makes sense to disable sortability of virtual columns for tables with lots of rows. But it all comes down to the specifics of your application -- what needs to be calculated and for how many rows. 
+
 
 # VIRTUAL COLUMNS (Demo)
 
-After reloading the Employee grid we can see that our new virtual full_name column is showing up as expected.
+If we open the Employee grid we can see that our new virtual full_name column is showing up as expected.
 
-Since the column doesn't really exist in the table, but is instead based on other columns, changes to those underlying columns are reflected instantly, just as we would expect and want.
+Since the column doesn't really exist in the table, but is instead based on other columns, changes to those underlying columns are reflected instantly, just as we would want and expect.
 
-But the column is still searchable, sortable, and so on, like any ordinary column. 
+But the column is still searchable, sortable, and so on, like any ordinary column, unless you decide to disable any of those features for the sake of performance. 
 
-You do need to keep in mind that since virtual_columns are computed, the database has to calculate the value every time, and in every context which it's referenced. 
+However, Quick Search is automatically disabled for virtual columns because it is too easy to forget and fire off slow queries without specifically intending to search in virtual columns.
 
-This can be a performance issue, particularly when attempting to sort a large number of rows, so in many cases it makes sense to disable sort for those columns. 
-
-Quick Search is also automatically disabled on virtual columns for this reason.
-
-It all depends on how expensive the computation is for the database to perform and for how many rows it has to be done for.
-
-Virtual Columns aren't automatically editable because the intended effect is ambiguous. But, this can be enabled if we tell the system what to do with the edited value.
+Virtual Columns aren't automatically editable because the intended effect is ambiguous. But, this can be enabled if we tell the system how we want it to work, that is, how to persist the new value.
 
 
 # EDIT VIRTUAL COLUMNS (Config)
