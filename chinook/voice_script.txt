@@ -722,7 +722,7 @@ This CodeRef is called whenever the virtual column is modified, with the DBIC ro
 
 In this case, we need split the full name string back into its first and last name components, and then update those physical columns accordingly. These new values will in turn be reflected in the virtual column value, and completing the loop.
 
-The logic is of either side is entirely up to you, which you can use to accomplish all sorts of different things. The sql and set_function don't even necessarily have to agree. For instance, you can do things like use 'SELECT NULL' for the sql, or read side, and then define a set_function to perform some arbitrary, independant operation, updating data elsewhere. So, with virtual columns, you can adapt the already well-defined database editing capabilities for the purposes of arbitrary data submission.
+The logic of either side is entirely up to you, which you can use to accomplish all sorts of different things. The sql and set_function don't even necessarily have to agree. For instance, you can do things like use 'SELECT NULL' for the sql, or read side, and then define a set_function to perform some arbitrary, independant operation, updating data elsewhere. So, with virtual columns, you can adapt the already well-defined database editing capabilities for the purposes of arbitrary data submission.
 
 Virtual columns are also very useful as display columns, which as we saw, are used as the short label for rows in places like dropdowns and relationship links. When there is no single column that is descriptive enough alone, a virtual column can be used to format and show several columns together, like full_name does.
 
