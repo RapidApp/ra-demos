@@ -686,56 +686,62 @@ One of RapidApp's particularly powerful and flexible backend API hooks are virtu
 
 Virtual_columns are set up in their own section in the RapidDbic config, just like grid_params and TableSpecs, and is similarly subdivided by result source.
 
-For a simple example, lets add a virtual column called "fullname" to the Employee source as a concatination of the existing columns firstname and lastname.
+For a simple example, lets add a virtual column called "full_name" to the Employee source as a concatination of the existing columns firstname and lastname.
 
 Virtual column definitions take the same options as the standard DBIC 'add_columns' function, such as data_type, nullability, and size, plus the special 'sql' parameter which defines the SQL expression used compute the column value for each row.
 
 Here we are simply joining firstname and lastname, with a space in the middle, using the SQLite pipe-pipe concatenation operator. The special pseudo-name 'self' is substituted with the alias to the current row at runtime.
 
-This is evaluated by the database itself, so the SQL must be compatible with the syntax of the server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not, it all depends on what you're trying to do. String manipulation is one of those things that works differently on different servers. For MySQL, for example, you would need to use the CONCAT function instead of the double-pipes.
+This is evaluated by the database itself, so the SQL must be compatible with the syntax of the server, which may differ from vendor to vendor. Many times the syntax will the same, but other times not. It all depends on what you're trying to do. String manipulation is one of those things that works differently on different servers, so this virtual_column wouldn't work as-is with another backend. For MySQL, for example, you would need to use the CONCAT function instead of the double-pipes.
 
-Virtual columns are implemented in this vendor-specific manner for the sake of performance, so the calculations can be done within the same query that fetches the rest of the data for the Result Set. But they will still always be many times slower than ordinary columns because they have to be calculated on every request and for every row considered by the query. Like multi-relationship columns, which is also a kind of virtual column, it usually makes sense to disable sortability of virtual columns for tables with lots of rows. But it all comes down to the specifics of your application -- what needs to be calculated and for how many rows. 
+Virtual columns are implemented in this vendor-specific manner for the sake of performance, so the calculations can be done within the same query that fetches the rest of the data for a page of results. Virtual Columns will always still be many times slower than ordinary columns because they have to be calculated on every request and for every row considered by the query. 
+
+So, for tables with lots of rows, it usually makes sense to disable sortability of virtual columns, just like for multi-relationship columns, which is also a kind of virtual column.
 
 
 # VIRTUAL COLUMNS (Demo)
 
 If we open the Employee grid we can see that our new virtual full_name column is showing up as expected.
 
-Since the column doesn't really exist in the table, but is instead based on other columns, changes to those underlying columns are reflected instantly, just as we would want and expect.
+Since it doesn't really exist in the table, but is instead based on other columns, changes to those underlying columns are reflected instantly, just as we would want and expect.
 
 But the column is still searchable, sortable, and so on, like any ordinary column, unless you decide to disable any of those features for the sake of performance. 
 
-However, Quick Search is automatically disabled for virtual columns because it is too easy to forget and fire off slow queries without specifically intending to search in virtual columns.
+Quick Search is however automatically disabled for virtual columns, because it is too easy to forget and then fire off slow queries without meaning to. If you want to search on a virtual column, you just need to use the filters.
 
-Virtual Columns aren't automatically editable because the intended effect is ambiguous. But, this can be enabled if we tell the system how we want it to work, that is, how to persist the new value.
+The virtual column value is obviously read-only, but can actually be made editable if you tell the system how, that is, how to persist a new value when changed.
 
 
 # EDIT VIRTUAL COLUMNS (Config)
 
-This is done by supplying the special set_function parameter within the virtual column config.
+To make a virtual column editable, you need to supply a custom *write* function that reverses the logic of the custom *read* function - the SQL expression. 
 
-This CodeRef will be called whenever the virtual column is modified, with the DBIC row object and new column value supplied as arguments.
+This is done by supplying the special set_function parameter within the virtual column config. Since edits happen on an individual basis, this is done with normal perl-code instead of SQL, since there aren't the same performance restrictions.
 
-You will typically want this function to be the inverse of the logic in the SQL expression. 
+This CodeRef is called whenever the virtual column is modified, with the DBIC row object and new column value supplied as arguments, and is expected to handle persisting the value in whatever way is required.
 
-In this case, we can split the full name string back into its first and last name components, and then update the physical columns accordingly. These new values will in turn be reflected in the virtual column value, and completing the loop.
+In this case, we need split the full name string back into its first and last name components, and then update those physical columns accordingly. These new values will in turn be reflected in the virtual column value, and completing the loop.
 
-The logic is of either side is entirely up to you, and you can accomplish all sorts of different things.
+The logic is of either side is entirely up to you, which you can use to accomplish all sorts of different things. The sql and set_function don't even necessarily have to agree. For instance, you can do things like use 'SELECT NULL' for the sql, or read side, and then define a set_function to perform some arbitrary, independant operation, updating data elsewhere. So, with virtual columns, you can adapt the already well-defined database editing capabilities for the purposes of arbitrary data submission.
 
-Our full_name virtual_column is useful as the display_column for Employee, since it does a better job of representing a given row than any other single column.
+Virtual columns are also very useful as display columns, which as we saw, are used as the short label for rows in places like dropdowns and relationship links. When there is no single column that is descriptive enough alone, a virtual column can be used to format and show several columns together, like full_name does.
 
-Let's see how this works in the interface.
+Now let's see how this works in the interface.
 
 # EDIT VIRTUAL COLUMNS (Demo)
 
-Now that we've supplied a set_function, the full_name virtual column shows as editable in the interface. Assuming our logic is sane, edits will appear to work like any other column, even though custom code is at work behind the scenes.
+Let me reload, and make some column changes so its easier to see the new functionality...
+
+Now that we've supplied a set_function, the full_name virtual column is editable. Assuming our logic is sane, edits will appear to work like any other column, even though custom code is at work behind the scenes.
 
 And this appears to be working correctly, with changes to full_name updating the real columns firstname and lastname.
 
-The Employee table has a foreign key, or single relationship, 'reportsto' pointing back at itself, the Employee table, so we can see both sides of the relationship in the same grid, with the multi-relationship column 'employees' showing the other side.
+The Employee table points to itself with the 'reportsto' foreign key, so we can see the virtual column in use as the display column.
 
-We can see each employee reports to someone, except the General Manager, and also how many report to each employee. For instance, 3 employees report to nancy, and this agrees whether we look at it from their perspective, ... or from nancy's.
+We can also see both sides of the relationship in the same grid, with the multi-relationship column 'employees' showing the other side.
 
-And since we set the display_column for Employee to full_name, that is what shows in the reportsto relationship, which makes things even easier to see and follow.
+We can see who each employee reports to and how many employees report to them. For instance, we can count 3 employee rows that report to nancy, which agree with the employees column in nancy's row.
+
+And since full_name is the display column, this is all very straightforward and human-readable.
 
 
