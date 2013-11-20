@@ -24,7 +24,7 @@ In this first section, which you are watching right now, I'll be doing mainly se
 
 The end of this section will be tagged in the repo as "zero-one prepared app" for reference.
 
-If you are an experienced Catalyst developer who's already familiar with these topics, which aren't specific to RapidApp, you can skip ahead to Part 2 which will cover the basics of the RapidDbic plugin, which is a turn-key web front-end for DBIC schemas.
+If you are an experienced Catalyst developer who's already familiar with these topics, which aren't specific to RapidApp, you can skip ahead to Part 2 which will cover the basics of the RapidDbic plugin, which is a turn-key web front-end for DBIC schemas, and will serve as the foundation for the app.
 
 This will include browser demos of the main, out-of-the-box features such as the auto-generated interfaces, and the powerful and dynamic grids which can be used to explore and manipulate the data in all sorts of useful ways. 
 
@@ -32,15 +32,23 @@ Part 2 will also cover configs for interacting with relationships and foreign ke
 
 We'll also configure a custom virtual column with hooks for both read and write.
 
-And the end of this section will be tagged in the repo as "zero-two rapiddbic basics".
+And, the end of this section will be tagged in the repo as "zero-two rapiddbic basics".
 
------
-TODO: Part 3, 4 and Beyond descriptions...
------
+Part 3 will cover Authentication and Saved Views, utilizing some other turn-key RapidApp plugins such as AuthCore, which provides an on-the-fly user database, as well as sessions and authentication, and also user management and admin interfaces.
 
+We'll also cover the NavCore plugin which provides turn-key saved views and editable navigation trees via drag and drop.
 
+The end of this section will be tagged as "zero-three auth and saved views" in the repo.
 
-RapidApp is built on top of existing technologies, and this demo assumes you are already familiar with at least the basics of:
+Starting in part 4 we'll extend and go beyond the pre-built interfaces and modules, and delve into the under-the-hood APIs for advanced customization.
+
+We'll cover the templating system for customized, interactive designs and interfaces, and also show how to normal Perl and Catalyst code can be written and integrated with, augment, coexist with or even replace automatic RapidApp interfaces at all layers of its API.
+
+We'll also cover RapidApp's asset management system for integrating custom front-side CSS and JavaScript code.
+
+This is a living demo with no predefined end-point. This example app code-base will be used to demo new examples and features on an ongoing basis. As this can fork off in lots of possible directions, as there is no limit on the different types of applications that can be made, future topics and examples will be covered in different branches of the repository.
+
+RapidApp is built on top of existing technologies, and this demo does assume you are already familiar with at least the basics of:
 
  Perl,
  Catalyst,
@@ -48,7 +56,9 @@ RapidApp is built on top of existing technologies, and this demo assumes you are
 
 You should also be familiar with relational database concepts in general, ... table schemas, data types, foreign keys, and whatnot.
 
-And you obviously need to understand Git for the premise of this demo to make sense.
+And you obviously need to understand Git for the premise of this demo and its structure to make sense in the first place.
+
+But, because you can go at your own pace using the companion Git repo for reference, this demo is meant for both beginners and seasoned developers.
 
 
 # App/Git setup
@@ -59,14 +69,14 @@ As you can see, I already have RapidApp on my system, but if I didn't, it would 
 
 If you don't have cpanm, you need to install cpanminus. Cpanminus is a handy tool for installing CPAN packages with dependencies without all the fuss and setup required for the traditional cpan client.
 
-Next, we need to create the new Catalyst application using the helper script provided by Catalyst. The app could be named anything, but I'm going to call it RA::ChinookDemo.
+Next, we need to create the new Catalyst application using the helper script provided by Catalyst. The app could be named anything, but I'm going to call it RA::ChinookDemo, as you can already see from the name of the Git repository, which we'll setup next.
 
 The catalyst.pl helper script has now created a skeleton of base files and directories which will be working in moving forward.
 
 Now I'm going to setup the actual git repository and tracking mechanisms I already described for the purposes of the demo. 
 
 First, Initialize a fresh repo, 
-  and then link it to Github.
+  and then link it to Github -- this is the actual command where this happened.
 
 I'm going to setup a shortcut command to automate recording the changes as we go, so we can use 'Commit' with a capital C to:
 
@@ -79,15 +89,19 @@ RestoreHistNewlines is itself an alias which I'll create now.
 
 This is just for formatting of the history file, so that commands we split up into multiple lines using backslashes will look the same instead of being mushed into one line.
 
-We're just using sed to do some string processing. You don't need to understand it unless you're interested. The only reason it's being shown is because in this demo, everything is. 
+We're just using sed to do some string processing. You don't need to understand this unless you're interested. The only reason it's being shown is because in this demo, everything is, and it is a helpful shortcut you might want to use for your own projects.
 
-The only thing that matters for our purposes is that we can now record changes as we go with a single command:
+But, the only thing that matters for the purposes of the demo is that we can now record changes as we go with a single command, which we'll be doing throughout the rest of the demo:
 
-Now we need to download the actual Chinook database.
+Now we need to download the actual Chinook database, from their website.
 
-Chinook is available in multiple formats. DBIC supports multiple formats, but we'll be using SQLite for this demo.
+Chinook is available in multiple formats, and DBIC supports multiple formats, but we'll be using SQLite for this demo.
 
-I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead I've just already downloaded and extracted this zip file into the parent directory of our app, which I'll copy into our working directory now.
+-- skip this? --
+I would have done this with wget in the shell, but unfortunately their site doesn't support direct download links. So, instead ...
+-- --
+
+I downloaded and extracted this zip file into the parent directory of our app, and I'll copy into our working directory now.
 
 There are several different formats available within in the zip file, each containing both the DDL, or schema, and the sample data.
 
@@ -95,18 +109,17 @@ We're going to use the text-based SQL version, with auto-increments.
 
 As you can see, this file is about 1.7 megs.
 
-Now, I'm going to use it to create a new SQLite database as chinook.db in the current directory. This process takes a little while, about 10 minutes. Just for fun, let's run the command through time to see how long it actually takes.
+Now, I'm going to use it to create a new SQLite database as chinook.db in the current directory. This process takes a little while, about 10 minutes. I'll run it through time to show how long it actually takes.
 
 Note that this is error is safe to ignore; it's just caused by the Unicode BOM, or byte order mark, that the Chinook people have put at the start of the sql file. I could have removed it, but it doesn't hurt anything.
 
 Now let's fast-forward to the future. 
 
-The command finished and ended up taking just over 8 minutes. 
+As you can see, command finished and ended up taking just over 8 minutes. 
 
 Let's go ahead and commit our progress.
 
-
-Now we're going to create a Catalyst DBIC Schema Model for our new database using the helper script. Under the hood this uses DBIC's Schema::Loader to automatically generate schema and result classes based on the database we just created.
+Now we're going to create a Catalyst DBIC Schema Model for the new database using the helper script. This is still standard Catalyst. Under the hood this uses DBIC's Schema::Loader to automatically generate schema and result classes based on the database we just created.
 
 * We're creating a new model called 'DB', which is just the name I picked, it could be anything
 * based on DBIC::Schema, which tells Catalyst which helper to use
