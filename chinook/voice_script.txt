@@ -2,25 +2,25 @@ Part 1 - Intro and setup
 
 ##### NEW #####
 
-Welcome to the RapidApp "Chinook" demo.
+Welcome to the RapidApp "Chinook" demo. 
 
-In this demo we're going to create a complete web application from the ground up using the RapidApp.
+Across the videos in this series, I'll be demonstating just how fast and easy it is to build data-rich web applications with RapidApp by interactively creating one from scratch, step-by-step.
 
-We'll be building around the freely available Chinook sample db to demonstrate RapidApp's powerful suite of database features, which are bundled in the turn-key "RapidDbic" plugin.
+This application will be built around the freely available Chinook sample database, to demonstrate RapidApp's powerful suite of database features, which are bundled in the turn-key "RapidDbic" plugin.
 
-We'll use this to start with generalized, out-of-the-box base interfaces and functions, like grids, CRUD interfaces, query builders, custom views, users and permissions, and so on, and then progressively customize and extend unique examples, including integration with existing code from the Perl, Catalyst and DBIC ecosystems.
+We'll start with generalized, out-of-the-box base interfaces and functions, like grids, CRUD interfaces, query builders, custom views, users and permissions, and so on, and then progressively customize and extend unique examples, including integration with existing code from the Perl, Catalyst and DBIC ecosystems.
 
-In an effort to make this demo as efficient and useful as possible, the video portion is being recorded in lock-step with a repository on Github, containing both source code and shell command history.
+In an effort to make this demo as efficient and useful as possible, every step is not only shown in the video portion, but also commited to a repository on Github, which includes both source code and shell command history. 
 
-In fact, this *is* the shell we'll be working in, which is an SSH session on a Linux box. 
-
-I'm using simple text comments instead of slides so they are a part of the command history, which is being committed to the file cmd_history.sh in the repo:
+In fact, this *is* the shell we'll be working in, which is an SSH session on a Linux box, and is why I'm using these simple text comments instead of fancy slides, so they are a part of the command history, which is being recorded to the file 'cmd_history.sh' in the repo, as you can see here.
 
 (open the cmd history in github)
 
-The intent is to make it easy to jump around to specific sections and topics, while still maintaining the continuity of a full step-by-step tutorial. So it is up to you how to use this demo. You can watch the video parts in order, or browse the repository and refer to the video only when you want a more detailed explanation of a particular change or command.
+So, this demo is a truly "multi-media" experience -- video, audio, code and commands.
 
-The first part, which you are watching right now, will be mostly house work. I'll cover the installation of RapidApp on your system from CPAN, create a new Catalyst app, setting up the actual Git repo and environment, downloading and installing the database, and setting up a Catalyst DBIC model.
+The idea is to make it easy to jump around to specific sections and topics, while still maintaining the continuity of a full step-by-step tutorial. So it is up to you how to use this demo. You can watch the video parts in order, or browse the repository and refer to the video only when you want a more detailed explanation of a particular change, command or feature.
+
+In this first section, which you are watching right now, I'll be doing mainly setup and house-work. I'll cover the installation of RapidApp, creating a new Catalyst app, setting up the actual Git repo and environment with command shortcuts, downloading and installing the database, and setting up a Catalyst DBIC model.
 
 The end of this section will be tagged in the repo as "zero-one prepared app" for reference.
 
