@@ -4,9 +4,9 @@ Part 1 - Intro and setup
 
 Welcome to the RapidApp "Chinook" demo. 
 
-Across the videos in this series, I'll be demonstating just how fast and easy it is to build data-rich web applications with RapidApp by interactively creating one from scratch, step-by-step.
+Across the videos in this series, I'll be demonstating just how fast and easy it is to create data-rich web applications with RapidApp, by interactively building one from scratch, step-by-step.
 
-This application will be built around the freely available Chinook sample database, to demonstrate RapidApp's powerful suite of database features, which are bundled in the turn-key "RapidDbic" plugin.
+This application will be built around the freely available Chinook sample database, to demonstrate RapidApp's powerful suite of database features, which are bundled in the turn-key "RapidDbic" plugin of the RapidApp distribution.
 
 We'll start with generalized, out-of-the-box base interfaces and functions, like grids, CRUD interfaces, query builders, custom views, users and permissions, and so on, and then progressively customize and extend unique examples, including integration with existing code from the Perl, Catalyst and DBIC ecosystems.
 
@@ -42,7 +42,7 @@ The end of this section will be tagged as "zero-three auth and saved views" in t
 
 Starting in part 4 we'll extend and go beyond the pre-built interfaces and modules, and delve into the under-the-hood APIs for advanced customization.
 
-We'll cover the templating system for customized, interactive designs and interfaces, and also show how to normal Perl and Catalyst code can be written and integrated with, augment, coexist with or even replace automatic RapidApp interfaces at all layers of its API.
+We'll cover the templating system for customized, interactive designs and interfaces, and also show how normal Perl and Catalyst code can be written and integrated throughout the layers of the RapidApp and Catalyst APIs.
 
 We'll also cover RapidApp's asset management system for integrating custom front-side CSS and JavaScript code.
 

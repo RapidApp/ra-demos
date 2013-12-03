@@ -1,0 +1,6 @@
+Ideas for quick (5-10 second) "teaser" clips of app screens:
+
+1. basic full grid - sorting/paging
+2. grid edits - text fields and dropdowns
+3. query builder - adding and ordering
+4. relative date dialog
