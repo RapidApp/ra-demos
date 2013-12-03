@@ -4,3 +4,10 @@ Ideas for quick (5-10 second) "teaser" clips of app screens:
 2. grid edits - text fields and dropdowns
 3. query builder - adding and ordering
 4. relative date dialog
+5. row page with line chart
+6. AppDV row page with html editor - insert image
+7. "part template" page - drag/drop reordering
+8. Organize navtree - drag/drop reordering
+9. "Employee" page - example with picture, etc
+10. MIME page - from MimeCas app - e-mail with rich content "Clippard product news e-mail"
+11. grid with image columns - clippard dists or contacts
