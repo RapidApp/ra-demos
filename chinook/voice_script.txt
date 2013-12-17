@@ -143,10 +143,10 @@ Let's make another commit with a tag so its easy to jump back to this spot, ... 
 In the next section we'll enable RapidApp and the RapidDbic plugin, and start playing with and configuring its out-of-the-box interfaces.
 
 
-Part 2  RapidDbic Basics
+Part 2 - RapidDbic Basics
 
 
-Welcome to Part 2 of the Chinook demo.
+Welcome to Part 2 of the RaidApp Chinook demo.
 
 
 To recap what's been done so far, from Part 1:
@@ -158,7 +158,7 @@ To recap what's been done so far, from Part 1:
 *  and the repo is available on Github,
 *  and we've also been using a custom shell alias, Commit with a capital C, to record notes and command history as we go, which is in the file cmd_history.sh
 
-Here are the commits from Part 1. The most recent, 01_prepared_app, is also a tag of the same name. So, we could jump to point from scratch with these commands:
+Here are the commits from Part 1. The most recent, 01_prepared_app, is also a tag of the same name. So, we could jump to this point from scratch with these commands:
 
 Up until now this has been out-of-the-box Catalyst. Now we're going to enable RapidApp and load the RapidDbic plugin for web access to our SQLite database. This is done in the main application class, ChinookDemo.pm
 
@@ -170,7 +170,7 @@ RapidApp doesn't do anything by itself, but makes other modules and plugins avai
 
 I'm removing these other plugins just because we're not going to be using them. However, it wouldn't break anything if I left them. And we'll go ahead and leave -Debug on for now.
 
-Now we need to configure RapidDbic, which is done in the standard manner in the Catalyst config. 
+Now we need to configure RapidDbic, which is done in the standard manner for plugins in the Catalyst config. 
 
 There are many available options, but the only one that is required is the list of DBIC::Schema models to use. 
 
