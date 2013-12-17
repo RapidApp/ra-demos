@@ -11,3 +11,8 @@ Ideas for quick (5-10 second) "teaser" clips of app screens:
 9. "Employee" page - example with picture, etc
 10. MIME page - from MimeCas app - e-mail with rich content "Clippard product news e-mail"
 11. grid with image columns - clippard dists or contacts
+12. public tpls from the CMS demo
+13. app with a custom banner
+14. RapidTrunk
+15. Excel export
+16. Batch Modify
