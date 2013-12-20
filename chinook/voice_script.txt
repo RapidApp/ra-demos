@@ -622,33 +622,43 @@ Persist immediately is a grid_params setting that can be turned on or off indivi
 
 This is essentially an autosave feature. When it's turned off, the user has to click save before outstanding changes are persisted to the database. This is similar to the behavior of a text editor, or other typical file-based application, where changes are held unsaved in memory.
 
-You can further control how and where users enter data for new rows with the 'use_add_form' setting, which can turned off to skip prompting the user for column values, and instead insert blank, empty rows.
+The persist immediately settings work in tandum with additional toggle parameters which determine how they are actually expressed in the interface. These combinator options use sane defaults, but can be changed for finer-grained control.
 
-The persist_immediately-create setting determines if the blank rows will be literally inserted into the database, or remain virtual, giving the user a chance to set column values before clicking save.
+The use_add_form setting enables or disables the add form dialog when creating records, and the autoload_added_record setting controls whether or not new records are automatically opened after being created.
 
-Since these settings work together, turning off persist_immediately-create automatically turns off the add form, too. This in turn turns off autoload_added_record, which controls whether or not to automatically open new rows after being created, as the name implies. 
+use_edit_form determines whether or not the edit button is available in the toolbar for updating records, 
 
-The defaults of these options are based on each other, but can still be set independently.
+and confirm_on_destroy turns delete confirmations on or off.
 
-use_add_form also accepts a string value to control whether to use a 'window' or a 'tab' when displaying the form.
+Multiple interface scanarios can be achieved using different combinations of these options. To illustrate, I'm now going to setup three different grid configs to explain the options and how they interact, and them demo them in the browser, which should make everything clear.
 
-There is also a use_edit_form setting which supports the same false, window or tab choices. Turning it off simply removes the edit button from the interface.
+By default, all options are enabled, which we've already seen in action. However, turning certain options off will affect the defaults of related options.
 
-Turning off use_add_form means the grid will be used for both creating and editing rows. When persist_immediately-create is also off, the user can edit the initial column values before saving new rows to the database.
+For example, turning off persist_immediately create, like we're doing here in the Track grid, also automatically turns off the add form, because it is redundant when persist_immediately if off, as we'll see in a minute.
 
-When deleting rows, a confirmation dialog is shown by default, but can be turned off with the confirm_on_destroy setting. And if persist_immediately-destroy is on, selected rows will be deleted from the database instantly when clicking or hitting delete.
+Also, turning off the add form in turn automatically turns off autoload_added_record, too. So, turning off persist_immediately create changes three options at once.
 
-Likewise, if persist_immediately-create is turned on, but the add_form is turned off, blank rows are instantly inserted into the database when clicking add.
+Of course, these are just defaults, and you can set any option expressly. Instead of a simple 1 or 0 for true or false, the use_add_form setting optionally accepts a string value for true to simultaneously enable it and specify if it should be shown in a 'window' or a 'tab'. The default is tab, which we've already seen, so I'm setting it to window here for variety. Note that the use_edit_form setting also supports the same true, false, window or tab choices as use_add_form.
 
-Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values. It is because this isn't always the case that the system turns on use_add_form automatically with persist_immediately-create.
+So, now we've configured the Track grid with persist_immediatelty off, but to still use the add form. 
 
-And we'll turn off delete confirmations here as well, so all CRUD operations in the Genre grid will be instant, with no hand holding.
+For our second scenario, in the MediaType grid, let's turn the add form off. Turning off the add form means that the grid itself will be used to create rows and supply new values, and this works differently depending on the persist_immediately-create setting. For this example, we'll turn it off, which still gives the user a chance to set the column values in the grid before inserting the new row, which I'll demonstrate momentarily.
 
-These are just a few scenarios that can be acheived with different combinations of these options.
+Also, note that you can split up the persist_immediately settings. For example, we can turn it off for create, but leave it on for update and destroy.
 
-The goal of the configuration is to support multiple modes of operation while still being simple, so common-sense defaults are used whenever possible. 
+When deleting rows, a confirmation dialog is shown by default, but can be turned off with the confirm_on_destroy setting. This also behaves differently according to its associated persist_immediately setting. If persist_immediately-destroy is on, selected rows will be deleted from the database instantly when clicking or hitting delete.
 
-Now let's save, commit and restart, and take a look at how these different CRUD modes actually work in the browser.
+For our third scenario, in the Genre grid, let's turn off the add form but leave the persist_immediately settings enabled, which is always the default if not otherwise specified. 
+
+With this combination, clicking the add button will instantly insert blank, default rows into the database, without first giving the user a chance to supply column values. This isn't a typical workflow, but you may want to do it in certain cases nonetheless. Obviously, this requires that blank rows be allowed by the database schema to begin with, which means all columns must be nullable, auto-increments, or have non-conflicting default values.
+
+And let's turn off delete confirmations as well, so all CRUD operations in the Genre grid will be instant, with no hand holding.
+
+These three CRUD scenarios which we just configured cover a broad spectrum, but are still only a sample of the possible combinations.
+
+In order for these settings and there effect to fully make sense, we need to see them in action in the browser. So let's save, commit, restart and check them out.
+
+
 
 # Custom CRUD demo
 
