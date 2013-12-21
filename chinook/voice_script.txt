@@ -767,4 +767,12 @@ We can see who each employee reports to and how many employees report to them. F
 
 And since full_name is the display column, this is all very straightforward and human-readable.
 
+PART 2 CONCLUSION
+
+This is the end of part 2, RapidDbic basics, so I'm going to create a tag in the repo to mark this spot, and push it to Github.
+
+In part 3 I'll introduce some other turn-key RapidApp plugins to password-protect the application, and setup users with saved views which allow the state of the grids we've seen throughout part 2 to be saved and retrieved later. 
+
+We'll also explore some other out-of-the-box database features that haven't been covered so far, including Batch Modify, Excel Export, and Frozen Conditions for permission-restricted views.
+
 
